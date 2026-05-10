@@ -125,6 +125,13 @@
       max-width: 560px;
     }
     .hero-desc em { font-style: normal; color: var(--text-3); }
+    .hero-desc-sub {
+      display: inline-block;
+      margin-top: 2px;
+      font-size: 0.86em;
+      font-weight: 400;
+      line-height: 1.82;
+    }
     .hero-photo-switcher {
       align-self: center;
     }
@@ -343,29 +350,8 @@
       color: var(--text-3); writing-mode: vertical-rl;
     }
 
-    /* ===== PRODUCT INDEX ===== */
-    .products-list { list-style: none; }
-    .products-list-item { border-bottom: 1px solid var(--border); }
-    .products-list-item:first-child { border-top: 1px solid var(--border); }
-    .product-list-link {
-      max-width: 1280px;
-      margin: 0 auto;
-      padding: 36px 48px;
-      display: grid;
-      grid-template-columns: 64px 1fr 1fr 80px 32px;
-      align-items: center;
-      gap: 32px;
-      transition: background 0.2s;
-    }
-    .product-list-link:hover { background: rgba(0,0,0,0.02); }
-    .product-list-num { font-size: 12px; font-weight: 600; color: var(--text-3); letter-spacing: 1px; }
-    .product-list-name { font-size: clamp(28px, 3.5vw, 44px); font-weight: 900; letter-spacing: -1.5px; }
     .xia-c { color: var(--xia); }
     .xiu-c { color: var(--xiu); }
-    .product-list-sub { font-size: 13px; color: var(--text-3); }
-    .product-list-year { font-size: 12px; color: var(--text-3); text-align: right; }
-    .product-list-arrow { font-size: 18px; color: var(--text-3); transition: transform 0.2s; text-align: right; }
-    .product-list-link:hover .product-list-arrow { transform: translateX(4px); }
 
     /* ===== CASE SECTION ===== */
     .case-section { border-bottom: 0; }
@@ -446,6 +432,9 @@
       padding: 0;
       filter: drop-shadow(0 24px 30px rgba(210, 119, 0, 0.14));
     }
+    .product-cover-card.xia img {
+      filter: drop-shadow(0 24px 30px rgba(217, 50, 71, 0.14));
+    }
     .marker-highlight {
       position: relative;
       display: inline;
@@ -475,19 +464,93 @@
       display: block;
       margin-bottom: 20px;
     }
+    .xiu-problem-head {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(320px, 0.48fr);
+      gap: 28px;
+      align-items: start;
+    }
     .xiu-stage-title {
       font-size: clamp(22px, 2.7vw, 34px);
       font-weight: 900;
       letter-spacing: -0.6px;
       line-height: 1.16;
-      max-width: 980px;
+      max-width: none;
     }
     .xiu-stage-copy {
-      max-width: 980px;
+      max-width: none;
       margin-top: 14px;
       font-size: 15px;
       color: var(--text-2);
       line-height: 1.82;
+    }
+    .xiu-stage-head.is-wide .xiu-stage-title,
+    .xiu-stage-head.is-wide .xiu-stage-copy {
+      max-width: none;
+    }
+    .xia-stage {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 44px 48px;
+      border-bottom: 0;
+    }
+    .xia-stage-head {
+      display: block;
+      margin-bottom: 20px;
+    }
+    .xia-stage-title {
+      font-size: clamp(22px, 2.7vw, 34px);
+      font-weight: 900;
+      letter-spacing: -0.6px;
+      line-height: 1.16;
+      max-width: none;
+    }
+    .xia-stage-copy {
+      max-width: none;
+      margin-top: 14px;
+      font-size: 15px;
+      color: var(--text-2);
+      line-height: 1.82;
+    }
+    .xia-stage-head.is-wide .xia-stage-title,
+    .xia-stage-head.is-wide .xia-stage-copy {
+      max-width: none;
+    }
+    .xiu-feedback-note {
+      background: rgba(255,255,255,0.68);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 18px 18px 16px;
+    }
+    .xiu-feedback-label {
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 1.6px;
+      text-transform: uppercase;
+      color: var(--xiu);
+      margin-bottom: 10px;
+    }
+    .xiu-feedback-note ul {
+      list-style: none;
+      display: grid;
+      gap: 8px;
+    }
+    .xiu-feedback-note li {
+      position: relative;
+      padding-left: 14px;
+      font-size: 12.5px;
+      line-height: 1.7;
+      color: var(--text-2);
+    }
+    .xiu-feedback-note li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0.78em;
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: var(--xiu);
     }
     .insight-bullets {
       list-style: none;
@@ -516,6 +579,21 @@
     .insight-bullets strong {
       color: var(--text);
       font-weight: 800;
+    }
+    .insight-bullets.xiu-product-insights {
+      margin-top: 22px;
+      gap: 12px;
+    }
+    .insight-bullets.xiu-product-insights li {
+      white-space: normal;
+      max-width: none;
+    }
+    .insight-bullets.xia-product-insights li {
+      white-space: normal;
+      max-width: none;
+    }
+    .insight-bullets.xia-product-insights li::before {
+      background: var(--xia);
     }
     .xiu-proof-grid,
     .xiu-process,
@@ -567,8 +645,20 @@
       align-items: stretch;
       margin-top: 20px;
     }
-    .xiu-abstract-row .failure-chain { margin-top: 0; margin-bottom: 14px; }
-    .xiu-abstract-row .xiu-proof-grid { grid-template-columns: 1fr; margin-top: 0; }
+    .xiu-abstract-row .failure-chain { margin-top: 0; margin-bottom: 0; }
+    .xiu-flow-chain {
+      grid-column: 1 / -1;
+    }
+    .xiu-abstract-framework {
+      display: flex;
+      min-height: 0;
+    }
+    .xiu-abstract-row .xiu-proof-grid {
+      flex: 1;
+      grid-template-columns: 1fr;
+      grid-template-rows: repeat(3, 1fr);
+      margin-top: 0;
+    }
     .xiu-figure-grid {
       grid-template-columns: 1fr 1fr;
       margin-top: 16px;
@@ -583,7 +673,11 @@
       overflow: hidden;
       margin-top: 16px;
     }
-    .xiu-abstract-row .xiu-wide-figure { margin-top: 0; }
+    .xiu-abstract-row .xiu-wide-figure {
+      display: flex;
+      flex-direction: column;
+      margin-top: 0;
+    }
     .xiu-figure-media,
     .xiu-wide-media {
       height: 300px;
@@ -591,13 +685,32 @@
       overflow: hidden;
       background: #FAFAF7;
     }
-    .xiu-abstract-row .xiu-wide-media { height: 430px; }
+    .xiu-abstract-row .xiu-wide-media {
+      flex: 1;
+      height: auto;
+      min-height: 430px;
+    }
+    .xiu-pair-media {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+      align-items: center;
+      justify-items: center;
+      padding: 18px;
+    }
     .xiu-figure img,
     .xiu-wide-figure img {
       width: 100%;
       height: 100%;
       object-fit: cover;
       background: #FAFAF7;
+    }
+    .xiu-wide-figure .xiu-pair-media img {
+      object-fit: contain;
+      padding: 0;
+      min-width: 0;
+      background: transparent;
+      mix-blend-mode: multiply;
     }
     .xiu-figure-media.is-contain img,
     .xiu-wide-media.is-contain img {
@@ -619,6 +732,133 @@
       color: var(--text-3);
       line-height: 1.6;
     }
+    .xiu-report-showcase {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 24px;
+      margin-top: 34px;
+      align-items: start;
+    }
+    .xiu-report-shot {
+      min-width: 0;
+    }
+    .xiu-report-shot img {
+      width: 100%;
+      height: clamp(190px, 18vw, 270px);
+      object-fit: contain;
+      object-position: center;
+      mix-blend-mode: multiply;
+      filter: drop-shadow(0 18px 22px rgba(17,17,17,0.08));
+    }
+    .xiu-report-shot figcaption {
+      margin-top: 16px;
+      padding-top: 12px;
+      border-top: 1px solid var(--border);
+    }
+    .xiu-report-shot strong {
+      display: block;
+      font-size: 14px;
+      font-weight: 850;
+      margin-bottom: 6px;
+    }
+    .xiu-report-shot span {
+      display: block;
+      font-size: 12.5px;
+      color: var(--text-2);
+      line-height: 1.7;
+    }
+    .xiu-result-board {
+      margin-top: 44px;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+    .xiu-result-row {
+      display: grid;
+      grid-template-columns: 170px minmax(0, 1fr);
+      gap: 32px;
+      padding: 24px 0;
+      border-top: 1px solid var(--border);
+    }
+    .xiu-result-row:first-child { border-top: 0; }
+    .xiu-result-k {
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 1.4px;
+      text-transform: uppercase;
+      color: var(--xiu);
+      padding-top: 2px;
+    }
+    .xiu-result-v {
+      display: grid;
+      grid-template-columns: minmax(0, 0.82fr) minmax(260px, 0.68fr);
+      gap: 28px;
+      align-items: start;
+    }
+    .xiu-result-v strong {
+      display: block;
+      font-size: clamp(18px, 2vw, 26px);
+      font-weight: 900;
+      line-height: 1.25;
+      letter-spacing: -0.3px;
+    }
+    .xiu-result-v p {
+      font-size: 13.5px;
+      color: var(--text-2);
+      line-height: 1.78;
+    }
+    .xiu-result-stats {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 1px;
+      margin-top: 26px;
+      background: var(--border);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+    .xiu-result-stat {
+      background: var(--bg);
+      padding: 20px 18px 18px 0;
+    }
+    .xiu-result-stat .metric-n {
+      font-size: clamp(34px, 4.2vw, 56px);
+      margin-bottom: 8px;
+    }
+    .xiu-result-stat .metric-l {
+      color: var(--text-2);
+      font-weight: 600;
+    }
+    .xiu-result-stats.is-five {
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      margin-top: 28px;
+      margin-bottom: 32px;
+    }
+    .case-block.is-ops h3.block-content {
+      max-width: 1050px;
+      font-size: clamp(24px, 2.55vw, 32px);
+      font-weight: 800;
+      line-height: 1.22;
+    }
+    .case-block.is-ops p.block-content {
+      max-width: 1120px;
+    }
+    .xiu-result-board.is-compact {
+      margin-top: 0;
+    }
+    .xiu-result-board.is-compact .xiu-result-row {
+      grid-template-columns: 160px minmax(0, 1fr);
+      gap: 28px;
+      padding: 22px 0;
+    }
+    .xiu-result-board.is-compact .xiu-result-v {
+      grid-template-columns: minmax(240px, 0.52fr) minmax(320px, 0.88fr);
+      gap: 34px;
+    }
+    .xiu-result-board.is-compact .xiu-result-v strong {
+      font-size: clamp(16px, 1.45vw, 20px);
+      font-weight: 750;
+      line-height: 1.42;
+      letter-spacing: -0.2px;
+    }
     .xiu-arch-grid {
       grid-template-columns: 1fr 1fr;
       margin-top: 22px;
@@ -626,6 +866,100 @@
     .xiu-arch-summary {
       grid-template-columns: 1fr 1fr;
       margin-top: 12px;
+    }
+    .xiu-decision-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 22px;
+    }
+    .xiu-decision-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 18px;
+    }
+    .xiu-decision-label {
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 1.4px;
+      text-transform: uppercase;
+      color: var(--xiu);
+      margin-bottom: 12px;
+    }
+    .xiu-decision-card strong {
+      display: block;
+      font-size: 14px;
+      line-height: 1.4;
+      margin-bottom: 8px;
+    }
+    .xiu-decision-card p {
+      font-size: 12.5px;
+      color: var(--text-2);
+      line-height: 1.75;
+    }
+    .xiu-decision-card p + p {
+      margin-top: 10px;
+      padding-top: 10px;
+      border-top: 1px solid var(--border);
+    }
+    .xiu-decision-card b {
+      color: var(--text);
+      font-weight: 800;
+    }
+    .xiu-strategy-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 10px;
+      margin-top: 12px;
+    }
+    .xiu-strategy-card {
+      background: rgba(255,255,255,0.72);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 16px;
+    }
+    .xiu-strategy-card strong {
+      display: block;
+      font-size: 13px;
+      line-height: 1.35;
+      margin-bottom: 7px;
+    }
+    .xiu-strategy-card p {
+      font-size: 12px;
+      color: var(--text-2);
+      line-height: 1.7;
+    }
+    .xia-solution-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+      gap: 12px;
+      margin-top: 24px;
+    }
+    .xia-solution-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 18px;
+    }
+    .xia-solution-label {
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 1.4px;
+      text-transform: uppercase;
+      color: var(--xia);
+      margin-bottom: 12px;
+    }
+    .xia-solution-card strong {
+      display: block;
+      font-size: 14px;
+      line-height: 1.4;
+      margin-bottom: 8px;
+    }
+    .xia-solution-card p {
+      font-size: 12.5px;
+      color: var(--text-2);
+      line-height: 1.75;
     }
 
     /* Case block */
@@ -647,12 +981,12 @@
       font-size: clamp(22px, 2.8vw, 34px);
       font-weight: 800; letter-spacing: -0.8px;
       line-height: 1.15;
-      max-width: 980px;
+      max-width: none;
       margin-bottom: 18px;
     }
     p.block-content,
     .block-content p {
-      max-width: 980px;
+      max-width: none;
       font-size: 15px;
       color: var(--text-2);
       line-height: 1.9;
@@ -674,7 +1008,7 @@
     }
 
     /* Gap cards */
-    .gap-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 28px; }
+    .gap-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px; margin-top: 28px; }
     .gap-card { background: var(--white); border: 1px solid var(--border); border-radius: 10px; padding: 24px; }
     .gap-card-title { font-size: 14px; font-weight: 700; margin-bottom: 8px; }
     .gap-card p { font-size: 13px; color: var(--text-2); line-height: 1.75; }
@@ -740,6 +1074,53 @@
     .pivot-title { font-size: 17px; font-weight: 800; letter-spacing: -0.3px; margin-bottom: 12px; }
     .pivot-card p { font-size: 14px; color: var(--text-2); line-height: 1.8; }
 
+    /* Product video */
+    .video-flywheel-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 0.48fr) minmax(420px, 0.72fr);
+      gap: 18px;
+      align-items: stretch;
+      margin-top: 28px;
+    }
+    .video-flywheel-points {
+      display: grid;
+      gap: 12px;
+    }
+    .video-flywheel-point {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 18px;
+    }
+    .video-flywheel-point strong {
+      display: block;
+      font-size: 14px;
+      line-height: 1.4;
+      margin-bottom: 8px;
+      font-weight: 800;
+    }
+    .video-flywheel-point p {
+      font-size: 12.5px;
+      color: var(--text-2);
+      line-height: 1.75;
+    }
+    .video-flywheel-figure {
+      display: flex;
+      flex-direction: column;
+      margin-top: 0;
+      min-width: 0;
+    }
+    .video-flywheel-figure .xiu-wide-media {
+      flex: 1;
+      height: auto;
+      min-height: 360px;
+    }
+    .video-flywheel-figure .xiu-wide-media img {
+      object-fit: contain;
+      padding: 18px;
+      mix-blend-mode: multiply;
+    }
+
     /* Research row */
     .research-row {
       display: flex; gap: 40px;
@@ -777,20 +1158,231 @@
       letter-spacing: 2.5px; text-transform: uppercase;
       color: var(--text-3); margin-bottom: 48px;
     }
-    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; }
-    .about-bio { font-size: 17px; color: var(--text-2); line-height: 1.9; }
-    .about-bio strong { color: var(--text); font-weight: 700; }
-    .about-detail-row {
-      display: grid; grid-template-columns: 100px 1fr;
-      gap: 24px; padding: 18px 0; border-top: 1px solid var(--border);
+    .about-title {
+      font-family: var(--serif);
+      font-size: clamp(44px, 5vw, 72px);
+      font-weight: 700;
+      letter-spacing: -3px;
+      line-height: 1;
+      margin-bottom: 24px;
+      color: var(--text);
     }
-    .about-detail-key {
-      font-size: 10px; font-weight: 700;
-      letter-spacing: 1.5px; text-transform: uppercase;
-      color: var(--text-3); padding-top: 3px;
+    .about-lead {
+      max-width: 1120px;
+      font-size: 18px;
+      color: var(--text-2);
+      line-height: 1.9;
+      margin-bottom: 64px;
     }
-    .about-detail-val { font-size: 14px; color: var(--text-2); line-height: 1.8; }
-    .about-detail-val strong { color: var(--text); font-weight: 600; }
+    .brainstorm-board {
+      position: relative;
+      min-height: 760px;
+      margin: 28px 0 42px;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 50% 48%, rgba(217,50,71,0.12) 0, rgba(217,50,71,0.04) 24%, transparent 48%),
+        radial-gradient(circle at 58% 40%, rgba(208,112,0,0.10) 0, transparent 34%);
+    }
+    .brainstorm-board::before,
+    .brainstorm-board::after {
+      content: '';
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      border: 1px solid rgba(17,17,17,0.12);
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+    }
+    .brainstorm-board::before {
+      width: min(62vw, 720px);
+      height: min(62vw, 720px);
+    }
+    .brainstorm-board::after {
+      width: min(42vw, 480px);
+      height: min(42vw, 480px);
+      border-style: dashed;
+      border-color: rgba(217,50,71,0.26);
+    }
+    .brainstorm-center {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: clamp(180px, 21vw, 270px);
+      transform: translate(-50%, -50%);
+      text-align: center;
+      z-index: 2;
+    }
+    .brainstorm-avatar {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 1;
+      border-radius: 50%;
+      padding: 10px;
+      background: rgba(255,255,255,0.72);
+      border: 1px solid rgba(17,17,17,0.14);
+      box-shadow: 0 34px 70px rgba(17,17,17,0.16);
+    }
+    .brainstorm-avatar::before,
+    .brainstorm-avatar::after {
+      content: '';
+      position: absolute;
+      inset: -18px;
+      border-radius: 50%;
+      border: 1px solid rgba(217,50,71,0.28);
+      animation: mind-pulse 5.8s ease-in-out infinite;
+    }
+    .brainstorm-avatar::after {
+      inset: -34px;
+      border-color: rgba(208,112,0,0.22);
+      animation-delay: 1.5s;
+    }
+    .brainstorm-avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 50%;
+      filter: saturate(0.98) contrast(1.02);
+      position: relative;
+      z-index: 1;
+    }
+    .brainstorm-caption {
+      margin-top: 22px;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 2.2px;
+      text-transform: uppercase;
+      color: var(--text-3);
+    }
+    .thought-card {
+      position: absolute;
+      width: min(27vw, 310px);
+      padding: 20px 22px;
+      border: 1px solid rgba(17,17,17,0.16);
+      background: rgba(255,255,255,0.70);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      box-shadow: 0 18px 42px rgba(17,17,17,0.07);
+      transition: transform 0.35s cubic-bezier(0.16,1,0.3,1),
+                  border-color 0.25s,
+                  box-shadow 0.25s;
+      z-index: 3;
+    }
+    .thought-card::before {
+      content: '';
+      position: absolute;
+      width: var(--line-w);
+      height: 1px;
+      left: var(--line-x);
+      top: var(--line-y);
+      background: linear-gradient(90deg, transparent, rgba(17,17,17,0.28), transparent);
+      transform: rotate(var(--line-r));
+      transform-origin: center;
+      pointer-events: none;
+    }
+    .thought-card:hover {
+      transform: translateY(-8px) rotate(0deg);
+      border-color: rgba(217,50,71,0.42);
+      box-shadow: 0 24px 52px rgba(17,17,17,0.11);
+    }
+    .thought-card.self { border-color: rgba(217,50,71,0.30); }
+    .thought-card.next { border-color: rgba(208,112,0,0.34); }
+    .thought-type {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 12px;
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 1.7px;
+      text-transform: uppercase;
+      color: var(--text-3);
+    }
+    .thought-type::before {
+      content: '';
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--xia);
+    }
+    .thought-card.next .thought-type::before { background: var(--xiu); }
+    .thought-card strong {
+      display: block;
+      font-size: clamp(20px, 2vw, 27px);
+      line-height: 1.08;
+      letter-spacing: -0.8px;
+      margin-bottom: 12px;
+      color: var(--text);
+    }
+    .thought-card p {
+      font-size: 14px;
+      line-height: 1.85;
+      color: var(--text-2);
+    }
+    .thought-1 {
+      left: 4%;
+      top: 12%;
+      --tilt: -2.4deg;
+      transform: rotate(var(--tilt));
+      --line-w: 220px;
+      --line-x: 88%;
+      --line-y: 82%;
+      --line-r: 27deg;
+    }
+    .thought-2 {
+      right: 8%;
+      top: 9%;
+      --tilt: 2.8deg;
+      transform: rotate(var(--tilt));
+      --line-w: 210px;
+      --line-x: -56%;
+      --line-y: 88%;
+      --line-r: -25deg;
+    }
+    .thought-3 {
+      left: 9%;
+      top: 43%;
+      --tilt: 1.8deg;
+      transform: rotate(var(--tilt));
+      --line-w: 170px;
+      --line-x: 92%;
+      --line-y: 47%;
+      --line-r: 3deg;
+    }
+    .thought-4 {
+      right: 4%;
+      top: 42%;
+      --tilt: -2deg;
+      transform: rotate(var(--tilt));
+      --line-w: 185px;
+      --line-x: -50%;
+      --line-y: 50%;
+      --line-r: -2deg;
+    }
+    .thought-5 {
+      left: 17%;
+      bottom: 9%;
+      --tilt: -1.2deg;
+      transform: rotate(var(--tilt));
+      --line-w: 210px;
+      --line-x: 78%;
+      --line-y: 8%;
+      --line-r: -30deg;
+    }
+    .thought-6 {
+      right: 15%;
+      bottom: 8%;
+      --tilt: 1.6deg;
+      transform: rotate(var(--tilt));
+      --line-w: 220px;
+      --line-x: -58%;
+      --line-y: 8%;
+      --line-r: 32deg;
+    }
+    @keyframes mind-pulse {
+      0%, 100% { opacity: 0.28; transform: scale(0.96); }
+      50% { opacity: 0.78; transform: scale(1.04); }
+    }
 
     /* ===== FOOTER ===== */
     .footer-inner {
@@ -831,6 +1423,21 @@
       transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.16,1,0.3,1);
     }
     .reveal.in { opacity: 1; transform: translateY(0); }
+    .brainstorm-center.reveal {
+      transform: translate(-50%, calc(-50% + 24px));
+    }
+    .brainstorm-center.reveal.in {
+      transform: translate(-50%, -50%);
+    }
+    .thought-card.reveal {
+      transform: translateY(24px) rotate(var(--tilt, 0deg));
+    }
+    .thought-card.reveal.in {
+      transform: translateY(0) rotate(var(--tilt, 0deg));
+    }
+    .thought-card.reveal:hover {
+      transform: translateY(-8px) rotate(0deg);
+    }
 
     /* Stagger delays */
     .s1 { transition-delay: 0.06s; }
@@ -859,6 +1466,7 @@
     .failure-chain.in .chain-step:nth-child(3) { transition-delay: 0.20s; }
     .failure-chain.in .chain-step:nth-child(4) { transition-delay: 0.30s; }
     .failure-chain.in .chain-step:nth-child(5) { transition-delay: 0.40s; }
+    .failure-chain.in .chain-step:nth-child(6) { transition-delay: 0.50s; }
 
     /* ===== TIMELINE PANEL ===== */
 
@@ -898,19 +1506,19 @@
       position: relative;
       aspect-ratio: 4 / 3;
       overflow: hidden;
-      background: rgba(255,255,255,0.24);
-      border: 1px solid rgba(17,17,17,0.08);
+      background: transparent;
+      border: 0;
     }
     .tl-preview-media img {
       width: 100%;
       height: 100%;
-      object-fit: cover;
-      filter: saturate(0.95) contrast(0.96);
-      transform: scale(1.08);
+      object-fit: contain;
+      filter: saturate(0.98) contrast(0.98) drop-shadow(0 26px 34px rgba(17,17,17,0.10));
+      transform: scale(1);
       transition: transform 0.5s cubic-bezier(0.16,1,0.3,1);
     }
     .tl-preview-card:hover .tl-preview-media img {
-      transform: scale(1.13);
+      transform: scale(1.04);
     }
     .tl-preview-card.xia .tl-preview-media img { object-position: 72% 64%; }
     .tl-preview-card.xiu .tl-preview-media img { object-position: 30% 63%; }
@@ -1079,7 +1687,7 @@
     /* ===== RESPONSIVE ===== */
     @media (max-width: 960px) {
       .nav-inner, .hero-top, .hero-bottom,
-      .product-cover, .case-header, .case-block, .metrics-block, .xiu-stage, .about-wrap, .footer-inner {
+      .product-cover, .case-header, .case-block, .metrics-block, .xiu-stage, .xia-stage, .about-wrap, .footer-inner {
         padding-left: 28px; padding-right: 28px;
       }
       .tl-panel {
@@ -1104,10 +1712,32 @@
       }
       .product-cover,
       .xiu-abstract-row,
+      .xiu-problem-head,
       .xiu-arch-grid,
-      .xiu-arch-summary {
+      .xiu-arch-summary,
+      .xiu-decision-grid,
+      .xiu-strategy-grid,
+      .video-flywheel-grid,
+      .xiu-report-showcase,
+      .xia-solution-grid {
         grid-template-columns: 1fr;
       }
+      .video-flywheel-figure .xiu-wide-media {
+        height: 420px;
+      }
+      .xiu-result-row,
+      .xiu-result-v {
+        grid-template-columns: 1fr;
+        gap: 14px;
+      }
+      .xiu-result-stats { grid-template-columns: 1fr 1fr; }
+      .xiu-result-stats.is-five { grid-template-columns: 1fr 1fr; }
+      .xiu-result-board.is-compact .xiu-result-row,
+      .xiu-result-board.is-compact .xiu-result-v {
+        grid-template-columns: 1fr;
+        gap: 14px;
+      }
+      .xiu-result-stat { padding-left: 0; }
       .product-cover-visual { max-width: 680px; }
       .insight-bullets li { white-space: normal; }
       .xiu-proof-grid,
@@ -1121,19 +1751,55 @@
       .block-label { padding-top: 0; }
       .gap-cards { grid-template-columns: 1fr; }
       .metrics-grid { grid-template-columns: 1fr 1fr; }
-      .about-grid { grid-template-columns: 1fr; gap: 48px; }
-      .reflection-grid { grid-template-columns: 1fr; }
-      .product-list-link {
-        grid-template-columns: 48px 1fr 48px 24px;
-        padding: 28px; gap: 20px;
+      .brainstorm-board {
+        min-height: auto;
+        padding: 46px 0 24px;
+        overflow: visible;
       }
-      .product-list-sub { display: none; }
+      .brainstorm-board::before,
+      .brainstorm-board::after,
+      .thought-card::before {
+        display: none;
+      }
+      .brainstorm-center {
+        position: relative;
+        left: auto;
+        top: auto;
+        width: min(260px, 52vw);
+        margin: 0 auto 42px;
+        transform: none;
+      }
+      .thought-card,
+      .thought-1,
+      .thought-2,
+      .thought-3,
+      .thought-4,
+      .thought-5,
+      .thought-6 {
+        position: relative;
+        left: auto;
+        right: auto;
+        top: auto;
+        bottom: auto;
+        width: 100%;
+        margin: 14px 0;
+        --tilt: 0deg;
+        transform: none;
+      }
+      .brainstorm-center.reveal {
+        transform: translateY(24px);
+      }
+      .brainstorm-center.reveal.in {
+        transform: translateY(0);
+      }
+      .thought-card:hover { transform: translateY(-4px); }
+      .reflection-grid { grid-template-columns: 1fr; }
     }
     @media (max-width: 600px) {
       .nav-links { display: none; }
       .nav-inner, .hero-top, .hero-bottom,
       .product-cover, .case-header, .case-block, .metrics-block,
-      .xiu-stage, .about-wrap, .footer-inner { padding-left: 20px; padding-right: 20px; }
+      .xiu-stage, .xia-stage, .about-wrap, .footer-inner { padding-left: 20px; padding-right: 20px; }
       .tl-preview { display: none; }
       .tl-walker { display: none; }
       .tl-inner { padding: 34px 30px 64px; }
@@ -1171,6 +1837,9 @@
         width: 1px;
         height: 100%;
       }
+      .xiu-result-stats.is-five {
+        grid-template-columns: 1fr;
+      }
       .hero-timeline-dot,
       .hero-timeline-item.is-minor .hero-timeline-dot {
         top: 3px;
@@ -1179,6 +1848,38 @@
       .case-title { letter-spacing: -2px; }
       .hero-bottom { flex-direction: column; gap: 32px; align-items: flex-start; }
       .metrics-grid { grid-template-columns: 1fr 1fr; }
+      .xiu-report-shot img { height: auto; }
+      .xiu-result-stats { grid-template-columns: 1fr; }
+      .video-flywheel-figure .xiu-wide-media {
+        height: auto;
+        min-height: 0;
+      }
+      .video-flywheel-figure .xiu-wide-media img {
+        height: auto;
+      }
+      .xiu-pair-media {
+        grid-template-columns: 1fr;
+        height: auto !important;
+      }
+      .xiu-wide-figure .xiu-pair-media img {
+        height: auto;
+        max-height: 360px;
+      }
+      .about-lead { margin-bottom: 38px; }
+      .brainstorm-board {
+        margin-top: 10px;
+        padding-top: 34px;
+      }
+      .brainstorm-center {
+        width: min(220px, 66vw);
+        margin-bottom: 34px;
+      }
+      .thought-card {
+        padding: 20px;
+      }
+      .thought-card strong {
+        font-size: 22px;
+      }
     }
   </style>
 </head>
@@ -1197,14 +1898,7 @@
   <div class="tl-preview" aria-label="产品预览">
     <a href="#xia" class="tl-preview-card xia" data-close-tl>
       <div class="tl-preview-media">
-        <img src="assets/mascots.png" alt="虾小宝产品形象">
-      </div>
-      <div class="tl-preview-meta">
-        <div class="tl-preview-num">01</div>
-        <div>
-          <div class="tl-preview-title">虾小宝</div>
-          <div class="tl-preview-sub">Agent 能力与身份资产配置平台</div>
-        </div>
+        <img src="assets/mascots.png" alt="虾小宝和嗅嗅豹合照">
       </div>
     </a>
   </div>
@@ -1220,19 +1914,19 @@
       <ul class="tl-section-links">
         <li>
           <a href="#xiu-phase-1" class="tl-link xiu-link" data-close-tl>嗅嗅豹一期</a>
-          <span class="tl-link-sub">面向内部行业运营，抽象商机定义和三层 Agent 分析结构。</span>
+          <span class="tl-link-sub">探索多智能体在商机选品与商机发现场景下的能力边界，验证它能否完成真实分析链路。</span>
         </li>
         <li>
           <a href="#xiu-phase-2" class="tl-link xiu-link" data-close-tl>嗅嗅豹二期</a>
-          <span class="tl-link-sub">面向外部跨境商家，把重点转向多源数据与固定工作流。</span>
+          <span class="tl-link-sub">发现高频需求更适合由工作流承接，于是从通用 Agent 转向更稳定、可评测的固定流程。</span>
         </li>
         <li>
           <a href="#product-video" class="tl-link xia-link" data-close-tl>商品视频生成</a>
-          <span class="tl-link-sub">从选品洞察延展到更高频的同款爆款视频复刻和营销内容生成。</span>
+          <span class="tl-link-sub">识别“内容复刻比选品分析更高频”，把营销视频生成抽象成可复用的业务链路。</span>
         </li>
         <li>
           <a href="#xia" class="tl-link xia-link" data-close-tl>虾小宝</a>
-          <span class="tl-link-sub">基于 Skill Hub 继续补齐身份配置，把虾小宝定义为 Agent 的能力层。</span>
+          <span class="tl-link-sub">从单点 Skill 走向能力层设计，沉淀 Agent 所需的能力分发、身份配置和执行基础设施。</span>
         </li>
       </ul>
     </div>
@@ -1240,7 +1934,7 @@
     <div class="tl-section">
       <div class="tl-section-label">About</div>
       <ul class="tl-section-links">
-        <li><a href="#about" class="tl-link" data-close-tl>Zimi Liu</a></li>
+        <li><a href="#about" class="tl-link" data-close-tl>自我评价</a></li>
       </ul>
     </div>
 
@@ -1266,8 +1960,8 @@
       </h1>
       <div class="hero-desc h-enter s2">
         我做 AI 产品，关心用户真正关心什么。<br>
-        <em>擅长从模糊需求中找到清晰的产品问题，</em><br>
-        <em>并和工程、算法团队一起，把新技术快速落地为真实的产品价值。</em>
+        <em class="hero-desc-sub">长期主导创新型产品从 0 到 1 的探索与落地，</em><br>
+        <em class="hero-desc-sub">擅长在小团队、资源有限、用户认知尚未成熟的环境中，完成产品定义，并探索市场教育与增长路径。</em>
       </div>
     </div>
     <div class="hero-photo-switcher h-enter s3" aria-label="毕业照片">
@@ -1287,7 +1981,7 @@
       <div class="hero-timeline-track">
         <a href="#xia" class="hero-timeline-item is-start" style="--x:0%;">
           <span class="hero-timeline-dot"></span>
-          <div class="hero-timeline-date">2026.01</div>
+          <div class="hero-timeline-date">2026.02</div>
           <div class="hero-timeline-name">虾小宝</div>
           <div class="hero-timeline-note">Agent SkillHub</div>
         </a>
@@ -1328,160 +2022,6 @@
   </div>
 </section>
 
-<!-- PRODUCT INDEX -->
-<ul class="products-list">
-  <li class="products-list-item">
-    <a href="#xia" class="product-list-link reveal">
-      <div class="product-list-num">01</div>
-      <div class="product-list-name xia-c">虾小宝</div>
-      <div class="product-list-sub">Agent 能力与身份资产配置平台</div>
-      <div class="product-list-year">2026</div>
-      <div class="product-list-arrow">→</div>
-    </a>
-  </li>
-  <li class="products-list-item">
-    <a href="#xiu" class="product-list-link reveal s1">
-      <div class="product-list-num">02</div>
-      <div class="product-list-name xiu-c">嗅嗅豹</div>
-      <div class="product-list-sub">AI 选品分析平台</div>
-      <div class="product-list-year">2025</div>
-      <div class="product-list-arrow">→</div>
-    </a>
-  </li>
-</ul>
-
-<!-- =============================== -->
-<!-- 01 · 虾小宝                      -->
-<!-- =============================== -->
-<section id="xia" class="case-section">
-
-  <div class="case-header">
-    <div class="case-num reveal">01 · 2026.01 — 2026.03</div>
-    <h2 class="case-title xia-c">
-      <div class="lmask reveal s1"><span class="lmask-inner">虾小宝</span></div>
-    </h2>
-    <div class="case-meta-row reveal s2">
-      <span class="case-meta-item">Agent 能力与身份资产配置平台</span>
-      <span class="case-meta-dot">·</span>
-      <span class="case-meta-item">阿里巴巴 ATH MaaS 业务线</span>
-      <span class="case-meta-dot">·</span>
-      <a href="https://skillatlas.cn/" target="_blank" class="case-meta-link">skillatlas.cn ↗</a>
-    </div>
-  </div>
-
-  <!-- 概览占位 -->
-  <div class="case-block">
-    <div class="block-label reveal">概览</div>
-    <div class="reveal s1">
-      <div class="img-ph" style="aspect-ratio:16/7"><span class="img-ph-label">产品截图 · 占位</span></div>
-    </div>
-  </div>
-
-  <!-- 问题 -->
-  <div class="case-block">
-    <div class="block-label reveal">问题</div>
-    <div>
-      <h3 class="block-content reveal">Agent 能"对话"，<br>却无法真正"执行"</h3>
-      <p class="block-content reveal s1">Agent 生态里有一个普遍的断点：大量 Agent 已经具备对话能力，却无法完成实际操作。根源是两个卡点。</p>
-      <div class="gap-cards">
-        <div class="gap-card reveal s2">
-          <div class="gap-card-title">没有可信的 Skill</div>
-          <p>有想法，但没有经过认证的工具，只能输出文字建议，无法触达真实系统。</p>
-        </div>
-        <div class="gap-card reveal s3">
-          <div class="gap-card-title">没有真实身份资产</div>
-          <p>无法绑定邮箱 / 手机号 / API 钱包，自动化链路在最后一公里断掉。</p>
-        </div>
-      </div>
-      <p class="block-content reveal s4" style="margin-top:20px;font-size:13px;color:var(--text-3);font-style:italic;">
-        这个问题是在嗅嗅豹的实践中浮现的：我们把"商品营销视频生成"封装为可复用 Skill，随即发现这种能力单元在开发者生态中广泛存在，但没有标准化的分发与协作市场。
-      </p>
-    </div>
-  </div>
-
-  <!-- 发现 -->
-  <div class="case-block">
-    <div class="block-label reveal">发现</div>
-    <div>
-      <h3 class="block-content reveal">一条完整的失败链路</h3>
-      <p class="block-content reveal s1">对用户行为的拆解，归纳出从意图到放弃的完整失败链路——每一个环节都是一个用户流失点。</p>
-      <div class="failure-chain">
-        <div class="chain-step"><div class="chain-pill">不会找</div><div class="chain-arr">→</div></div>
-        <div class="chain-step"><div class="chain-pill">看不懂</div><div class="chain-arr">→</div></div>
-        <div class="chain-step"><div class="chain-pill">不敢信</div><div class="chain-arr">→</div></div>
-        <div class="chain-step"><div class="chain-pill">跑不通</div><div class="chain-arr">→</div></div>
-        <div class="chain-step"><div class="chain-pill">效果不确定</div></div>
-      </div>
-      <p class="block-content reveal s2">核心判断：Skill 必须从"可搜索的工具集合"升级为"可推荐、可验证、可运行、可进化的能力矩阵"。仅有能力还不够——Agent 必须同时具备对 Skill 的配置能力与可信的身份资产，才能在复杂场景中完整执行。</p>
-    </div>
-  </div>
-
-  <!-- 决策 -->
-  <div class="case-block">
-    <div class="block-label reveal">决策</div>
-    <div>
-      <h3 class="block-content reveal">针对每个环节，<br>做对应的产品设计</h3>
-      <table class="dtable reveal s1">
-        <tr>
-          <td>不会找</td>
-          <td>
-            <strong>SkillFinder 语义检索</strong>
-            <p>从关键词检索升级为基于任务理解的推荐（intent → skill），结合 Agent 真实运行数据动态排序。</p>
-          </td>
-        </tr>
-        <tr>
-          <td>看不懂<br>不敢信</td>
-          <td>
-            <strong>三维安全准入体系</strong>
-            <p>安全性 + 完整性 + 可用性，代码扫描 + 沙盒试跑 + 用例验证，能力边界和适用场景明确标注。</p>
-          </td>
-        </tr>
-        <tr>
-          <td>跑不通</td>
-          <td>
-            <strong>统一托管外部 API</strong>
-            <p>将接入成本从用户侧迁移到平台侧，用户无需自行申请 Key、处理额度或完成复杂配置。</p>
-          </td>
-        </tr>
-        <tr>
-          <td>最后<br>一公里</td>
-          <td>
-            <strong>Agent 身份资产配置</strong>
-            <p>支持 Agent 绑定真实邮箱 / 手机号 / API 钱包，打通注册、验证、跨平台协作的完整链路。</p>
-          </td>
-        </tr>
-      </table>
-    </div>
-  </div>
-
-  <!-- 结果 -->
-  <div class="metrics-block">
-    <div class="block-label reveal">
-      结果<br>
-      <span style="font-weight:400;font-size:10px;color:var(--text-3);letter-spacing:0;text-transform:none;">上线 3 周</span>
-    </div>
-    <div class="metrics-grid reveal s1">
-      <div class="metric-cell">
-        <div class="metric-n xia" data-target="6000" data-suffix="+">0</div>
-        <div class="metric-l">Agent 注册</div>
-      </div>
-      <div class="metric-cell">
-        <div class="metric-n xia" data-target="3800">0</div>
-        <div class="metric-l">活跃 Agent</div>
-      </div>
-      <div class="metric-cell">
-        <div class="metric-n xia" data-target="4000" data-suffix="+">0</div>
-        <div class="metric-l">Skill 调用</div>
-      </div>
-      <div class="metric-cell">
-        <div class="metric-n xia" data-target="1000">0</div>
-        <div class="metric-l">社区 Agent</div>
-      </div>
-    </div>
-  </div>
-
-</section>
-
 <!-- =============================== -->
 <!-- 01-02 · 嗅嗅豹                   -->
 <!-- =============================== -->
@@ -1510,7 +2050,7 @@
       <div class="block-label reveal">核心洞察</div>
       <ul class="insight-bullets reveal s1">
         <li><strong><span class="marker-highlight">商机定义取决于商家类型</span></strong>，产品要先判断谁在选品，再定义什么算机会。</li>
-        <li><strong><span class="marker-highlight">数据处理链路和搜索策略强耦合</span></strong>，类目映射、CPV 拍平和实体清洗会直接影响召回与排序质量。</li>
+        <li><strong><span class="marker-highlight">数据处理链路和搜索策略强耦合</span></strong>，类目映射、CPV 标准化和实体清洗会直接影响召回与排序质量。</li>
         <li><strong><span class="marker-highlight">高频需求应该工作流化，Agent 处理长尾</span></strong>，真实业务更需要稳定、可评测、低成本的分析路径。</li>
         <li><strong><span class="marker-highlight">Agent 产品需要数据飞轮</span></strong>，把用户反馈和经营结果回收为需求理解、召回、排序和分析能力的优化信号。</li>
       </ul>
@@ -1519,40 +2059,41 @@
 
   <!-- 一期抽象 -->
   <div class="xiu-stage">
-    <div class="xiu-stage-head">
+    <div class="xiu-stage-head is-wide">
       <div class="block-label reveal">一期抽象</div>
       <h3 class="xiu-stage-title reveal s1">内部真实选品需求，本质是<span class="marker-highlight">多平台数据对齐</span>和<span class="marker-highlight">商品特征工程</span>。</h3>
-      <p class="xiu-stage-copy reveal s2">我们发现行业运营不是在“找一个商品”，而是在做一套判断：把 Shein、Temu、Shopee most popular 和 new arrival 榜单的商品收集起来，再抽取卖得多、增长快的商品特征趋势。这个过程非常适合用 Agent 框架拆成 Planning、Data、Analysis 三层。</p>
+      <p class="xiu-stage-copy reveal s2">运营的真实工作流：从 Shein、Temu、Shopee most popular 和 new arrival 等榜单收集候选商品，再人工判断哪些商品特征卖得好、增速快。</p>
     </div>
     <div class="xiu-abstract-row">
+      <div class="failure-chain xiu-flow-chain">
+        <div class="chain-step"><div class="chain-pill">模糊需求</div><div class="chain-arr">→</div></div>
+        <div class="chain-step"><div class="chain-pill">结构化意图</div><div class="chain-arr">→</div></div>
+        <div class="chain-step"><div class="chain-pill">跨平台对齐</div><div class="chain-arr">→</div></div>
+        <div class="chain-step"><div class="chain-pill">特征提取</div><div class="chain-arr">→</div></div>
+        <div class="chain-step"><div class="chain-pill">排序判断</div></div>
+      </div>
       <div class="xiu-abstract-framework">
-        <div class="failure-chain xiu-flow-chain">
-          <div class="chain-step"><div class="chain-pill">模糊需求</div><div class="chain-arr">→</div></div>
-          <div class="chain-step"><div class="chain-pill">结构化意图</div><div class="chain-arr">→</div></div>
-          <div class="chain-step"><div class="chain-pill">跨平台对齐</div><div class="chain-arr">→</div></div>
-          <div class="chain-step"><div class="chain-pill">特征提取</div><div class="chain-arr">→</div></div>
-          <div class="chain-step"><div class="chain-pill">排序判断</div></div>
-        </div>
         <div class="xiu-proof-grid">
           <div class="xiu-proof-card reveal s2">
-            <div class="xiu-proof-label">Planning</div>
-            <strong>把用户模糊需求结构化</strong>
-            <p>我主导 Prompt 设计，将自然语言需求拆成类目、平台、趋势方向等结构化维度，并用运营评分做校验。</p>
+            <div class="xiu-proof-label">Planning Agent</div>
+            <strong>系统大脑：策略制定与整体编排</strong>
+            <p>负责理解运营输入，把模糊选品需求拆成类目、平台、时间、趋势方向等结构化维度，并输出可执行的选品分析方案，调度后续 Search 和 Opportunity Agent。</p>
           </div>
           <div class="xiu-proof-card reveal s3">
-            <div class="xiu-proof-label">Data</div>
-            <strong>两路数据源：离线全量 + 在线榜单</strong>
-            <p>离线使用 Shopee 类目全量数据做 embedding 和 recall 评测；在线接入实时榜单，类目映射是关键难点。</p>
+            <div class="xiu-proof-label">Search Agent</div>
+            <strong>双路径数据获取：实时爬取 + 结构化召回</strong>
+            <p>实时路径通过 Browser Use 获取当天商品动态数据；结构化查询路径结合 NL2SQL 和 Embedding 双路召回商品数据，再做在线融合、排序和类目映射。</p>
           </div>
           <div class="xiu-proof-card reveal s4">
-            <div class="xiu-proof-label">Analysis</div>
-            <strong>基于结构化维度做特征提取和排序</strong>
-            <p>围绕工具调用、特征提取和排序结果做评估，重点看 Agent 是否正确调用工具并产出可解释结果。</p>
+            <div class="xiu-proof-label">Opportunity Agent</div>
+            <strong>提取商品特征，聚合可解释机会</strong>
+            <p>从召回商品中提取款式、材质、颜色、价格带、场景等关键特征，识别卖得好、增速快的共性模式，为后续排序判断和运营决策提供依据。</p>
           </div>
         </div>
       </div>
       <figure class="xiu-wide-figure reveal s5">
-        <div class="xiu-wide-media is-contain">
+        <div class="xiu-wide-media xiu-pair-media">
+          <img src="assets/嗅嗅豹一期截图1.png" alt="嗅嗅豹一期商品榜单截图">
           <img src="assets/嗅嗅豹一期趋势报告.png" alt="嗅嗅豹一期趋势报告截图">
         </div>
         <figcaption class="xiu-figure-caption">
@@ -1563,35 +2104,50 @@
     </div>
   </div>
 
-  <!-- 一期问题 -->
-  <div class="xiu-stage">
-    <div class="xiu-stage-head">
-      <div class="block-label reveal">一期问题</div>
-      <h3 class="xiu-stage-title reveal s1">一期获得 1688 大力支持，但也暴露出三个系统性问题</h3>
-      <p class="xiu-stage-copy reveal s2">一期证明了 Agent 能跑通商机分析链路，但上线后也发现：链路过长导致成本失控，能力承诺超过实际可执行逻辑，报告缺少推导过程导致用户信任不足。这些问题推动了后续产品方向的转折。</p>
-    </div>
-    <div class="xiu-process">
-      <div class="xiu-process-card reveal s2">
-        <div class="xiu-process-title">链路过长 → 成本失控</div>
-        <p>在线获取当天商品数据平均耗时 42 分钟，多环节依赖导致成本、等待时间和失败风险同时上升。</p>
-      </div>
-      <div class="xiu-process-card reveal s3">
-        <div class="xiu-process-title">能力承诺 > 实际实现</div>
-        <p>结构化分析在体验上被用户理解为“会做完整决策”，但实际很多分析还没有真正沉到可执行逻辑里。</p>
-      </div>
-      <div class="xiu-process-card reveal s4">
-        <div class="xiu-process-title">信任缺失</div>
-        <p>报告给出了结论，但推导过程不够透明，用户无法判断哪些数据、特征和排序逻辑支撑了最终判断。</p>
-      </div>
-    </div>
-  </div>
-
-  <!-- 架构转向 -->
+  <!-- 一期 Insight 与架构转向 -->
   <div id="xiu-phase-2" class="xiu-stage">
     <div class="xiu-stage-head">
-      <div class="block-label reveal">架构转向</div>
-      <h3 class="xiu-stage-title reveal s1">从“通用多 Agent”，转向“Workflow + Agent 兜底”</h3>
-      <p class="xiu-stage-copy reveal s2">用户表面表达很多样，但底层高频分析模式可以沉淀为电商、社媒、品牌三类数据源，以及大约 12 类固定工作流。高频需求工作流化，长尾需求再交给 Agent。</p>
+      <div class="block-label reveal">一期 Insight / 架构转向</div>
+      <h3 class="xiu-stage-title reveal s1">一期跑通了商机分析链路，但也证明产品不能停留在“开放式 Agent”</h3>
+      <p class="xiu-stage-copy reveal s2">真实商家需要的不是一个自由规划的 AI 助手，而是一条能快速进入、稳定复用、过程可信的选品决策路径。因此二期从“通用多 Agent”转向“Workflow + Agent 兜底”：高频分析被产品化为固定工作流，长尾问题再交给 Agent 处理。</p>
+    </div>
+    <div class="xiu-decision-grid">
+      <div class="xiu-decision-card reveal s2">
+        <div class="xiu-decision-label">Need 01</div>
+        <strong>用户需要低成本、短链路地完成高频选品</strong>
+        <p><b>当前 gap：</b>在线获取当天商品数据平均耗时 42 分钟，多 Agent 动态规划和临时数据拉取让等待成本过高。</p>
+        <p><b>二期取舍：</b>把确定性强的分析路径前置固化，优先优化离线数据处理、搜索召回和稳定工作流。</p>
+      </div>
+      <div class="xiu-decision-card reveal s3">
+        <div class="xiu-decision-label">Need 02</div>
+        <strong>用户需要把模糊问题快速转成可分析维度</strong>
+        <p><b>当前 gap：</b>自由文本输入看似灵活，但商家每次都要重新描述品类、地区、趋势方向和筛选条件。</p>
+        <p><b>二期取舍：</b>将表面多样的需求归纳为三类数据源和约 12 类固定工作流，让用户直接进入电商、社媒、品牌趋势分析。</p>
+      </div>
+      <div class="xiu-decision-card reveal s4">
+        <div class="xiu-decision-label">Need 03</div>
+        <strong>用户需要知道为什么值得分析、为什么值得做</strong>
+        <p><b>当前 gap：</b>报告如果只给结论，不展示数据来源、特征依据和排序逻辑，商家很难用于采购和上架决策。</p>
+        <p><b>二期取舍：</b>将理解、召回、类目映射、排序、报告拆成可追踪节点，让分析过程承担“解释机会”的角色。</p>
+      </div>
+    </div>
+    <div class="xiu-strategy-grid reveal s5">
+      <div class="xiu-strategy-card">
+        <strong>爆品跟卖</strong>
+        <p>用历史交易和销量数据识别已验证需求，在供应链优势前提下判断跟卖成功概率。</p>
+      </div>
+      <div class="xiu-strategy-card">
+        <strong>新品捕捉</strong>
+        <p>用销量增长率和上新动态捕捉市场热度，优先发现快速增长的潜力商品。</p>
+      </div>
+      <div class="xiu-strategy-card">
+        <strong>社媒流量</strong>
+        <p>把互动量、内容热度和 KOL 信号转化为市场关注度，识别真实消费兴趣。</p>
+      </div>
+      <div class="xiu-strategy-card">
+        <strong>品牌追随</strong>
+        <p>分析大牌发布、代言人和市场跟随的时间差，用品牌信号预判未来趋势。</p>
+      </div>
     </div>
     <div class="xiu-arch-grid">
       <figure class="xiu-figure reveal s2">
@@ -1619,20 +2175,40 @@
   <div class="case-block">
     <div class="block-label reveal">二期落地</div>
     <div>
-      <h3 class="block-content reveal">真正影响商家选品效果的，<br>不是 Agent 本身，而是数据源质量</h3>
-      <p class="block-content reveal s1">外部商家的选品会同时参考平台榜单、社媒趋势、广告投放、达人内容和搜索热度。所以二期重点从“继续增强 Agent”转向“多源数据处理能力”：把不同来源的数据接入、清洗、映射，并拍平到统一 CPV 集上，再把搜索效果和数据质量做耦合优化。</p>
+      <h3 class="block-content reveal">明确三类趋势分析，把主要时间投入多源异构、一键处理和搜索优化</h3>
+      <p class="block-content reveal s1">二期不再强调“Agent 自由规划”，而是把商家高频选品需求明确为电商、社媒、品牌三类趋势分析。用户看到的是更清晰的报告入口；我们真正花时间攻克的，是背后的多源异构数据离线处理、一键生成分析报告的稳定链路，以及搜索召回、排序和评测优化。</p>
+
+      <div class="xiu-report-showcase">
+        <figure class="xiu-report-shot reveal s2">
+          <img src="assets/嗅嗅豹二期-电商趋势分析报告.JPG" alt="嗅嗅豹二期电商趋势分析报告">
+          <figcaption><strong>电商趋势分析</strong><span>面向有货源和供应链优势的商家，用销量、增速、同款簇和价格带验证可进入的商品机会。</span></figcaption>
+        </figure>
+        <figure class="xiu-report-shot reveal s3">
+          <img src="assets/嗅嗅豹二期-社媒趋势分析报告.JPG" alt="嗅嗅豹二期社媒趋势分析报告">
+          <figcaption><strong>社媒趋势分析</strong><span>面向追热点、做内容投放的商家，从帖子热度、穿搭元素和风格标签里识别可转化信号。</span></figcaption>
+        </figure>
+        <figure class="xiu-report-shot reveal s4">
+          <img src="assets/嗅嗅豹二期-品牌趋势分析报告.JPG" alt="嗅嗅豹二期品牌趋势分析报告">
+          <figcaption><strong>品牌趋势分析</strong><span>面向有品牌跟随策略的商家，把品牌发布、KOL 内容和风格变化转成选品参考。</span></figcaption>
+        </figure>
+      </div>
+
       <table class="dtable reveal s2">
         <tr>
           <td>数据接入</td>
           <td><strong>多源数据接入与清洗</strong><p>接入平台榜单、社媒趋势、达人内容、品牌数据和搜索热度，先做字段清洗、去重和实体标准化。</p></td>
         </tr>
         <tr>
+          <td>数据权重</td>
+          <td><strong>从单一平台商品数据，转向社媒 + 品牌 + 电商交叉验证</strong><p>平台数据用于确认需求和价格竞争，社媒数据用于捕捉用户兴趣和内容热度，品牌数据用于判断风格方向、目标人群和趋势扩散。</p></td>
+        </tr>
+        <tr>
           <td>类目映射</td>
           <td><strong>多级类目映射表 + LLM 生成评估闭环</strong><p>不同平台类目体系差异很大，类目映射决定了数据能否比较。我设计多级类目映射表，并用 LLM 生成候选映射，再通过评估闭环校验。</p></td>
         </tr>
         <tr>
-          <td>CPV 拍平</td>
-          <td><strong>多元异构数据统一到一套 CPV 集</strong><p>将商品、帖子、达人和品牌数据里的颜色、材质、风格、场景等特征统一沉淀，降低后续召回和排序的语义噪声。</p></td>
+          <td>CPV 标准化</td>
+          <td><strong>多元异构数据沉淀为统一 CPV 特征层</strong><p>将商品、帖子、达人和品牌数据里的颜色、材质、风格、场景等特征统一沉淀，降低后续召回和排序的语义噪声。</p></td>
         </tr>
         <tr>
           <td>搜索优化</td>
@@ -1659,45 +2235,46 @@
           </figcaption>
         </figure>
       </div>
+
     </div>
   </div>
 
-  <!-- 二期输出 -->
-  <div class="xiu-stage">
-    <div class="xiu-stage-head">
-      <div class="block-label reveal">输出形态</div>
-      <h3 class="xiu-stage-title reveal s1">二期产出：三类数据源、固定工作流和可量化搜索质量</h3>
-      <p class="xiu-stage-copy reveal s2">二期把高频选品需求沉淀为三类报告入口：电商趋势、社媒趋势和品牌趋势。与一期相比，重点不再是让 Agent 自由规划，而是让数据源、搜索召回和排序分析都能被稳定评测。</p>
-    </div>
-    <div class="xiu-figure-grid three full-row">
-      <figure class="xiu-figure reveal s2">
-        <div class="xiu-figure-media is-contain">
-          <img src="assets/嗅嗅豹二期-电商趋势分析报告.JPG" alt="嗅嗅豹二期电商趋势分析报告">
+  <!-- 内测运营与阶段成果 -->
+  <div class="case-block is-ops">
+    <div class="block-label reveal">内测运营</div>
+    <div>
+      <h3 class="block-content reveal">通过 1688 和 AliExpress 建立商家联系，冷启动商家 BD 与内测运营</h3>
+      <p class="block-content reveal s1">二期不只是产品和数据链路重构，我也通过 1688、AliExpress 侧资源建立外部商家联系，负责商家触达、沟通、试用引导和反馈回收。我们累计接触 127 位时尚非标品跨境商家，其中在内测阶段自愿使用，且使用天数和使用次数都明显更高的商家共有 12 家。这意味着从真实 BD 商家到高活内测公司的转化接近 9%，是一个比较强的有效需求信号。</p>
+      <div class="xiu-result-stats is-five reveal s2">
+        <div class="xiu-result-stat"><div class="metric-n xiu" data-target="127">0</div><div class="metric-l">BD 接触商家</div></div>
+        <div class="xiu-result-stat"><div class="metric-n xiu" data-target="12">0</div><div class="metric-l">双高活跃公司</div></div>
+        <div class="xiu-result-stat"><div class="metric-n xiu" data-target="9" data-suffix="%">0</div><div class="metric-l">高活转化</div></div>
+        <div class="xiu-result-stat"><div class="metric-n xiu" data-target="85" data-suffix="%">0</div><div class="metric-l">类目准确率</div></div>
+        <div class="xiu-result-stat"><div class="metric-n xiu" data-target="84" data-suffix="%">0</div><div class="metric-l">相关性准确率</div></div>
+      </div>
+      <div class="xiu-result-board is-compact reveal s3">
+        <div class="xiu-result-row">
+          <div class="xiu-result-k">核心用户</div>
+          <div class="xiu-result-v">
+            <strong>核心用户分为小 B 商家老板和大中型公司的成熟运营团队</strong>
+            <p>年轻、熟用 AI 的小 B 商家老板更愿意“先试再说”，对新鲜点子、高潜产品方向和弱数据支撑的早期信号都高度敏感，但需求较发散，较难抽象出稳定范式，优先级靠后。大中型公司的成熟运营团队工具心智更强，更强调稳定性、可验证性与流程化，所有判断都需要数据链条、指标逻辑与可重复方法。</p>
+          </div>
         </div>
-        <figcaption class="xiu-figure-caption"><strong>电商趋势分析</strong><span>围绕平台销量、增长和同款簇，帮助商家识别可以进入的商品机会。</span></figcaption>
-      </figure>
-      <figure class="xiu-figure reveal s3">
-        <div class="xiu-figure-media is-contain">
-          <img src="assets/嗅嗅豹二期-社媒趋势分析报告.JPG" alt="嗅嗅豹二期社媒趋势分析报告">
+        <div class="xiu-result-row">
+          <div class="xiu-result-k">付费意愿</div>
+          <div class="xiu-result-v">
+            <strong>大体量独立站商家明确提出私有社媒数据库需求，并表达付费意愿</strong>
+            <p>兰亭集势、唯今国际两家大体量独立站商家都明确提出，希望我们帮助他们建立私有社媒数据库，用于持续追踪内容趋势、达人素材和商品机会，辅助社媒选品决策。这个反馈说明成熟商家不只需要一次性报告，更愿意为可沉淀、可复用的数据资产付费。</p>
+          </div>
         </div>
-        <figcaption class="xiu-figure-caption"><strong>社媒趋势分析</strong><span>从帖子热度、穿搭元素和风格标签中识别可转化的趋势信号。</span></figcaption>
-      </figure>
-      <figure class="xiu-figure reveal s4">
-        <div class="xiu-figure-media is-contain">
-          <img src="assets/嗅嗅豹二期-品牌趋势分析报告.JPG" alt="嗅嗅豹二期品牌趋势分析报告">
+        <div class="xiu-result-row">
+          <div class="xiu-result-k">阶段成果</div>
+          <div class="xiu-result-v">
+            <strong>形成 12 家双高活跃内测公司，搜索质量也达到可对外验证水平</strong>
+            <p>12 家公司不是被动注册用户，而是在真实内测中自愿使用、天数和次数双高的商家；同时二期评测集中，类目准确率达到 85%，相关性准确率达到 84%，为后续商业化验证提供了可量化基础。</p>
+          </div>
         </div>
-        <figcaption class="xiu-figure-caption"><strong>品牌趋势分析</strong><span>跟踪品牌、KOL 和风格变化，把外部信号转成商家的选品参考。</span></figcaption>
-      </figure>
-    </div>
-  </div>
-
-  <div class="metrics-block">
-    <div class="block-label reveal">现状</div>
-    <div class="metrics-grid reveal s1">
-      <div class="metric-cell"><div class="metric-n xiu" data-target="1184">0</div><div class="metric-l">意向内测商家</div></div>
-      <div class="metric-cell"><div class="metric-n xiu" data-target="127">0</div><div class="metric-l">核心意向用户</div></div>
-      <div class="metric-cell"><div class="metric-n xiu" data-target="85" data-suffix="%">0</div><div class="metric-l">类目准确率</div></div>
-      <div class="metric-cell"><div class="metric-n xiu" data-target="84" data-suffix="%">0</div><div class="metric-l">相关性准确率</div></div>
+      </div>
     </div>
   </div>
 
@@ -1705,76 +2282,236 @@
   <div class="case-block">
     <div class="block-label reveal">内测反思</div>
     <div>
-      <h3 class="block-content reveal">内测之后，我们重新判断下一步机会在哪里</h3>
+      <h3 class="block-content reveal">内测之后，我们重新判断选品产品的商业化边界</h3>
       <div class="reflection-grid">
         <div class="reflection-card reveal s1">
           <div class="reflection-n">01</div>
-          <div class="reflection-title">为什么做商品视频生成</div>
-          <p>选品分析相对低频，商家更高频的需求是找到同款爆款视频，并复刻成自己的商品营销内容。</p>
+          <div class="reflection-title">产品心智不够聚焦</div>
+          <p>电商平台、社媒、品牌三种选品入口并行，削弱了核心价值表达，用户难以快速理解产品究竟解决哪个关键问题。</p>
         </div>
         <div class="reflection-card reveal s2">
           <div class="reflection-n">02</div>
-          <div class="reflection-title">虾小宝的能力溢出</div>
-          <p>商品视频生成被封装成 Skill 后，说明能力可以从单点工具沉淀为可复用的 Agent 能力单元。</p>
+          <div class="reflection-title">社媒选品链路仍需补齐认知</div>
+          <p>多数商家“想做”社媒趋势选品，但还没有跑通清晰、可复制的方法，产品不仅要给工具，也要解释从趋势识别到选品决策的完整逻辑。</p>
         </div>
         <div class="reflection-card reveal s3">
           <div class="reflection-n">03</div>
-          <div class="reflection-title">中文 Skill 社区</div>
-          <p>市面上缺少成熟的中文 Skill 社区，因此我们开始思考如何做能力分发、验证和协作。</p>
+          <div class="reflection-title">目标用户与付费能力错配</div>
+          <p>中腰部以上平台商家已有稳定链路，外部工具依赖低；大体量独立站数量有限，小 B 商家付费能力和意愿不足，商业化基础受限。</p>
         </div>
         <div class="reflection-card reveal s4">
           <div class="reflection-n">04</div>
-          <div class="reflection-title">身份配置继续补齐</div>
-          <p>Agent 不只需要 Skill，还需要身份资产、账号和外部系统配置，才能在真实世界完整执行任务。</p>
+          <div class="reflection-title">能力不够锋利，缺少数据飞轮</div>
+          <p>商家基于“商机”上架后的销量和运营数据无法回流，既难验证选品效果，也难持续优化模型，产品没有形成正向数据飞轮。</p>
         </div>
+      </div>
+      <div class="pivot-card reveal s5">
+        <div class="pivot-eyebrow">NEXT OPPORTUNITY</div>
+        <div class="pivot-title">更高频、更接近付费的需求，是商家的私有视频库和商品营销视频生成</div>
+        <p>内测同时让我们看到，商家对私有视频数据库有很强需求：他们希望在自己经营类目下快速找到同款爆款视频，拆解可复用的内容结构，并生成适配自己商品的营销视频。相比选品分析，这个需求发生频次更高，离投放和成交更近，商业价值也更明确。</p>
       </div>
     </div>
   </div>
 
 </section>
 
-<!-- 商品视频生成 -->
+
+<!-- 03 · 商品视频生成 -->
 <section id="product-video" class="case-section">
   <div class="case-block">
     <div class="block-label reveal">商品视频生成</div>
     <div>
       <h3 class="block-content reveal">从低频选品分析，延展到更高频的商品营销内容生成</h3>
-      <p class="block-content reveal s1">在嗅嗅豹内测过程中，我们发现选品分析虽然能帮助商家判断机会，但它在日常经营里相对低频。更高频的需求是：商家已经有一个正在售卖的商品，希望快速找到社媒里的同款爆款视频，理解它为什么能爆，并复刻成自己的商品营销视频。</p>
+      <p class="block-content reveal s1">在嗅嗅豹内测过程中，我们发现选品分析虽然能帮助商家判断机会，但它在日常经营里相对低频。更高频的需求是：商家已经有一个正在售卖的商品，希望在私有视频库里快速找到经营类目下的同款爆款视频，理解它为什么能爆，并复刻成自己的商品营销视频。</p>
+      <p class="block-content reveal s2">这个方向更接近商业化闭环：内容生成不是终点，视频发布后的曝光、点击、互动、转化和投放成本都可以回流，反过来优化爆款视频召回、脚本拆解、素材选择和生成策略，形成“内容生产 → 投放验证 → 数据回流 → 模型与策略迭代”的数据飞轮。</p>
+      <div class="video-flywheel-grid">
+        <div class="video-flywheel-points reveal s3">
+          <div class="video-flywheel-point">
+            <strong>从内容复刻到投放验证</strong>
+            <p>先在私有视频库中召回同款爆款视频，拆解开头钩子、卖点表达、镜头结构和 CTA，再生成适配商家商品的营销视频，用真实投放表现验证内容质量。</p>
+          </div>
+          <div class="video-flywheel-point">
+            <strong>从效果数据回流到策略迭代</strong>
+            <p>把曝光、点击、互动、转化、完播率和成本等指标回收为评测信号，持续优化视频召回排序、脚本模板、素材选择和生成参数。</p>
+          </div>
+          <div class="video-flywheel-point">
+            <strong>从单点生成到可复用 Skill</strong>
+            <p>当链路具备明确输入、可验证输出和持续优化信号后，商品营销视频生成就能被封装成 Agent 可调用、可组合、可分发的业务 Skill。</p>
+          </div>
+        </div>
+        <figure class="xiu-wide-figure video-flywheel-figure reveal s4">
+          <div class="xiu-wide-media is-contain">
+            <img src="assets/内容生成-投放-数据回流闭环架构图.png" alt="内容生成、投放与数据回流闭环架构图">
+          </div>
+          <figcaption class="xiu-figure-caption">
+            <strong>商品营销视频的数据闭环</strong>
+            <span>把爆款视频召回、内容生成、投放验证和数据回流连接起来，让每次内容投放都成为下一轮生成策略的优化信号。</span>
+          </figcaption>
+        </figure>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- ABOUT -->
-<div id="about" style="border-top:1px solid var(--border)">
-  <div class="about-wrap">
-    <div class="about-section-label reveal">关于我</div>
-    <div class="about-grid">
-      <div>
-        <p class="about-bio reveal">
-          <strong>EPFL</strong>（QS: 16）计算机科学硕士，在 <strong>Logitech 瑞士总部</strong>做过算法工程师，在<strong>腾讯</strong>做过产品经理，在<strong>阿里巴巴</strong>独立主导两款 AI 产品从 0 到 1。<br><br>
-          有技术背景，有用户研究方法论，热衷于在模糊中定义值得解决的问题，然后用最小的复杂度把它解决掉。
-        </p>
+
+<!-- =============================== -->
+<!-- 04 · 虾小宝                      -->
+<!-- =============================== -->
+<section id="xia" class="case-section">
+
+  <div class="product-cover">
+    <div>
+      <div class="product-cover-kicker reveal">04 · 2026.02 — 至今</div>
+      <h2 class="product-cover-title xia-c">
+        <div class="lmask reveal s1"><span class="lmask-inner">虾小宝</span></div>
+      </h2>
+      <p class="product-cover-copy reveal s2">
+        2 月随着 OpenClaw 热度，我们快速切入 Agent SkillHub。虾小宝的目标不是让更多人知道一个新产品，而是帮助普通用户意识到日常任务可以交给 Agent，并为 Agent 配齐完成任务所需的能力、身份、协作和交易装备。
+      </p>
+    </div>
+    <div class="product-cover-visual single reveal s4">
+      <div class="product-cover-card xia">
+        <img src="assets/虾小宝ip.png" alt="虾小宝产品 IP">
       </div>
-      <div>
-        <div class="about-detail-row reveal s1">
-          <div class="about-detail-key">教育</div>
-          <div class="about-detail-val">
-            <strong>EPFL</strong> CS 硕士 · GPA 5.36/6 · 前 10%<br>
-            <strong>UESTC</strong> 软件工程 · GPA 3.97/4.0 · 专业第 2
-          </div>
+    </div>
+  </div>
+
+  <!-- 核心洞察 -->
+  <div class="xia-stage">
+    <div class="xia-stage-head">
+      <div class="block-label reveal">核心洞察</div>
+      <ul class="insight-bullets xia-product-insights reveal s1">
+        <li><strong><span class="marker-highlight">增长难点不是曝光，而是用户习惯</span></strong>，普通用户很难主动意识到生活和工作里的任务可以交给 Agent 自动执行。</li>
+        <li><strong><span class="marker-highlight">Agent 要替人完成任务，必须先被装备起来</span></strong>，能力、身份、运行环境和协作网络缺一不可。</li>
+        <li><strong><span class="marker-highlight">SkillHub 解决“会不会做”，身份资产解决“能不能做”</span></strong>，前者匹配能力，后者打通真实系统。</li>
+        <li><strong><span class="marker-highlight">社区和商城解决“能不能持续变好”</span></strong>，通过 Agent 评论、声誉和开发者供给形成 Marketplace 的信任基础。</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- 产品设计链路 -->
+  <div class="xia-stage">
+    <div class="block-label reveal">产品设计链路</div>
+    <div>
+      <h3 class="xia-stage-title reveal">从“Agent 替人完成任务”反推四类装备</h3>
+      <p class="xia-stage-copy reveal s1">如果目标是让 Agent 真正替人类用户完成任务，产品就不能只提供 Skill 列表，而要沿着任务执行链路补齐能力发现、真实身份、可信协作和持续供给。</p>
+      <div class="xia-solution-grid">
+        <div class="xia-solution-card reveal s2">
+          <div class="xia-solution-label">能力装备</div>
+          <strong>SkillHub</strong>
+          <p>人类任务复杂多样，Agent 首先要知道该调用什么能力。SkillHub 从 intent → skill 推荐、结构化展示、准入评测和沙盒试跑，升级为可推荐、可验证、可运行的能力矩阵。</p>
         </div>
-        <div class="about-detail-row reveal s2">
-          <div class="about-detail-key">论文</div>
-          <div class="about-detail-val">ACL 2026（在投）<br>CSCW 2022（已发表）</div>
+        <div class="xia-solution-card reveal s3">
+          <div class="xia-solution-label">执行装备</div>
+          <strong>身份资产</strong>
+          <p>找到 Skill 不代表任务能完成，Agent 还会卡在注册、验证、登录、API 调用和额度支付上。因此我们设计独立 Agent 身份，支持邮箱 / 手机号验证、常见 AK 预配置、API Key 托管和 API 钱包。</p>
         </div>
-        <div class="about-detail-row reveal s3">
-          <div class="about-detail-key">经历</div>
-          <div class="about-detail-val">
-            阿里巴巴 ATH · AI 产品经理<br>
-            腾讯 · 产品经理<br>
-            Logitech 瑞士 · 算法工程师
-          </div>
+        <div class="xia-solution-card reveal s4">
+          <div class="xia-solution-label">协作装备</div>
+          <strong>Agent 社区</strong>
+          <p>单个 Agent 的能力有上限，复杂任务需要找到可信 Agent 帮忙。自治社区让优质 Agent 持续使用、评论、推荐能力并参与协作。</p>
         </div>
+        <div class="xia-solution-card reveal s5">
+          <div class="xia-solution-label">供给装备</div>
+          <strong>商城与声誉</strong>
+          <p>平台要持续有好 Skill，就要让开发者能托管和商业化能力，也让 Agent 的真实评论、成功率和稳定性成为推荐排序和交易信任基础。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 结果与增长工程 -->
+  <div class="metrics-block">
+    <div class="block-label reveal">
+      结果与行动<br>
+      <span style="font-weight:400;font-size:10px;color:var(--text-3);letter-spacing:0;text-transform:none;">增长工程</span>
+    </div>
+    <p class="block-content reveal s1" style="margin-bottom:24px;">两周 MVP 上线后，平台沉淀了 5,800+ Agent，初步验证了 Agent 围绕 Skill 调用、身份配置和评论反馈建立持续关系的可能性。随着 OpenClaw 热度回落，我们正在把增长重点从热点传播转向用户教育。</p>
+    <div class="metrics-grid reveal s2">
+      <div class="metric-cell">
+        <div class="metric-n xia" data-target="5800" data-suffix="+">0</div>
+        <div class="metric-l">Agent 注册</div>
+      </div>
+      <div class="metric-cell">
+        <div class="metric-n xia" data-target="3800">0</div>
+        <div class="metric-l">活跃 Agent</div>
+      </div>
+      <div class="metric-cell">
+        <div class="metric-n xia" data-target="4000" data-suffix="+">0</div>
+        <div class="metric-l">Skill 调用</div>
+      </div>
+      <div class="metric-cell">
+        <div class="metric-n xia" data-target="1000">0</div>
+        <div class="metric-l">社区 Agent</div>
+      </div>
+    </div>
+    <div class="xia-solution-grid reveal s3" style="margin-top:28px;">
+      <div class="xia-solution-card">
+        <div class="xia-solution-label">Action 01</div>
+        <strong>场景化用户教育</strong>
+        <p>针对不同用户群体的生活和工作痛点，拆出“哪些任务可以交给 Agent”的具体教程，而不是只介绍产品功能。</p>
+      </div>
+      <div class="xia-solution-card">
+        <div class="xia-solution-label">Action 02</div>
+        <strong>从教程到使用习惯</strong>
+        <p>用小龙虾和其他 Agent 产品做可复用案例，让普通用户从一次尝试，逐步形成遇到任务先想到 Agent 的习惯。</p>
+      </div>
+      <div class="xia-solution-card">
+        <div class="xia-solution-label">Action 03</div>
+        <strong>沉淀可复制增长资产</strong>
+        <p>把高频教程、失败问题和用户反馈反向沉淀为 Skill 推荐、身份配置和 Agent 协作的优化输入。</p>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<!-- ABOUT -->
+<div id="about">
+  <div class="about-wrap">
+    <div class="about-section-label reveal">PROMOTION CASE</div>
+    <h2 class="about-title reveal s1">自我评价</h2>
+    <p class="about-lead reveal s2">
+      我喜欢当产品经理，首先是因为满足用户需求会带来很强的成就感；更深一层，是因为产品让我有机会把自己的价值观表达出来：我相信好的产品不只是堆功能，而是在用户、技术和商业之间做出判断，把零散需求转化成可被系统承接、可被团队共创、可被结果验证的产品机制。
+    </p>
+
+    <div class="brainstorm-board">
+      <div class="brainstorm-center reveal">
+        <div class="brainstorm-avatar">
+          <img src="assets/个人头像.png" alt="刘子迷个人头像">
+        </div>
+        <div class="brainstorm-caption">Ideas in motion</div>
+      </div>
+
+      <div class="thought-card self thought-1 reveal s1">
+        <div class="thought-type">Self evaluation</div>
+        <strong>用户成就感</strong>
+        <p>把真实用户需求作为产品判断的起点，用可感知的体验改进去回应用户问题。</p>
+      </div>
+      <div class="thought-card self thought-2 reveal s2">
+        <div class="thought-type">Product belief</div>
+        <strong>产品不是堆功能</strong>
+        <p>它包含对用户、技术和商业关系的判断，也要把零散需求转化为系统机制。</p>
+      </div>
+      <div class="thought-card self thought-3 reveal s3">
+        <div class="thought-type">Scope</div>
+        <strong>从单点体验到系统 owner</strong>
+        <p>从具体功能、平台探索到能力网络建设，学习承担更大范围的产品结果。</p>
+      </div>
+      <div class="thought-card self thought-4 reveal s4">
+        <div class="thought-type">Complexity</div>
+        <strong>在不确定性里拆问题</strong>
+        <p>同时处理用户、数据、算法、评测和商业假设，把复杂问题拆成可推进模块。</p>
+      </div>
+      <div class="thought-card next thought-5 reveal s5">
+        <div class="thought-type">Next impact</div>
+        <strong>共创机制</strong>
+        <p>建立更稳定的需求澄清、原型评审和用户反馈机制，让产品判断变成团队共识。</p>
+      </div>
+      <div class="thought-card next thought-6 reveal s5">
+        <div class="thought-type">Next impact</div>
+        <strong>全栈验证与业务增量</strong>
+        <p>继续用工程理解缩短验证周期，在不确定问题上主动补位，寻找新用户、新链路、新飞轮。</p>
       </div>
     </div>
   </div>
