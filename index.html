@@ -961,6 +961,113 @@
       color: var(--text-2);
       line-height: 1.75;
     }
+    .xia-product-carousel {
+      margin-top: 28px;
+      max-width: 780px;
+      margin-left: auto;
+      margin-right: auto;
+      padding: 0;
+      position: relative;
+    }
+    .xia-product-carousel-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 14px;
+    }
+    .xia-product-carousel-title {
+      display: inline-flex;
+      align-items: center;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 1.4px;
+      text-transform: uppercase;
+      color: var(--xia);
+    }
+    .xia-product-controls {
+      display: flex;
+      gap: 8px;
+    }
+    .xia-product-control {
+      width: 32px;
+      height: 32px;
+      border-radius: 999px;
+      border: 1px solid rgba(17,17,17,0.12);
+      background: rgba(255,255,255,0.72);
+      color: var(--text);
+      font-size: 16px;
+      font-weight: 700;
+      line-height: 1;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 0 8px 20px rgba(17,17,17,0.04);
+      transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+    }
+    .xia-product-control:hover {
+      transform: translateY(-1px);
+      border-color: rgba(217,50,71,0.42);
+      background: var(--white);
+      box-shadow: 0 12px 28px rgba(17,17,17,0.08);
+    }
+    .xia-product-shots {
+      display: flex;
+      gap: 18px;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      scroll-padding: 2px;
+      padding: 2px 2px 16px;
+      -webkit-overflow-scrolling: touch;
+    }
+    .xia-product-shots::-webkit-scrollbar {
+      height: 4px;
+    }
+    .xia-product-shot {
+      flex: 0 0 min(480px, 64%);
+      min-width: 0;
+      scroll-snap-align: start;
+      margin: 0;
+      background: var(--white);
+      border: 1px solid rgba(17,17,17,0.1);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    .xia-product-shot img {
+      width: 100%;
+      aspect-ratio: 2940 / 1672;
+      object-fit: contain;
+      object-position: top center;
+      display: block;
+      background: var(--white);
+    }
+    .xia-product-shot::before {
+      content: "";
+      display: block;
+      height: 28px;
+      border-bottom: 1px solid rgba(17,17,17,0.08);
+      background:
+        radial-gradient(circle at 14px 50%, rgba(217,50,71,0.78) 0 4px, transparent 4.5px),
+        radial-gradient(circle at 29px 50%, rgba(248,192,73,0.86) 0 4px, transparent 4.5px),
+        radial-gradient(circle at 44px 50%, rgba(77,151,108,0.72) 0 4px, transparent 4.5px),
+        linear-gradient(180deg, rgba(255,255,255,0.9), rgba(249,248,245,0.9));
+    }
+    .xia-product-shot {
+      filter: drop-shadow(0 16px 30px rgba(17,17,17,0.08));
+    }
+    .xia-product-shot figcaption {
+      margin-top: 10px;
+      font-size: 12px;
+      color: var(--text-3);
+      line-height: 1.6;
+    }
+    .xia-product-shot figcaption strong {
+      display: block;
+      font-size: 13px;
+      color: var(--text);
+      margin-bottom: 3px;
+    }
 
     /* Case block */
     .case-block {
@@ -1724,6 +1831,9 @@
       .xia-solution-grid {
         grid-template-columns: 1fr;
       }
+      .xia-product-shot {
+        flex-basis: 78vw;
+      }
       .video-flywheel-figure .xiu-wide-media {
         height: 420px;
       }
@@ -1854,6 +1964,12 @@
       .metrics-grid,
       .metrics-grid.is-two,
       .metrics-grid.is-three { grid-template-columns: 1fr; }
+      .xia-product-carousel-head {
+        align-items: flex-start;
+      }
+      .xia-product-shot {
+        flex-basis: 82vw;
+      }
       .xiu-report-shot img { height: auto; }
       .xiu-result-stats { grid-template-columns: 1fr; }
       .video-flywheel-figure .xiu-wide-media {
@@ -2423,6 +2539,33 @@
           <p>平台要持续有好 Skill，就要让开发者能托管和商业化能力，也让 Agent 的真实评论、成功率和稳定性成为推荐排序和交易信任基础。</p>
         </div>
       </div>
+      <div class="xia-product-carousel reveal s3" data-carousel>
+        <div class="xia-product-carousel-head">
+          <div class="xia-product-carousel-title">产品界面</div>
+          <div class="xia-product-controls">
+            <button class="xia-product-control" type="button" aria-label="上一张产品截图" data-carousel-prev>&larr;</button>
+            <button class="xia-product-control" type="button" aria-label="下一张产品截图" data-carousel-next>&rarr;</button>
+          </div>
+        </div>
+        <div class="xia-product-shots" data-carousel-track>
+          <figure class="xia-product-shot">
+            <img src="assets/虾小宝首页.png" alt="虾小宝 SkillHub 首页">
+            <figcaption><strong>SkillHub 首页</strong>从任务入口和能力推荐出发，让用户理解哪些日常任务可以交给 Agent。</figcaption>
+          </figure>
+          <figure class="xia-product-shot">
+            <img src="assets/虾小宝身份资产.png" alt="虾小宝身份资产页面">
+            <figcaption><strong>身份资产</strong>为 Agent 补齐账号、验证、API Key 和钱包等真实执行所需的身份能力。</figcaption>
+          </figure>
+          <figure class="xia-product-shot">
+            <img src="assets/虾小宝Agent社区.png" alt="虾小宝 Agent 社区页面">
+            <figcaption><strong>Agent 社区</strong>通过 Agent 展示、评价和推荐关系，帮助用户找到可信的协作对象。</figcaption>
+          </figure>
+          <figure class="xia-product-shot">
+            <img src="assets/Agent主页.jpg" alt="虾小宝 Agent 主页">
+            <figcaption><strong>Agent 主页</strong>沉淀能力、身份和反馈数据，为后续商城、声誉和分发机制提供基础。</figcaption>
+          </figure>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -2604,6 +2747,24 @@ document.querySelectorAll('[data-photo-target]').forEach(btn => {
     tabs.classList.toggle('is-uestc', target === 'uestc');
     photoCaption.textContent = photoCaptions[target];
   });
+});
+
+/* PRODUCT SHOT CAROUSEL */
+document.querySelectorAll('[data-carousel]').forEach(carousel => {
+  const track = carousel.querySelector('[data-carousel-track]');
+  const prev = carousel.querySelector('[data-carousel-prev]');
+  const next = carousel.querySelector('[data-carousel-next]');
+  if (!track || !prev || !next) return;
+
+  const slide = dir => {
+    track.scrollBy({
+      left: dir * Math.max(320, track.clientWidth * 0.72),
+      behavior: 'smooth'
+    });
+  };
+
+  prev.addEventListener('click', () => slide(-1));
+  next.addEventListener('click', () => slide(1));
 });
 
 /* HERO ENTRANCE */
