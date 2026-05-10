@@ -1050,11 +1050,13 @@
       border-radius: 12px; overflow: hidden;
       border: 1px solid var(--border);
     }
-    .metric-cell { background: var(--white); padding: 40px 24px; text-align: center; }
+    .metrics-grid.is-two { grid-template-columns: repeat(2, 1fr); }
+    .metrics-grid.is-three { grid-template-columns: repeat(3, 1fr); margin-top: 10px; }
+    .metric-cell { background: var(--white); padding: 28px 20px; text-align: center; }
     .metric-n {
-      font-size: clamp(36px, 4.5vw, 56px);
+      font-size: clamp(30px, 3.8vw, 46px);
       font-weight: 900; letter-spacing: -2px;
-      line-height: 1; margin-bottom: 10px;
+      line-height: 1; margin-bottom: 8px;
     }
     .metric-n.xia { color: var(--xia); }
     .metric-n.xiu { color: var(--xiu); }
@@ -1750,7 +1752,9 @@
       .case-block, .metrics-block { grid-template-columns: 1fr; gap: 20px; }
       .block-label { padding-top: 0; }
       .gap-cards { grid-template-columns: 1fr; }
-      .metrics-grid { grid-template-columns: 1fr 1fr; }
+      .metrics-grid,
+      .metrics-grid.is-two,
+      .metrics-grid.is-three { grid-template-columns: 1fr 1fr; }
       .brainstorm-board {
         min-height: auto;
         padding: 46px 0 24px;
@@ -1847,7 +1851,9 @@
       }
       .case-title { letter-spacing: -2px; }
       .hero-bottom { flex-direction: column; gap: 32px; align-items: flex-start; }
-      .metrics-grid { grid-template-columns: 1fr 1fr; }
+      .metrics-grid,
+      .metrics-grid.is-two,
+      .metrics-grid.is-three { grid-template-columns: 1fr; }
       .xiu-report-shot img { height: auto; }
       .xiu-result-stats { grid-template-columns: 1fr; }
       .video-flywheel-figure .xiu-wide-media {
@@ -2108,30 +2114,10 @@
   <div id="xiu-phase-2" class="xiu-stage">
     <div class="xiu-stage-head">
       <div class="block-label reveal">一期 Insight / 架构转向</div>
-      <h3 class="xiu-stage-title reveal s1">一期跑通了商机分析链路，但也证明产品不能停留在“开放式 Agent”</h3>
-      <p class="xiu-stage-copy reveal s2">真实商家需要的不是一个自由规划的 AI 助手，而是一条能快速进入、稳定复用、过程可信的选品决策路径。因此二期从“通用多 Agent”转向“Workflow + Agent 兜底”：高频分析被产品化为固定工作流，长尾问题再交给 Agent 处理。</p>
+      <h3 class="xiu-stage-title reveal s1">一期跑通了商机分析链路，但也证明开放式 Agent 未必最适合跨境商家</h3>
+      <p class="xiu-stage-copy reveal s2">对跨境商家来说，他们需要的往往不是一个自由规划的 AI 助手，而是一条能快速进入、稳定复用、过程可信的选品决策路径。跨境商家本身有很强的工具使用思维，更习惯点击入口后直接看到可判断结果的产品逻辑。因此我们先把他们常见的选品动作抽象为四种方式。</p>
     </div>
-    <div class="xiu-decision-grid">
-      <div class="xiu-decision-card reveal s2">
-        <div class="xiu-decision-label">Need 01</div>
-        <strong>用户需要低成本、短链路地完成高频选品</strong>
-        <p><b>当前 gap：</b>在线获取当天商品数据平均耗时 42 分钟，多 Agent 动态规划和临时数据拉取让等待成本过高。</p>
-        <p><b>二期取舍：</b>把确定性强的分析路径前置固化，优先优化离线数据处理、搜索召回和稳定工作流。</p>
-      </div>
-      <div class="xiu-decision-card reveal s3">
-        <div class="xiu-decision-label">Need 02</div>
-        <strong>用户需要把模糊问题快速转成可分析维度</strong>
-        <p><b>当前 gap：</b>自由文本输入看似灵活，但商家每次都要重新描述品类、地区、趋势方向和筛选条件。</p>
-        <p><b>二期取舍：</b>将表面多样的需求归纳为三类数据源和约 12 类固定工作流，让用户直接进入电商、社媒、品牌趋势分析。</p>
-      </div>
-      <div class="xiu-decision-card reveal s4">
-        <div class="xiu-decision-label">Need 03</div>
-        <strong>用户需要知道为什么值得分析、为什么值得做</strong>
-        <p><b>当前 gap：</b>报告如果只给结论，不展示数据来源、特征依据和排序逻辑，商家很难用于采购和上架决策。</p>
-        <p><b>二期取舍：</b>将理解、召回、类目映射、排序、报告拆成可追踪节点，让分析过程承担“解释机会”的角色。</p>
-      </div>
-    </div>
-    <div class="xiu-strategy-grid reveal s5">
+    <div class="xiu-strategy-grid reveal s3">
       <div class="xiu-strategy-card">
         <strong>爆品跟卖</strong>
         <p>用历史交易和销量数据识别已验证需求，在供应链优势前提下判断跟卖成功概率。</p>
@@ -2147,6 +2133,26 @@
       <div class="xiu-strategy-card">
         <strong>品牌追随</strong>
         <p>分析大牌发布、代言人和市场跟随的时间差，用品牌信号预判未来趋势。</p>
+      </div>
+    </div>
+    <div class="xiu-decision-grid">
+      <div class="xiu-decision-card reveal s2">
+        <div class="xiu-decision-label">Need 01</div>
+        <strong>用户需要低成本、短链路地完成高频选品</strong>
+        <p><b>当前 gap：</b>在线获取当天商品数据平均耗时 42 分钟，多 Agent 动态规划和临时数据拉取让等待成本过高。</p>
+        <p><b>二期取舍：</b>把确定性强的分析路径前置固化，优先优化离线数据处理、搜索召回和稳定工作流。</p>
+      </div>
+      <div class="xiu-decision-card reveal s3">
+        <div class="xiu-decision-label">Need 02</div>
+        <strong>用户需要把模糊问题快速转成可分析维度</strong>
+        <p><b>当前 gap：</b>自由文本输入看似灵活，但商家每次都要重新描述品类、地区、趋势方向和筛选条件。</p>
+        <p><b>二期取舍：</b>先把爆品跟卖、新品捕捉、社媒流量和品牌追随抽象为选品方式，再收敛为电商、社媒、品牌三类场景和约 12 类固定工作流。</p>
+      </div>
+      <div class="xiu-decision-card reveal s4">
+        <div class="xiu-decision-label">Need 03</div>
+        <strong>用户需要知道为什么值得分析、为什么值得做</strong>
+        <p><b>当前 gap：</b>报告如果只给结论，不展示数据来源、特征依据和排序逻辑，商家很难用于采购和上架决策。</p>
+        <p><b>二期取舍：</b>将理解、召回、类目映射、排序、报告拆成可追踪节点，让分析过程承担“解释机会”的角色。</p>
       </div>
     </div>
     <div class="xiu-arch-grid">
@@ -2175,23 +2181,8 @@
   <div class="case-block">
     <div class="block-label reveal">二期落地</div>
     <div>
-      <h3 class="block-content reveal">明确三类趋势分析，把主要时间投入多源异构、一键处理和搜索优化</h3>
-      <p class="block-content reveal s1">二期不再强调“Agent 自由规划”，而是把商家高频选品需求明确为电商、社媒、品牌三类趋势分析。用户看到的是更清晰的报告入口；我们真正花时间攻克的，是背后的多源异构数据离线处理、一键生成分析报告的稳定链路，以及搜索召回、排序和评测优化。</p>
-
-      <div class="xiu-report-showcase">
-        <figure class="xiu-report-shot reveal s2">
-          <img src="assets/嗅嗅豹二期-电商趋势分析报告.JPG" alt="嗅嗅豹二期电商趋势分析报告">
-          <figcaption><strong>电商趋势分析</strong><span>面向有货源和供应链优势的商家，用销量、增速、同款簇和价格带验证可进入的商品机会。</span></figcaption>
-        </figure>
-        <figure class="xiu-report-shot reveal s3">
-          <img src="assets/嗅嗅豹二期-社媒趋势分析报告.JPG" alt="嗅嗅豹二期社媒趋势分析报告">
-          <figcaption><strong>社媒趋势分析</strong><span>面向追热点、做内容投放的商家，从帖子热度、穿搭元素和风格标签里识别可转化信号。</span></figcaption>
-        </figure>
-        <figure class="xiu-report-shot reveal s4">
-          <img src="assets/嗅嗅豹二期-品牌趋势分析报告.JPG" alt="嗅嗅豹二期品牌趋势分析报告">
-          <figcaption><strong>品牌趋势分析</strong><span>面向有品牌跟随策略的商家，把品牌发布、KOL 内容和风格变化转成选品参考。</span></figcaption>
-        </figure>
-      </div>
+      <h3 class="block-content reveal">明确三类趋势分析，把主要时间投入多源异构数据处理和搜索优化</h3>
+      <p class="block-content reveal s1">二期不再强调“Agent 自由规划”，而是把商家高频选品需求明确为电商、社媒、品牌三类趋势分析。用户看到的是更清晰的报告入口；我们真正花时间攻克的，是背后的多源异构数据处理链路：从数据接入、清洗、类目映射和 CPV 标准化，到一键生成分析报告，并持续反哺搜索召回、排序和评测优化。</p>
 
       <table class="dtable reveal s2">
         <tr>
@@ -2212,19 +2203,10 @@
         </tr>
         <tr>
           <td>搜索优化</td>
-          <td><strong>搜索召回、排序优化与质量评测耦合</strong><p>数据质量和搜索策略相互影响，因此我们围绕类目准确率、相关性准确率和召回质量做多轮评测和迭代。</p></td>
+          <td><strong>搜索召回、排序优化与质量评测耦合</strong><p>数据质量和搜索策略相互影响，因此我们设置了三种难度的搜索评测集，分别评估类目准确率、相关性准确率和召回质量，并按不同难度做多轮迭代。</p></td>
         </tr>
       </table>
       <div class="xiu-figure-grid reveal s3">
-        <figure class="xiu-figure">
-          <div class="xiu-figure-media is-contain">
-            <img src="assets/二期数据处理-搜索链路.png" alt="二期数据处理与搜索链路">
-          </div>
-          <figcaption class="xiu-figure-caption">
-            <strong>搜索链路</strong>
-            <span>将 query 理解、类目映射、候选召回和排序分析拆成可追踪、可评测的链路。</span>
-          </figcaption>
-        </figure>
         <figure class="xiu-figure">
           <div class="xiu-figure-media is-contain">
             <img src="assets/二期多源异构数据处理链路.jpg" alt="多源异构数据处理链路">
@@ -2233,6 +2215,30 @@
             <strong>数据处理链路</strong>
             <span>围绕类目、CPV、实体识别和清洗规则，把多源异构数据转成统一可分析结构。</span>
           </figcaption>
+        </figure>
+        <figure class="xiu-figure">
+          <div class="xiu-figure-media is-contain">
+            <img src="assets/二期数据处理-搜索链路.png" alt="二期数据处理与搜索链路">
+          </div>
+          <figcaption class="xiu-figure-caption">
+            <strong>搜索优化链路</strong>
+            <span>将 query 理解、类目映射、候选召回、排序分析和分难度评测拆成可持续迭代的链路。</span>
+          </figcaption>
+        </figure>
+      </div>
+
+      <div class="xiu-report-showcase">
+        <figure class="xiu-report-shot reveal s2">
+          <img src="assets/嗅嗅豹二期-电商趋势分析报告.JPG" alt="嗅嗅豹二期电商趋势分析报告">
+          <figcaption><strong>电商趋势分析</strong><span>面向有货源和供应链优势的商家，用销量、增速、同款簇和价格带验证可进入的商品机会。</span></figcaption>
+        </figure>
+        <figure class="xiu-report-shot reveal s3">
+          <img src="assets/嗅嗅豹二期-社媒趋势分析报告.JPG" alt="嗅嗅豹二期社媒趋势分析报告">
+          <figcaption><strong>社媒趋势分析</strong><span>面向追热点、做内容投放的商家，从帖子热度、穿搭元素和风格标签里识别可转化信号。</span></figcaption>
+        </figure>
+        <figure class="xiu-report-shot reveal s4">
+          <img src="assets/嗅嗅豹二期-品牌趋势分析报告.JPG" alt="嗅嗅豹二期品牌趋势分析报告">
+          <figcaption><strong>品牌趋势分析</strong><span>面向有品牌跟随策略的商家，把品牌发布、KOL 内容和风格变化转成选品参考。</span></figcaption>
         </figure>
       </div>
 
@@ -2426,26 +2432,33 @@
       结果与行动<br>
       <span style="font-weight:400;font-size:10px;color:var(--text-3);letter-spacing:0;text-transform:none;">增长工程</span>
     </div>
-    <p class="block-content reveal s1" style="margin-bottom:24px;">两周 MVP 上线后，平台沉淀了 5,800+ Agent，初步验证了 Agent 围绕 Skill 调用、身份配置和评论反馈建立持续关系的可能性。随着 OpenClaw 热度回落，我们正在把增长重点从热点传播转向用户教育。</p>
-    <div class="metrics-grid reveal s2">
+    <h3 class="block-content reveal">从热点增长转向用户教育，沉淀可持续的 Agent 使用习惯</h3>
+    <p class="block-content reveal s1" style="margin-bottom:24px;">MVP 上线两周内，平台快速上线约 4,300 个 Agent；累计至今，Agent 总量达到 5,800+。随着小龙虾热点回落，活跃数据也从短期流量峰值回到更真实的使用状态，因此我们把增长重点从热点传播转向用户教育和高频场景沉淀。</p>
+    <div class="metrics-grid is-two reveal s2">
+      <div class="metric-cell">
+        <div class="metric-n xia" data-target="4300" data-suffix="+">0</div>
+        <div class="metric-l">MVP 两周上线 Agent</div>
+      </div>
       <div class="metric-cell">
         <div class="metric-n xia" data-target="5800" data-suffix="+">0</div>
-        <div class="metric-l">Agent 注册</div>
+        <div class="metric-l">累计 Agent 总量</div>
+      </div>
+    </div>
+    <div class="metrics-grid is-three reveal s3">
+      <div class="metric-cell">
+        <div class="metric-n xia" data-target="417">0</div>
+        <div class="metric-l">平均活跃用户</div>
       </div>
       <div class="metric-cell">
-        <div class="metric-n xia" data-target="3800">0</div>
-        <div class="metric-l">活跃 Agent</div>
-      </div>
-      <div class="metric-cell">
-        <div class="metric-n xia" data-target="4000" data-suffix="+">0</div>
+        <div class="metric-n xia" data-target="1823" data-suffix="+">0</div>
         <div class="metric-l">Skill 调用</div>
       </div>
       <div class="metric-cell">
-        <div class="metric-n xia" data-target="1000">0</div>
+        <div class="metric-n xia" data-target="1000" data-suffix="+">0</div>
         <div class="metric-l">社区 Agent</div>
       </div>
     </div>
-    <div class="xia-solution-grid reveal s3" style="margin-top:28px;">
+    <div class="xia-solution-grid reveal s4" style="margin-top:28px;">
       <div class="xia-solution-card">
         <div class="xia-solution-label">Action 01</div>
         <strong>场景化用户教育</strong>
