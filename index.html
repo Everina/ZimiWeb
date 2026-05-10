@@ -1,0 +1,1888 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>刘子迷 — AI Product Manager</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400&family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+  <style>
+    /* ===== RESET ===== */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    a { color: inherit; text-decoration: none; -webkit-tap-highlight-color: transparent; }
+    img { display: block; max-width: 100%; }
+
+    /* ===== VARIABLES ===== */
+    :root {
+      --bg:     #F5F4F0;
+      --white:  #FFFFFF;
+      --text:   #111111;
+      --text-2: #555555;
+      --text-3: #999999;
+      --border: #DDDBD4;
+      --xia:    #D93247;
+      --xiu:    #D07000;
+      --nav-h:  52px;
+    }
+
+    /* ===== BASE ===== */
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', 'Noto Sans SC', sans-serif;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+    ::-webkit-scrollbar { width: 3px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+
+    /* ===== NAV ===== */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 200;
+      height: var(--nav-h);
+      transition: background 0.4s;
+    }
+    nav.is-scrolled {
+      background: rgba(245,244,240,0.92);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+    }
+    .nav-inner {
+      height: 100%;
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 48px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .nav-logo,
+    .nav-tl-btn {
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: -0.3px;
+    }
+    .nav-tl-btn {
+      appearance: none;
+      border: 0;
+      background: transparent;
+      color: var(--text);
+      padding: 0;
+      cursor: pointer;
+      font-family: inherit;
+      line-height: 1;
+      transition: opacity 0.15s;
+    }
+    .nav-tl-btn:hover,
+    .nav-tl-btn.is-open { opacity: 0.55; }
+
+    /* ===== HERO ===== */
+    #hero {
+      min-height: 100vh;
+      padding-top: var(--nav-h);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding-bottom: 56px;
+      border-bottom: 0;
+    }
+    .hero-top {
+      max-width: 1280px;
+      margin: 0 auto;
+      width: 100%;
+      padding: 96px 48px 0;
+      display: grid;
+      grid-template-columns: minmax(0, 0.92fr) minmax(340px, 0.78fr);
+      gap: 72px;
+      align-items: center;
+    }
+    .hero-eyebrow {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: var(--text-3);
+      margin-bottom: 28px;
+    }
+    .hero-name {
+      font-size: clamp(76px, 10vw, 144px);
+      font-weight: 800;
+      letter-spacing: -4px;
+      line-height: 0.92;
+      color: var(--text);
+      margin-bottom: 34px;
+      overflow: hidden;
+    }
+    .hero-desc {
+      font-size: clamp(15px, 1.6vw, 20px);
+      color: var(--text-2);
+      line-height: 1.75;
+      max-width: 560px;
+    }
+    .hero-desc em { font-style: normal; color: var(--text-3); }
+    .hero-photo-switcher {
+      align-self: center;
+    }
+    .hero-photo-stage {
+      position: relative;
+      overflow: hidden;
+      background: var(--white);
+      border: 1px solid var(--border);
+      aspect-ratio: 4 / 3;
+    }
+    .hero-photo {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      opacity: 0;
+      transition: opacity 0.45s ease;
+    }
+    .hero-photo.is-active { opacity: 1; }
+    .hero-photo-caption {
+      position: absolute;
+      left: 12px;
+      bottom: 12px;
+      padding: 6px 8px;
+      background: rgba(245,244,240,0.84);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.4px;
+      color: var(--text-2);
+    }
+    .hero-photo-tabs {
+      position: relative;
+      display: flex;
+      justify-content: flex-end;
+      gap: 24px;
+      margin-top: 16px;
+      padding-bottom: 12px;
+    }
+    .hero-photo-tabs::before,
+    .hero-photo-tabs::after {
+      content: '';
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      height: 1px;
+    }
+    .hero-photo-tabs::before {
+      width: 142px;
+      background: var(--border);
+    }
+    .hero-photo-tabs::after {
+      width: 48px;
+      background: var(--text);
+      transform: translateX(0);
+      transition: transform 0.35s cubic-bezier(0.16,1,0.3,1);
+    }
+    .hero-photo-tabs.is-uestc::after {
+      transform: translateX(-94px);
+    }
+    .hero-photo-tabs.is-epfl::after {
+      transform: translateX(0);
+    }
+    .hero-photo-tab {
+      appearance: none;
+      border: 0;
+      background: transparent;
+      color: var(--text-3);
+      padding: 0;
+      font: inherit;
+      font-size: 12px;
+      font-weight: 500;
+      cursor: pointer;
+      letter-spacing: 0.2px;
+      transition: color 0.18s;
+    }
+    .hero-photo-tab:hover,
+    .hero-photo-tab.is-active {
+      color: var(--text);
+    }
+    .hero-bottom {
+      max-width: 1280px;
+      margin: 0 auto;
+      width: 100%;
+      padding: 0 48px;
+      display: block;
+    }
+    .hero-timeline {
+      width: 100%;
+    }
+    .hero-timeline-track {
+      position: relative;
+      height: 124px;
+      padding: 0 10px;
+    }
+    .hero-timeline-track::before,
+    .hero-timeline-track::after {
+      content: '';
+      position: absolute;
+      top: 3px;
+      left: 0;
+      height: 1px;
+    }
+    .hero-timeline-track::before {
+      right: 0;
+      background: var(--border);
+    }
+    .hero-timeline-track::after {
+      width: 0;
+      background: var(--text);
+      transition: width 1.2s cubic-bezier(0.16,1,0.3,1);
+    }
+    .hero-timeline.in .hero-timeline-track::after {
+      width: 100%;
+    }
+    .hero-timeline-item {
+      position: absolute;
+      left: var(--x);
+      top: 0;
+      width: 128px;
+      min-width: 0;
+      padding-top: 18px;
+      opacity: 0;
+      transform: translateX(-50%) translateY(10px);
+      transition: opacity 0.6s ease, transform 0.6s cubic-bezier(0.16,1,0.3,1);
+    }
+    .hero-timeline.in .hero-timeline-item {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+    .hero-timeline.in .hero-timeline-item:nth-child(1) { transition-delay: 0.08s; }
+    .hero-timeline.in .hero-timeline-item:nth-child(2) { transition-delay: 0.18s; }
+    .hero-timeline.in .hero-timeline-item:nth-child(3) { transition-delay: 0.28s; }
+    .hero-timeline.in .hero-timeline-item:nth-child(4) { transition-delay: 0.38s; }
+    .hero-timeline.in .hero-timeline-item:nth-child(5) { transition-delay: 0.48s; }
+    .hero-timeline.in .hero-timeline-item:nth-child(6) { transition-delay: 0.58s; }
+    .hero-timeline-dot {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      width: 9px;
+      min-width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: var(--bg);
+      border: 1.5px solid var(--text);
+      transform: translateX(-50%);
+    }
+    .hero-timeline-item.is-start {
+      transform: translateY(10px);
+      left: 0;
+      text-align: left;
+    }
+    .hero-timeline.in .hero-timeline-item.is-start {
+      transform: translateY(0);
+    }
+    .hero-timeline-item.is-start .hero-timeline-dot {
+      left: 0;
+      transform: none;
+    }
+    .hero-timeline-item.is-end {
+      left: auto;
+      right: 0;
+      transform: translateY(10px);
+      text-align: right;
+    }
+    .hero-timeline.in .hero-timeline-item.is-end {
+      transform: translateY(0);
+    }
+    .hero-timeline-item.is-end .hero-timeline-dot {
+      left: auto;
+      right: 0;
+      transform: none;
+    }
+    .hero-timeline-date {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 1.3px;
+      text-transform: uppercase;
+      color: var(--text-3);
+      margin-bottom: 6px;
+    }
+    .hero-timeline-name {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--text);
+      line-height: 1.35;
+    }
+    .hero-timeline-note {
+      margin-top: 4px;
+      font-size: 10px;
+      color: var(--text-3);
+      line-height: 1.45;
+    }
+    .hero-scroll { display: flex; flex-direction: column; align-items: center; gap: 10px; }
+    .hero-scroll-line {
+      width: 1px; height: 56px;
+      background: var(--border);
+      position: relative; overflow: hidden;
+    }
+    .hero-scroll-line::after {
+      content: '';
+      position: absolute;
+      top: -100%; left: 0;
+      width: 100%; height: 100%;
+      background: var(--text-3);
+      animation: scrollDrop 1.8s cubic-bezier(0.4,0,0.6,1) infinite;
+      animation-delay: 1.2s;
+    }
+    @keyframes scrollDrop { 0% { top: -100%; } 100% { top: 100%; } }
+    .hero-scroll-label {
+      font-size: 9px; font-weight: 700;
+      letter-spacing: 2px; text-transform: uppercase;
+      color: var(--text-3); writing-mode: vertical-rl;
+    }
+
+    /* ===== PRODUCT INDEX ===== */
+    .products-list { list-style: none; }
+    .products-list-item { border-bottom: 1px solid var(--border); }
+    .products-list-item:first-child { border-top: 1px solid var(--border); }
+    .product-list-link {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 36px 48px;
+      display: grid;
+      grid-template-columns: 64px 1fr 1fr 80px 32px;
+      align-items: center;
+      gap: 32px;
+      transition: background 0.2s;
+    }
+    .product-list-link:hover { background: rgba(0,0,0,0.02); }
+    .product-list-num { font-size: 12px; font-weight: 600; color: var(--text-3); letter-spacing: 1px; }
+    .product-list-name { font-size: clamp(28px, 3.5vw, 44px); font-weight: 900; letter-spacing: -1.5px; }
+    .xia-c { color: var(--xia); }
+    .xiu-c { color: var(--xiu); }
+    .product-list-sub { font-size: 13px; color: var(--text-3); }
+    .product-list-year { font-size: 12px; color: var(--text-3); text-align: right; }
+    .product-list-arrow { font-size: 18px; color: var(--text-3); transition: transform 0.2s; text-align: right; }
+    .product-list-link:hover .product-list-arrow { transform: translateX(4px); }
+
+    /* ===== CASE SECTION ===== */
+    .case-section { border-bottom: 0; }
+
+    .case-header {
+      max-width: 1280px; margin: 0 auto;
+      padding: 96px 48px 80px;
+      border-bottom: 1px solid var(--border);
+    }
+    .case-num {
+      font-size: 11px; font-weight: 700;
+      letter-spacing: 2.5px; text-transform: uppercase;
+      color: var(--text-3); margin-bottom: 16px;
+    }
+    .case-title {
+      font-size: clamp(72px, 10vw, 128px);
+      font-weight: 900; letter-spacing: -4px;
+      line-height: 0.9; margin-bottom: 36px;
+      overflow: hidden;
+    }
+    .case-title-inner { display: block; }
+    .case-meta-row { display: flex; gap: 20px; align-items: center; flex-wrap: wrap; }
+    .case-meta-item { font-size: 13px; color: var(--text-3); }
+    .case-meta-dot { color: var(--border); }
+    .case-meta-link { font-size: 13px; font-weight: 600; color: var(--text-2); transition: color 0.15s; }
+    .case-meta-link:hover { color: var(--text); }
+
+    .product-cover {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 64px 48px 0;
+      display: grid;
+      grid-template-columns: minmax(0, 0.95fr) minmax(280px, 0.55fr);
+      gap: 48px;
+      align-items: center;
+    }
+    .product-cover-kicker {
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 2.4px;
+      text-transform: uppercase;
+      color: var(--text-3);
+      margin-bottom: 18px;
+    }
+    .product-cover-title {
+      font-size: clamp(58px, 8vw, 108px);
+      font-weight: 900;
+      letter-spacing: -4px;
+      line-height: 0.9;
+      margin-bottom: 22px;
+      overflow: hidden;
+    }
+    .product-cover-copy {
+      max-width: 720px;
+      font-size: 16px;
+      color: var(--text-2);
+      line-height: 1.82;
+    }
+    .product-cover-visual.single {
+      min-height: 300px;
+      display: grid;
+      align-items: center;
+    }
+    .product-cover-card {
+      min-width: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: transparent;
+      border: 0;
+      overflow: visible;
+    }
+    .product-cover-card img {
+      width: 100%;
+      height: 100%;
+      max-height: 320px;
+      object-fit: contain;
+      padding: 0;
+      filter: drop-shadow(0 24px 30px rgba(210, 119, 0, 0.14));
+    }
+    .marker-highlight {
+      position: relative;
+      display: inline;
+      z-index: 0;
+      white-space: nowrap;
+    }
+    .marker-highlight::before {
+      content: "";
+      position: absolute;
+      left: -0.08em;
+      right: -0.08em;
+      bottom: 0.04em;
+      height: 0.44em;
+      z-index: -1;
+      background: linear-gradient(90deg, rgba(248, 192, 73, 0.16), rgba(248, 192, 73, 0.48) 12%, rgba(248, 192, 73, 0.34) 88%, rgba(248, 192, 73, 0.12));
+      border-radius: 2px 8px 3px 7px;
+      transform: rotate(-0.8deg);
+    }
+    .xiu-stage {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 44px 48px;
+      border-bottom: 0;
+    }
+    .xiu-positioning { padding-top: 0; }
+    .xiu-stage-head {
+      display: block;
+      margin-bottom: 20px;
+    }
+    .xiu-stage-title {
+      font-size: clamp(22px, 2.7vw, 34px);
+      font-weight: 900;
+      letter-spacing: -0.6px;
+      line-height: 1.16;
+      max-width: 980px;
+    }
+    .xiu-stage-copy {
+      max-width: 980px;
+      margin-top: 14px;
+      font-size: 15px;
+      color: var(--text-2);
+      line-height: 1.82;
+    }
+    .insight-bullets {
+      list-style: none;
+      display: grid;
+      gap: 10px;
+      margin-top: 4px;
+    }
+    .insight-bullets li {
+      position: relative;
+      padding-left: 18px;
+      font-size: clamp(15px, 1.45vw, 18px);
+      line-height: 1.65;
+      color: var(--text-2);
+      white-space: nowrap;
+    }
+    .insight-bullets li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0.78em;
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--xiu);
+    }
+    .insight-bullets strong {
+      color: var(--text);
+      font-weight: 800;
+    }
+    .xiu-proof-grid,
+    .xiu-process,
+    .xiu-figure-grid,
+    .xiu-user-grid,
+    .xiu-arch-grid,
+    .xiu-arch-summary {
+      display: grid;
+      gap: 12px;
+    }
+    .xiu-proof-grid,
+    .xiu-process { grid-template-columns: repeat(3, 1fr); }
+    .xiu-proof-card,
+    .xiu-process-card,
+    .xiu-arch-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 20px 18px;
+    }
+    .xiu-proof-label {
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 1.6px;
+      text-transform: uppercase;
+      color: var(--xiu);
+      margin-bottom: 10px;
+    }
+    .xiu-proof-card strong,
+    .xiu-process-title,
+    .xiu-arch-card strong {
+      display: block;
+      font-size: 14px;
+      margin-bottom: 8px;
+      line-height: 1.35;
+      font-weight: 800;
+    }
+    .xiu-proof-card p,
+    .xiu-process-card p,
+    .xiu-arch-card p {
+      font-size: 12.5px;
+      color: var(--text-2);
+      line-height: 1.75;
+    }
+    .xiu-abstract-row {
+      display: grid;
+      grid-template-columns: minmax(0, 0.92fr) minmax(420px, 1.08fr);
+      gap: 18px;
+      align-items: stretch;
+      margin-top: 20px;
+    }
+    .xiu-abstract-row .failure-chain { margin-top: 0; margin-bottom: 14px; }
+    .xiu-abstract-row .xiu-proof-grid { grid-template-columns: 1fr; margin-top: 0; }
+    .xiu-figure-grid {
+      grid-template-columns: 1fr 1fr;
+      margin-top: 16px;
+    }
+    .xiu-figure-grid.three,
+    .xiu-figure-grid.full-row { grid-template-columns: repeat(3, 1fr); }
+    .xiu-figure,
+    .xiu-wide-figure {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+      margin-top: 16px;
+    }
+    .xiu-abstract-row .xiu-wide-figure { margin-top: 0; }
+    .xiu-figure-media,
+    .xiu-wide-media {
+      height: 300px;
+      border-bottom: 1px solid var(--border);
+      overflow: hidden;
+      background: #FAFAF7;
+    }
+    .xiu-abstract-row .xiu-wide-media { height: 430px; }
+    .xiu-figure img,
+    .xiu-wide-figure img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      background: #FAFAF7;
+    }
+    .xiu-figure-media.is-contain img,
+    .xiu-wide-media.is-contain img {
+      object-fit: contain;
+      padding: 14px;
+      mix-blend-mode: multiply;
+    }
+    .xiu-figure-caption {
+      padding: 14px 16px 16px;
+    }
+    .xiu-figure-caption strong {
+      display: block;
+      font-size: 13px;
+      margin-bottom: 5px;
+    }
+    .xiu-figure-caption span {
+      display: block;
+      font-size: 12px;
+      color: var(--text-3);
+      line-height: 1.6;
+    }
+    .xiu-arch-grid {
+      grid-template-columns: 1fr 1fr;
+      margin-top: 22px;
+    }
+    .xiu-arch-summary {
+      grid-template-columns: 1fr 1fr;
+      margin-top: 12px;
+    }
+
+    /* Case block */
+    .case-block {
+      max-width: 1280px; margin: 0 auto;
+      padding: 48px 48px;
+      display: block;
+      border-bottom: 0;
+    }
+    .block-label {
+      font-size: 11px; font-weight: 700;
+      letter-spacing: 2px; text-transform: uppercase;
+      color: var(--text-3);
+      padding-top: 0;
+      margin-bottom: 16px;
+    }
+    h3.block-content,
+    .block-content h3 {
+      font-size: clamp(22px, 2.8vw, 34px);
+      font-weight: 800; letter-spacing: -0.8px;
+      line-height: 1.15;
+      max-width: 980px;
+      margin-bottom: 18px;
+    }
+    p.block-content,
+    .block-content p {
+      max-width: 980px;
+      font-size: 15px;
+      color: var(--text-2);
+      line-height: 1.9;
+    }
+    p.block-content + p.block-content,
+    .block-content p + p { margin-top: 16px; }
+    .block-content strong { color: var(--text); font-weight: 600; }
+
+    /* Image placeholder */
+    .img-ph {
+      width: 100%; background: var(--border);
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .img-ph-label {
+      font-size: 11px; font-weight: 600;
+      letter-spacing: 1.5px; text-transform: uppercase;
+      color: var(--text-3);
+    }
+
+    /* Gap cards */
+    .gap-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 28px; }
+    .gap-card { background: var(--white); border: 1px solid var(--border); border-radius: 10px; padding: 24px; }
+    .gap-card-title { font-size: 14px; font-weight: 700; margin-bottom: 8px; }
+    .gap-card p { font-size: 13px; color: var(--text-2); line-height: 1.75; }
+
+    /* Failure chain */
+    .failure-chain { display: flex; align-items: center; flex-wrap: wrap; gap: 6px; margin: 28px 0; }
+    .chain-step { display: flex; align-items: center; gap: 6px; }
+    .chain-pill {
+      font-size: 13px; font-weight: 700;
+      padding: 9px 18px;
+      border: 1.5px solid var(--text); border-radius: 100px;
+      white-space: nowrap; background: var(--white);
+    }
+    .chain-arr { font-size: 16px; color: var(--text-3); }
+
+    /* Decision table */
+    .dtable { width: 100%; border-collapse: collapse; margin-top: 28px; }
+    .dtable tr { border-bottom: 1px solid var(--border); }
+    .dtable tr:last-child { border-bottom: none; }
+    .dtable td { padding: 20px 16px; font-size: 14px; vertical-align: top; }
+    .dtable td:first-child {
+      font-size: 11px; font-weight: 700; letter-spacing: 1px;
+      color: var(--text-3); white-space: nowrap; width: 100px; padding-top: 23px;
+      text-transform: uppercase;
+    }
+    .dtable td strong { display: block; font-size: 14px; color: var(--text); margin-bottom: 4px; font-weight: 700; }
+    .dtable td p { font-size: 13px; color: var(--text-2); line-height: 1.75; margin: 0; }
+
+    /* Metrics */
+    .metrics-block {
+      max-width: 1280px; margin: 0 auto;
+      padding: 48px 48px;
+      display: block;
+      border-bottom: 0;
+    }
+    .metrics-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      background: var(--border); gap: 1px;
+      border-radius: 12px; overflow: hidden;
+      border: 1px solid var(--border);
+    }
+    .metric-cell { background: var(--white); padding: 40px 24px; text-align: center; }
+    .metric-n {
+      font-size: clamp(36px, 4.5vw, 56px);
+      font-weight: 900; letter-spacing: -2px;
+      line-height: 1; margin-bottom: 10px;
+    }
+    .metric-n.xia { color: var(--xia); }
+    .metric-n.xiu { color: var(--xiu); }
+    .metric-l { font-size: 12px; color: var(--text-3); line-height: 1.5; }
+
+    /* Pivot */
+    .pivot-card {
+      border-left: 3px solid var(--xiu);
+      background: var(--white); border-radius: 0 10px 10px 0;
+      padding: 28px 28px 28px 32px; margin: 28px 0;
+    }
+    .pivot-eyebrow {
+      font-size: 10px; font-weight: 700;
+      letter-spacing: 2px; text-transform: uppercase;
+      color: var(--xiu); margin-bottom: 10px;
+    }
+    .pivot-title { font-size: 17px; font-weight: 800; letter-spacing: -0.3px; margin-bottom: 12px; }
+    .pivot-card p { font-size: 14px; color: var(--text-2); line-height: 1.8; }
+
+    /* Research row */
+    .research-row {
+      display: flex; gap: 40px;
+      padding: 28px 0; border-top: 1px solid var(--border); flex-wrap: wrap;
+    }
+    .research-n { font-size: 36px; font-weight: 900; letter-spacing: -1.5px; line-height: 1; color: var(--xiu); margin-bottom: 4px; }
+    .research-l { font-size: 12px; color: var(--text-3); }
+
+    /* Insight list */
+    .insight-list { list-style: none; margin-top: 20px; }
+    .insight-list li {
+      padding: 14px 0 14px 20px;
+      border-top: 1px solid var(--border);
+      font-size: 14px; color: var(--text-2); line-height: 1.8;
+      position: relative;
+    }
+    .insight-list li::before {
+      content: ''; position: absolute;
+      left: 0; top: 22px;
+      width: 5px; height: 5px;
+      border-radius: 50%; background: var(--xiu);
+    }
+
+    /* Reflection */
+    .reflection-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 28px; }
+    .reflection-card { background: var(--white); border: 1px solid var(--border); border-radius: 10px; padding: 28px 24px; }
+    .reflection-n { font-size: 32px; font-weight: 900; letter-spacing: -1px; color: var(--border); line-height: 1; margin-bottom: 12px; }
+    .reflection-title { font-size: 14px; font-weight: 700; margin-bottom: 10px; }
+    .reflection-card p { font-size: 13px; color: var(--text-2); line-height: 1.8; }
+
+    /* ===== ABOUT ===== */
+    .about-wrap { max-width: 1280px; margin: 0 auto; padding: 100px 48px; }
+    .about-section-label {
+      font-size: 11px; font-weight: 700;
+      letter-spacing: 2.5px; text-transform: uppercase;
+      color: var(--text-3); margin-bottom: 48px;
+    }
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; }
+    .about-bio { font-size: 17px; color: var(--text-2); line-height: 1.9; }
+    .about-bio strong { color: var(--text); font-weight: 700; }
+    .about-detail-row {
+      display: grid; grid-template-columns: 100px 1fr;
+      gap: 24px; padding: 18px 0; border-top: 1px solid var(--border);
+    }
+    .about-detail-key {
+      font-size: 10px; font-weight: 700;
+      letter-spacing: 1.5px; text-transform: uppercase;
+      color: var(--text-3); padding-top: 3px;
+    }
+    .about-detail-val { font-size: 14px; color: var(--text-2); line-height: 1.8; }
+    .about-detail-val strong { color: var(--text); font-weight: 600; }
+
+    /* ===== FOOTER ===== */
+    .footer-inner {
+      max-width: 1280px; margin: 0 auto;
+      padding: 32px 48px;
+      display: flex; align-items: center; justify-content: space-between;
+      border-top: 1px solid var(--border);
+    }
+    .footer-copy { font-size: 13px; color: var(--text-3); }
+    .footer-links { display: flex; gap: 24px; }
+    .footer-links a { font-size: 13px; color: var(--text-2); font-weight: 500; transition: color 0.15s; }
+    .footer-links a:hover { color: var(--text); }
+
+    /* ===== ANIMATIONS ===== */
+
+    /* Hero entrance */
+    .h-enter {
+      opacity: 0; transform: translateY(20px);
+      transition: opacity 0.9s cubic-bezier(0.16,1,0.3,1),
+                  transform 0.9s cubic-bezier(0.16,1,0.3,1);
+    }
+    .h-enter.in { opacity: 1; transform: translateY(0); }
+    .hero-timeline.h-enter .hero-timeline-item {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    .hero-timeline.h-enter.in .hero-timeline-item {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .hero-timeline.h-enter.in .hero-timeline-track::after {
+      width: 100%;
+    }
+
+    /* Scroll reveal */
+    .reveal {
+      opacity: 0; transform: translateY(24px);
+      transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.16,1,0.3,1);
+    }
+    .reveal.in { opacity: 1; transform: translateY(0); }
+
+    /* Stagger delays */
+    .s1 { transition-delay: 0.06s; }
+    .s2 { transition-delay: 0.12s; }
+    .s3 { transition-delay: 0.18s; }
+    .s4 { transition-delay: 0.24s; }
+    .s5 { transition-delay: 0.30s; }
+
+    /* Line mask for big titles */
+    .lmask { overflow: hidden; }
+    .lmask-inner {
+      display: block;
+      transform: translateY(108%);
+      transition: transform 1s cubic-bezier(0.16,1,0.3,1);
+    }
+    .lmask.in .lmask-inner { transform: translateY(0); }
+
+    /* Failure chain stagger */
+    .failure-chain .chain-step {
+      opacity: 0; transform: translateX(-10px);
+      transition: opacity 0.4s ease, transform 0.4s ease;
+    }
+    .failure-chain.in .chain-step { opacity: 1; transform: translateX(0); }
+    .failure-chain.in .chain-step:nth-child(1) { transition-delay: 0s; }
+    .failure-chain.in .chain-step:nth-child(2) { transition-delay: 0.10s; }
+    .failure-chain.in .chain-step:nth-child(3) { transition-delay: 0.20s; }
+    .failure-chain.in .chain-step:nth-child(4) { transition-delay: 0.30s; }
+    .failure-chain.in .chain-step:nth-child(5) { transition-delay: 0.40s; }
+
+    /* ===== TIMELINE PANEL ===== */
+
+    /* Backdrop */
+    .tl-backdrop {
+      position: fixed;
+      inset: 0;
+      z-index: 299;
+      background:
+        linear-gradient(112deg, rgba(231,229,221,0.88) 0%, rgba(216,218,211,0.82) 100%),
+        rgba(245,244,240,0.76);
+      opacity: 0;
+      pointer-events: none;
+      overflow: hidden;
+      transition: opacity 0.44s ease;
+    }
+    .tl-backdrop.is-open { opacity: 1; pointer-events: auto; }
+    .tl-preview {
+      position: absolute;
+      left: max(64px, 14vw);
+      top: 50%;
+      width: min(42vw, 680px);
+      opacity: 0;
+      transform: translateY(-46%) translateX(-34px);
+      transition: opacity 0.52s ease 0.08s,
+                  transform 0.72s cubic-bezier(0.16,1,0.3,1) 0.08s;
+    }
+    .tl-backdrop.is-open .tl-preview {
+      opacity: 1;
+      transform: translateY(-50%) translateX(0);
+    }
+    .tl-preview-card {
+      display: block;
+      color: var(--text);
+    }
+    .tl-preview-media {
+      position: relative;
+      aspect-ratio: 4 / 3;
+      overflow: hidden;
+      background: rgba(255,255,255,0.24);
+      border: 1px solid rgba(17,17,17,0.08);
+    }
+    .tl-preview-media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: saturate(0.95) contrast(0.96);
+      transform: scale(1.08);
+      transition: transform 0.5s cubic-bezier(0.16,1,0.3,1);
+    }
+    .tl-preview-card:hover .tl-preview-media img {
+      transform: scale(1.13);
+    }
+    .tl-preview-card.xia .tl-preview-media img { object-position: 72% 64%; }
+    .tl-preview-card.xiu .tl-preview-media img { object-position: 30% 63%; }
+    .tl-preview-meta {
+      display: grid;
+      grid-template-columns: 46px 1fr;
+      gap: 18px;
+      padding-top: 16px;
+      border-top: 1px solid rgba(17,17,17,0.28);
+      margin-top: 14px;
+    }
+    .tl-preview-num {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1.6px;
+      color: rgba(17,17,17,0.44);
+    }
+    .tl-preview-title {
+      font-size: 22px;
+      font-weight: 700;
+      letter-spacing: -0.4px;
+      line-height: 1.15;
+    }
+    .tl-preview-sub {
+      margin-top: 7px;
+      font-size: 12px;
+      color: rgba(17,17,17,0.52);
+      line-height: 1.5;
+    }
+
+    /* Sidebar */
+    .tl-panel {
+      position: fixed;
+      top: 0; right: 0; bottom: 0;
+      width: clamp(360px, 21vw, 440px);
+      max-width: 86vw;
+      z-index: 300;
+      background: #2B2B29;
+      transform: translateX(100%);
+      transition: transform 0.64s cubic-bezier(0.16,1,0.3,1);
+      overflow-y: auto;
+    }
+    .tl-panel.is-open { transform: translateX(0); }
+
+    .tl-inner {
+      padding: 40px 42px 72px;
+    }
+
+    .tl-search {
+      font-size: 15px;
+      font-weight: 600;
+      color: rgba(255,255,255,0.34);
+      padding-bottom: 14px;
+      border-bottom: 1px solid rgba(255,255,255,0.72);
+      margin-bottom: 50px;
+      letter-spacing: 0.1px;
+    }
+
+    /* Section groups */
+    .tl-section {
+      margin-bottom: 42px;
+      opacity: 0;
+      transform: translateY(14px);
+      transition: opacity 0.5s ease, transform 0.5s cubic-bezier(0.16,1,0.3,1);
+    }
+    .tl-section:last-child { margin-bottom: 0; }
+    .tl-panel.is-open .tl-section { opacity: 1; transform: translateY(0); }
+    .tl-panel.is-open .tl-section:nth-child(1) { transition-delay: 0.18s; }
+    .tl-panel.is-open .tl-section:nth-child(2) { transition-delay: 0.28s; }
+    .tl-panel.is-open .tl-section:nth-child(3) { transition-delay: 0.38s; }
+
+    .tl-section-label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.34);
+      margin-bottom: 16px;
+    }
+
+    .tl-section-links { list-style: none; }
+
+    .tl-link {
+      display: block;
+      font-size: 17px;
+      font-weight: 500;
+      color: rgba(255,255,255,0.9);
+      line-height: 1.65;
+      padding: 1px 0;
+      letter-spacing: 1.2px;
+      transition: color 0.15s, opacity 0.15s;
+    }
+    .tl-link:hover { color: white; }
+    .tl-link.xia-link,
+    .tl-link.xiu-link { color: rgba(255,255,255,0.9); }
+    .tl-link.xia-link:hover, .tl-link.xiu-link:hover { opacity: 0.75; }
+
+    .tl-link-sub {
+      display: block;
+      font-size: 11px;
+      color: rgba(255,255,255,0.26);
+      padding-bottom: 10px;
+      line-height: 1.5;
+    }
+
+    /* ===== WALKING CHARACTER ===== */
+    .tl-walker {
+      position: absolute;
+      pointer-events: none;
+      z-index: 3;
+      opacity: 0;
+      transition: opacity 0.6s ease 0.7s;
+      will-change: transform, left, background-position;
+    }
+    .hero-timeline.in .tl-walker { opacity: 1; }
+
+    .xiu-walker {
+      width: 45px;
+      height: 90px;  /* 1:2 aspect ratio per frame */
+      top: -87px;
+      background: url('assets/xiu-walk.png') no-repeat 0 0;
+      background-size: 270px 90px; /* 6 frames × 45px */
+      animation:
+        xiu-patrol 18s linear infinite,
+        xiu-frames 1.0s steps(6) infinite,
+        xiu-dir    18s linear infinite;
+    }
+    .xia-walker {
+      width: 62px;
+      height: 124px; /* 1:2 aspect ratio per frame */
+      top: -96px;
+      background: url('assets/xia-walk.png') no-repeat 0 0;
+      background-size: 372px 124px; /* 6 frames × 62px */
+      animation:
+        xia-patrol 18s linear infinite,
+        xia-frames 1.0s steps(6) infinite,
+        xia-dir    18s linear infinite;
+    }
+    @keyframes xiu-patrol {
+      0%   { left: 28%; }
+      50%  { left: 65%; }
+      100% { left: 28%; }
+    }
+    @keyframes xiu-frames {
+      from { background-position: 0 0; }
+      to   { background-position: -270px 0; } /* 6 × 45px */
+    }
+    @keyframes xiu-dir {
+      0%, 49.99% { transform: scaleX(1); }
+      50%, 100%  { transform: scaleX(-1); }
+    }
+    @keyframes xia-patrol {
+      0%   { left: 0%; }
+      50%  { left: 20%; }
+      100% { left: 0%; }
+    }
+    @keyframes xia-frames {
+      from { background-position: 0 0; }
+      to   { background-position: -372px 0; } /* 6 × 62px */
+    }
+    @keyframes xia-dir {
+      0%, 49.99% { transform: scaleX(1); }
+      50%, 100%  { transform: scaleX(-1); }
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 960px) {
+      .nav-inner, .hero-top, .hero-bottom,
+      .product-cover, .case-header, .case-block, .metrics-block, .xiu-stage, .about-wrap, .footer-inner {
+        padding-left: 28px; padding-right: 28px;
+      }
+      .tl-panel {
+        width: min(420px, 84vw);
+      }
+      .tl-preview {
+        left: 28px;
+        right: calc(min(420px, 84vw) + 28px);
+        width: auto;
+      }
+      .hero-top {
+        grid-template-columns: 1fr;
+        gap: 48px;
+        padding-top: 76px;
+      }
+      .hero-photo-switcher {
+        max-width: 680px;
+      }
+      .hero-timeline {
+        width: 100%;
+        max-width: none;
+      }
+      .product-cover,
+      .xiu-abstract-row,
+      .xiu-arch-grid,
+      .xiu-arch-summary {
+        grid-template-columns: 1fr;
+      }
+      .product-cover-visual { max-width: 680px; }
+      .insight-bullets li { white-space: normal; }
+      .xiu-proof-grid,
+      .xiu-process,
+      .xiu-figure-grid,
+      .xiu-figure-grid.three,
+      .xiu-figure-grid.full-row {
+        grid-template-columns: 1fr;
+      }
+      .case-block, .metrics-block { grid-template-columns: 1fr; gap: 20px; }
+      .block-label { padding-top: 0; }
+      .gap-cards { grid-template-columns: 1fr; }
+      .metrics-grid { grid-template-columns: 1fr 1fr; }
+      .about-grid { grid-template-columns: 1fr; gap: 48px; }
+      .reflection-grid { grid-template-columns: 1fr; }
+      .product-list-link {
+        grid-template-columns: 48px 1fr 48px 24px;
+        padding: 28px; gap: 20px;
+      }
+      .product-list-sub { display: none; }
+    }
+    @media (max-width: 600px) {
+      .nav-links { display: none; }
+      .nav-inner, .hero-top, .hero-bottom,
+      .product-cover, .case-header, .case-block, .metrics-block,
+      .xiu-stage, .about-wrap, .footer-inner { padding-left: 20px; padding-right: 20px; }
+      .tl-preview { display: none; }
+      .tl-walker { display: none; }
+      .tl-inner { padding: 34px 30px 64px; }
+      .tl-search { margin-bottom: 42px; }
+      .hero-name { letter-spacing: -2px; }
+      .hero-photo-caption {
+        left: 8px;
+        bottom: 8px;
+        font-size: 9px;
+      }
+      .hero-photo-tabs { justify-content: flex-start; }
+      .hero-timeline-track {
+        grid-template-columns: 1fr;
+        gap: 22px;
+        padding-top: 0;
+        padding-left: 18px;
+      }
+      .hero-timeline-track::before,
+      .hero-timeline-track::after {
+        top: 0;
+        left: 4px;
+        width: 1px;
+        height: auto;
+      }
+      .hero-timeline-track::before { bottom: 0; right: auto; }
+      .hero-timeline-track::after {
+        height: 0;
+        transition-property: height;
+      }
+      .hero-timeline.in .hero-timeline-track::after {
+        width: 1px;
+        height: 100%;
+      }
+      .hero-timeline.h-enter.in .hero-timeline-track::after {
+        width: 1px;
+        height: 100%;
+      }
+      .hero-timeline-dot,
+      .hero-timeline-item.is-minor .hero-timeline-dot {
+        top: 3px;
+        left: -18px;
+      }
+      .case-title { letter-spacing: -2px; }
+      .hero-bottom { flex-direction: column; gap: 32px; align-items: flex-start; }
+      .metrics-grid { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+  <div class="nav-inner">
+    <div class="nav-logo">Zimi Liu</div>
+    <button class="nav-tl-btn" id="tlBtn">Menu</button>
+  </div>
+</nav>
+
+<!-- TIMELINE BACKDROP -->
+<div class="tl-backdrop" id="tlBackdrop">
+  <div class="tl-preview" aria-label="产品预览">
+    <a href="#xia" class="tl-preview-card xia" data-close-tl>
+      <div class="tl-preview-media">
+        <img src="assets/mascots.png" alt="虾小宝产品形象">
+      </div>
+      <div class="tl-preview-meta">
+        <div class="tl-preview-num">01</div>
+        <div>
+          <div class="tl-preview-title">虾小宝</div>
+          <div class="tl-preview-sub">Agent 能力与身份资产配置平台</div>
+        </div>
+      </div>
+    </a>
+  </div>
+</div>
+
+<!-- TIMELINE PANEL -->
+<div class="tl-panel" id="tlPanel" aria-hidden="true">
+  <div class="tl-inner">
+    <div class="tl-search">Project Map</div>
+
+    <div class="tl-section">
+      <div class="tl-section-label">Narrative</div>
+      <ul class="tl-section-links">
+        <li>
+          <a href="#xiu-phase-1" class="tl-link xiu-link" data-close-tl>嗅嗅豹一期</a>
+          <span class="tl-link-sub">面向内部行业运营，抽象商机定义和三层 Agent 分析结构。</span>
+        </li>
+        <li>
+          <a href="#xiu-phase-2" class="tl-link xiu-link" data-close-tl>嗅嗅豹二期</a>
+          <span class="tl-link-sub">面向外部跨境商家，把重点转向多源数据与固定工作流。</span>
+        </li>
+        <li>
+          <a href="#product-video" class="tl-link xia-link" data-close-tl>商品视频生成</a>
+          <span class="tl-link-sub">从选品洞察延展到更高频的同款爆款视频复刻和营销内容生成。</span>
+        </li>
+        <li>
+          <a href="#xia" class="tl-link xia-link" data-close-tl>虾小宝</a>
+          <span class="tl-link-sub">基于 Skill Hub 继续补齐身份配置，把虾小宝定义为 Agent 的能力层。</span>
+        </li>
+      </ul>
+    </div>
+
+    <div class="tl-section">
+      <div class="tl-section-label">About</div>
+      <ul class="tl-section-links">
+        <li><a href="#about" class="tl-link" data-close-tl>Zimi Liu</a></li>
+      </ul>
+    </div>
+
+    <div class="tl-section">
+      <ul class="tl-section-links">
+        <li><a href="mailto:zimi.liu@outlook.com" class="tl-link">Email</a></li>
+        <li><a href="https://linkedin.com/in/zimiliu" target="_blank" class="tl-link">LinkedIn</a></li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-top">
+    <div class="hero-copy">
+      <div class="hero-eyebrow h-enter">AI Product Manager</div>
+      <h1 class="hero-name">
+        <div class="lmask h-enter s1">
+          <span class="lmask-inner">刘子迷</span>
+        </div>
+      </h1>
+      <div class="hero-desc h-enter s2">
+        我做 AI 产品，关心用户真正关心什么。<br>
+        <em>擅长从模糊需求中找到清晰的产品问题，</em><br>
+        <em>并和工程、算法团队一起，把新技术快速落地为真实的产品价值。</em>
+      </div>
+    </div>
+    <div class="hero-photo-switcher h-enter s3" aria-label="毕业照片">
+      <figure class="hero-photo-stage">
+        <img class="hero-photo" src="assets/本科毕业照.png" alt="刘子迷本科毕业照" data-photo="uestc">
+        <img class="hero-photo is-active" src="assets/硕士毕业照.png" alt="刘子迷硕士毕业照" data-photo="epfl">
+        <figcaption class="hero-photo-caption" id="heroPhotoCaption">EPFL · 2024</figcaption>
+      </figure>
+      <div class="hero-photo-tabs is-epfl" aria-label="切换毕业照片">
+        <button class="hero-photo-tab is-active" type="button" data-photo-target="epfl" aria-pressed="true">EPFL</button>
+        <button class="hero-photo-tab" type="button" data-photo-target="uestc" aria-pressed="false">UESTC</button>
+      </div>
+    </div>
+  </div>
+  <div class="hero-bottom">
+    <div class="hero-timeline h-enter s4" aria-label="产品时间轴">
+      <div class="hero-timeline-track">
+        <a href="#xia" class="hero-timeline-item is-start" style="--x:0%;">
+          <span class="hero-timeline-dot"></span>
+          <div class="hero-timeline-date">2026.01</div>
+          <div class="hero-timeline-name">虾小宝</div>
+          <div class="hero-timeline-note">Agent SkillHub</div>
+        </a>
+        <a href="#xia" class="hero-timeline-item" style="--x:6.667%;">
+          <span class="hero-timeline-dot"></span>
+          <div class="hero-timeline-date">2025.12</div>
+          <div class="hero-timeline-name">商品营销视频</div>
+          <div class="hero-timeline-note">Skill 化能力沉淀</div>
+        </a>
+        <a href="#xiu" class="hero-timeline-item" style="--x:33.333%;">
+          <span class="hero-timeline-dot"></span>
+          <div class="hero-timeline-date">2025.08</div>
+          <div class="hero-timeline-name">嗅嗅豹二期</div>
+          <div class="hero-timeline-note">对外内测与商业化验证</div>
+        </a>
+        <a href="#xiu" class="hero-timeline-item" style="--x:60%;">
+          <span class="hero-timeline-dot"></span>
+          <div class="hero-timeline-date">2025.04</div>
+          <div class="hero-timeline-name">嗅嗅豹一期</div>
+          <div class="hero-timeline-note">搜索策略与数据处理</div>
+        </a>
+        <a href="#xiu" class="hero-timeline-item" style="--x:80%;">
+          <span class="hero-timeline-dot"></span>
+          <div class="hero-timeline-date">2025.01</div>
+          <div class="hero-timeline-name">钉钉触达</div>
+          <div class="hero-timeline-note">数字员工体验优化</div>
+        </a>
+        <a href="#xiu" class="hero-timeline-item is-end" style="--x:100%;">
+          <span class="hero-timeline-dot"></span>
+          <div class="hero-timeline-date">2024.10</div>
+          <div class="hero-timeline-name">多智能体搭建</div>
+          <div class="hero-timeline-note">协作框架与业务落地</div>
+        </a>
+        <div class="tl-walker xia-walker" aria-hidden="true"></div>
+        <div class="tl-walker xiu-walker" aria-hidden="true"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRODUCT INDEX -->
+<ul class="products-list">
+  <li class="products-list-item">
+    <a href="#xia" class="product-list-link reveal">
+      <div class="product-list-num">01</div>
+      <div class="product-list-name xia-c">虾小宝</div>
+      <div class="product-list-sub">Agent 能力与身份资产配置平台</div>
+      <div class="product-list-year">2026</div>
+      <div class="product-list-arrow">→</div>
+    </a>
+  </li>
+  <li class="products-list-item">
+    <a href="#xiu" class="product-list-link reveal s1">
+      <div class="product-list-num">02</div>
+      <div class="product-list-name xiu-c">嗅嗅豹</div>
+      <div class="product-list-sub">AI 选品分析平台</div>
+      <div class="product-list-year">2025</div>
+      <div class="product-list-arrow">→</div>
+    </a>
+  </li>
+</ul>
+
+<!-- =============================== -->
+<!-- 01 · 虾小宝                      -->
+<!-- =============================== -->
+<section id="xia" class="case-section">
+
+  <div class="case-header">
+    <div class="case-num reveal">01 · 2026.01 — 2026.03</div>
+    <h2 class="case-title xia-c">
+      <div class="lmask reveal s1"><span class="lmask-inner">虾小宝</span></div>
+    </h2>
+    <div class="case-meta-row reveal s2">
+      <span class="case-meta-item">Agent 能力与身份资产配置平台</span>
+      <span class="case-meta-dot">·</span>
+      <span class="case-meta-item">阿里巴巴 ATH MaaS 业务线</span>
+      <span class="case-meta-dot">·</span>
+      <a href="https://skillatlas.cn/" target="_blank" class="case-meta-link">skillatlas.cn ↗</a>
+    </div>
+  </div>
+
+  <!-- 概览占位 -->
+  <div class="case-block">
+    <div class="block-label reveal">概览</div>
+    <div class="reveal s1">
+      <div class="img-ph" style="aspect-ratio:16/7"><span class="img-ph-label">产品截图 · 占位</span></div>
+    </div>
+  </div>
+
+  <!-- 问题 -->
+  <div class="case-block">
+    <div class="block-label reveal">问题</div>
+    <div>
+      <h3 class="block-content reveal">Agent 能"对话"，<br>却无法真正"执行"</h3>
+      <p class="block-content reveal s1">Agent 生态里有一个普遍的断点：大量 Agent 已经具备对话能力，却无法完成实际操作。根源是两个卡点。</p>
+      <div class="gap-cards">
+        <div class="gap-card reveal s2">
+          <div class="gap-card-title">没有可信的 Skill</div>
+          <p>有想法，但没有经过认证的工具，只能输出文字建议，无法触达真实系统。</p>
+        </div>
+        <div class="gap-card reveal s3">
+          <div class="gap-card-title">没有真实身份资产</div>
+          <p>无法绑定邮箱 / 手机号 / API 钱包，自动化链路在最后一公里断掉。</p>
+        </div>
+      </div>
+      <p class="block-content reveal s4" style="margin-top:20px;font-size:13px;color:var(--text-3);font-style:italic;">
+        这个问题是在嗅嗅豹的实践中浮现的：我们把"商品营销视频生成"封装为可复用 Skill，随即发现这种能力单元在开发者生态中广泛存在，但没有标准化的分发与协作市场。
+      </p>
+    </div>
+  </div>
+
+  <!-- 发现 -->
+  <div class="case-block">
+    <div class="block-label reveal">发现</div>
+    <div>
+      <h3 class="block-content reveal">一条完整的失败链路</h3>
+      <p class="block-content reveal s1">对用户行为的拆解，归纳出从意图到放弃的完整失败链路——每一个环节都是一个用户流失点。</p>
+      <div class="failure-chain">
+        <div class="chain-step"><div class="chain-pill">不会找</div><div class="chain-arr">→</div></div>
+        <div class="chain-step"><div class="chain-pill">看不懂</div><div class="chain-arr">→</div></div>
+        <div class="chain-step"><div class="chain-pill">不敢信</div><div class="chain-arr">→</div></div>
+        <div class="chain-step"><div class="chain-pill">跑不通</div><div class="chain-arr">→</div></div>
+        <div class="chain-step"><div class="chain-pill">效果不确定</div></div>
+      </div>
+      <p class="block-content reveal s2">核心判断：Skill 必须从"可搜索的工具集合"升级为"可推荐、可验证、可运行、可进化的能力矩阵"。仅有能力还不够——Agent 必须同时具备对 Skill 的配置能力与可信的身份资产，才能在复杂场景中完整执行。</p>
+    </div>
+  </div>
+
+  <!-- 决策 -->
+  <div class="case-block">
+    <div class="block-label reveal">决策</div>
+    <div>
+      <h3 class="block-content reveal">针对每个环节，<br>做对应的产品设计</h3>
+      <table class="dtable reveal s1">
+        <tr>
+          <td>不会找</td>
+          <td>
+            <strong>SkillFinder 语义检索</strong>
+            <p>从关键词检索升级为基于任务理解的推荐（intent → skill），结合 Agent 真实运行数据动态排序。</p>
+          </td>
+        </tr>
+        <tr>
+          <td>看不懂<br>不敢信</td>
+          <td>
+            <strong>三维安全准入体系</strong>
+            <p>安全性 + 完整性 + 可用性，代码扫描 + 沙盒试跑 + 用例验证，能力边界和适用场景明确标注。</p>
+          </td>
+        </tr>
+        <tr>
+          <td>跑不通</td>
+          <td>
+            <strong>统一托管外部 API</strong>
+            <p>将接入成本从用户侧迁移到平台侧，用户无需自行申请 Key、处理额度或完成复杂配置。</p>
+          </td>
+        </tr>
+        <tr>
+          <td>最后<br>一公里</td>
+          <td>
+            <strong>Agent 身份资产配置</strong>
+            <p>支持 Agent 绑定真实邮箱 / 手机号 / API 钱包，打通注册、验证、跨平台协作的完整链路。</p>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- 结果 -->
+  <div class="metrics-block">
+    <div class="block-label reveal">
+      结果<br>
+      <span style="font-weight:400;font-size:10px;color:var(--text-3);letter-spacing:0;text-transform:none;">上线 3 周</span>
+    </div>
+    <div class="metrics-grid reveal s1">
+      <div class="metric-cell">
+        <div class="metric-n xia" data-target="6000" data-suffix="+">0</div>
+        <div class="metric-l">Agent 注册</div>
+      </div>
+      <div class="metric-cell">
+        <div class="metric-n xia" data-target="3800">0</div>
+        <div class="metric-l">活跃 Agent</div>
+      </div>
+      <div class="metric-cell">
+        <div class="metric-n xia" data-target="4000" data-suffix="+">0</div>
+        <div class="metric-l">Skill 调用</div>
+      </div>
+      <div class="metric-cell">
+        <div class="metric-n xia" data-target="1000">0</div>
+        <div class="metric-l">社区 Agent</div>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<!-- =============================== -->
+<!-- 01-02 · 嗅嗅豹                   -->
+<!-- =============================== -->
+<section id="xiu" class="case-section">
+
+  <div class="product-cover">
+    <div>
+      <div class="product-cover-kicker reveal">01-02 · 2025.04 — 2025.12</div>
+      <h2 class="product-cover-title xiu-c">
+        <div class="lmask reveal s1"><span class="lmask-inner">嗅嗅豹</span></div>
+      </h2>
+      <p class="product-cover-copy reveal s2">
+        面向跨境时尚非标品选品场景的 AI 分析平台。两期都围绕同一类选品问题展开：一期服务内部 Lazada 和 1688 行业运营，验证多 Agent 能否完成商机分析；二期面向外部跨境商家，把高频分析需求沉淀为稳定工作流。
+      </p>
+    </div>
+    <div class="product-cover-visual single reveal s3">
+      <div class="product-cover-card">
+        <img src="assets/嗅嗅豹ip-transparent.png" alt="嗅嗅豹产品 IP">
+      </div>
+    </div>
+  </div>
+
+  <!-- 核心洞察 -->
+  <div id="xiu-phase-1" class="xiu-stage xiu-positioning">
+    <div class="xiu-stage-head">
+      <div class="block-label reveal">核心洞察</div>
+      <ul class="insight-bullets reveal s1">
+        <li><strong><span class="marker-highlight">商机定义取决于商家类型</span></strong>，产品要先判断谁在选品，再定义什么算机会。</li>
+        <li><strong><span class="marker-highlight">数据处理链路和搜索策略强耦合</span></strong>，类目映射、CPV 拍平和实体清洗会直接影响召回与排序质量。</li>
+        <li><strong><span class="marker-highlight">高频需求应该工作流化，Agent 处理长尾</span></strong>，真实业务更需要稳定、可评测、低成本的分析路径。</li>
+        <li><strong><span class="marker-highlight">Agent 产品需要数据飞轮</span></strong>，把用户反馈和经营结果回收为需求理解、召回、排序和分析能力的优化信号。</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- 一期抽象 -->
+  <div class="xiu-stage">
+    <div class="xiu-stage-head">
+      <div class="block-label reveal">一期抽象</div>
+      <h3 class="xiu-stage-title reveal s1">内部真实选品需求，本质是<span class="marker-highlight">多平台数据对齐</span>和<span class="marker-highlight">商品特征工程</span>。</h3>
+      <p class="xiu-stage-copy reveal s2">我们发现行业运营不是在“找一个商品”，而是在做一套判断：把 Shein、Temu、Shopee most popular 和 new arrival 榜单的商品收集起来，再抽取卖得多、增长快的商品特征趋势。这个过程非常适合用 Agent 框架拆成 Planning、Data、Analysis 三层。</p>
+    </div>
+    <div class="xiu-abstract-row">
+      <div class="xiu-abstract-framework">
+        <div class="failure-chain xiu-flow-chain">
+          <div class="chain-step"><div class="chain-pill">模糊需求</div><div class="chain-arr">→</div></div>
+          <div class="chain-step"><div class="chain-pill">结构化意图</div><div class="chain-arr">→</div></div>
+          <div class="chain-step"><div class="chain-pill">跨平台对齐</div><div class="chain-arr">→</div></div>
+          <div class="chain-step"><div class="chain-pill">特征提取</div><div class="chain-arr">→</div></div>
+          <div class="chain-step"><div class="chain-pill">排序判断</div></div>
+        </div>
+        <div class="xiu-proof-grid">
+          <div class="xiu-proof-card reveal s2">
+            <div class="xiu-proof-label">Planning</div>
+            <strong>把用户模糊需求结构化</strong>
+            <p>我主导 Prompt 设计，将自然语言需求拆成类目、平台、趋势方向等结构化维度，并用运营评分做校验。</p>
+          </div>
+          <div class="xiu-proof-card reveal s3">
+            <div class="xiu-proof-label">Data</div>
+            <strong>两路数据源：离线全量 + 在线榜单</strong>
+            <p>离线使用 Shopee 类目全量数据做 embedding 和 recall 评测；在线接入实时榜单，类目映射是关键难点。</p>
+          </div>
+          <div class="xiu-proof-card reveal s4">
+            <div class="xiu-proof-label">Analysis</div>
+            <strong>基于结构化维度做特征提取和排序</strong>
+            <p>围绕工具调用、特征提取和排序结果做评估，重点看 Agent 是否正确调用工具并产出可解释结果。</p>
+          </div>
+        </div>
+      </div>
+      <figure class="xiu-wide-figure reveal s5">
+        <div class="xiu-wide-media is-contain">
+          <img src="assets/嗅嗅豹一期趋势报告.png" alt="嗅嗅豹一期趋势报告截图">
+        </div>
+        <figcaption class="xiu-figure-caption">
+          <strong>一期输出形态：商机分析报告</strong>
+          <span>把模糊需求、商品召回、特征提取和排序分析串成一个完整选品判断链路。</span>
+        </figcaption>
+      </figure>
+    </div>
+  </div>
+
+  <!-- 一期问题 -->
+  <div class="xiu-stage">
+    <div class="xiu-stage-head">
+      <div class="block-label reveal">一期问题</div>
+      <h3 class="xiu-stage-title reveal s1">一期获得 1688 大力支持，但也暴露出三个系统性问题</h3>
+      <p class="xiu-stage-copy reveal s2">一期证明了 Agent 能跑通商机分析链路，但上线后也发现：链路过长导致成本失控，能力承诺超过实际可执行逻辑，报告缺少推导过程导致用户信任不足。这些问题推动了后续产品方向的转折。</p>
+    </div>
+    <div class="xiu-process">
+      <div class="xiu-process-card reveal s2">
+        <div class="xiu-process-title">链路过长 → 成本失控</div>
+        <p>在线获取当天商品数据平均耗时 42 分钟，多环节依赖导致成本、等待时间和失败风险同时上升。</p>
+      </div>
+      <div class="xiu-process-card reveal s3">
+        <div class="xiu-process-title">能力承诺 > 实际实现</div>
+        <p>结构化分析在体验上被用户理解为“会做完整决策”，但实际很多分析还没有真正沉到可执行逻辑里。</p>
+      </div>
+      <div class="xiu-process-card reveal s4">
+        <div class="xiu-process-title">信任缺失</div>
+        <p>报告给出了结论，但推导过程不够透明，用户无法判断哪些数据、特征和排序逻辑支撑了最终判断。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 架构转向 -->
+  <div id="xiu-phase-2" class="xiu-stage">
+    <div class="xiu-stage-head">
+      <div class="block-label reveal">架构转向</div>
+      <h3 class="xiu-stage-title reveal s1">从“通用多 Agent”，转向“Workflow + Agent 兜底”</h3>
+      <p class="xiu-stage-copy reveal s2">用户表面表达很多样，但底层高频分析模式可以沉淀为电商、社媒、品牌三类数据源，以及大约 12 类固定工作流。高频需求工作流化，长尾需求再交给 Agent。</p>
+    </div>
+    <div class="xiu-arch-grid">
+      <figure class="xiu-figure reveal s2">
+        <div class="xiu-figure-media is-contain">
+          <img src="assets/一期架构.jpg" alt="嗅嗅豹一期技术架构图">
+        </div>
+        <figcaption class="xiu-figure-caption">
+          <strong>一期：通用多 Agent</strong>
+          <span>验证动态规划和多 Agent 分工，但链路长、成本高、稳定性不足。</span>
+        </figcaption>
+      </figure>
+      <figure class="xiu-figure reveal s3">
+        <div class="xiu-figure-media is-contain">
+          <img src="assets/二期架构.jpg" alt="嗅嗅豹二期技术架构图">
+        </div>
+        <figcaption class="xiu-figure-caption">
+          <strong>二期：Workflow + Agent 兜底</strong>
+          <span>把确定性强的高频任务沉淀为工作流，把异常路径和长尾问题交给 Agent。</span>
+        </figcaption>
+      </figure>
+    </div>
+  </div>
+
+  <!-- 二期落地 -->
+  <div class="case-block">
+    <div class="block-label reveal">二期落地</div>
+    <div>
+      <h3 class="block-content reveal">真正影响商家选品效果的，<br>不是 Agent 本身，而是数据源质量</h3>
+      <p class="block-content reveal s1">外部商家的选品会同时参考平台榜单、社媒趋势、广告投放、达人内容和搜索热度。所以二期重点从“继续增强 Agent”转向“多源数据处理能力”：把不同来源的数据接入、清洗、映射，并拍平到统一 CPV 集上，再把搜索效果和数据质量做耦合优化。</p>
+      <table class="dtable reveal s2">
+        <tr>
+          <td>数据接入</td>
+          <td><strong>多源数据接入与清洗</strong><p>接入平台榜单、社媒趋势、达人内容、品牌数据和搜索热度，先做字段清洗、去重和实体标准化。</p></td>
+        </tr>
+        <tr>
+          <td>类目映射</td>
+          <td><strong>多级类目映射表 + LLM 生成评估闭环</strong><p>不同平台类目体系差异很大，类目映射决定了数据能否比较。我设计多级类目映射表，并用 LLM 生成候选映射，再通过评估闭环校验。</p></td>
+        </tr>
+        <tr>
+          <td>CPV 拍平</td>
+          <td><strong>多元异构数据统一到一套 CPV 集</strong><p>将商品、帖子、达人和品牌数据里的颜色、材质、风格、场景等特征统一沉淀，降低后续召回和排序的语义噪声。</p></td>
+        </tr>
+        <tr>
+          <td>搜索优化</td>
+          <td><strong>搜索召回、排序优化与质量评测耦合</strong><p>数据质量和搜索策略相互影响，因此我们围绕类目准确率、相关性准确率和召回质量做多轮评测和迭代。</p></td>
+        </tr>
+      </table>
+      <div class="xiu-figure-grid reveal s3">
+        <figure class="xiu-figure">
+          <div class="xiu-figure-media is-contain">
+            <img src="assets/二期数据处理-搜索链路.png" alt="二期数据处理与搜索链路">
+          </div>
+          <figcaption class="xiu-figure-caption">
+            <strong>搜索链路</strong>
+            <span>将 query 理解、类目映射、候选召回和排序分析拆成可追踪、可评测的链路。</span>
+          </figcaption>
+        </figure>
+        <figure class="xiu-figure">
+          <div class="xiu-figure-media is-contain">
+            <img src="assets/二期多源异构数据处理链路.jpg" alt="多源异构数据处理链路">
+          </div>
+          <figcaption class="xiu-figure-caption">
+            <strong>数据处理链路</strong>
+            <span>围绕类目、CPV、实体识别和清洗规则，把多源异构数据转成统一可分析结构。</span>
+          </figcaption>
+        </figure>
+      </div>
+    </div>
+  </div>
+
+  <!-- 二期输出 -->
+  <div class="xiu-stage">
+    <div class="xiu-stage-head">
+      <div class="block-label reveal">输出形态</div>
+      <h3 class="xiu-stage-title reveal s1">二期产出：三类数据源、固定工作流和可量化搜索质量</h3>
+      <p class="xiu-stage-copy reveal s2">二期把高频选品需求沉淀为三类报告入口：电商趋势、社媒趋势和品牌趋势。与一期相比，重点不再是让 Agent 自由规划，而是让数据源、搜索召回和排序分析都能被稳定评测。</p>
+    </div>
+    <div class="xiu-figure-grid three full-row">
+      <figure class="xiu-figure reveal s2">
+        <div class="xiu-figure-media is-contain">
+          <img src="assets/嗅嗅豹二期-电商趋势分析报告.JPG" alt="嗅嗅豹二期电商趋势分析报告">
+        </div>
+        <figcaption class="xiu-figure-caption"><strong>电商趋势分析</strong><span>围绕平台销量、增长和同款簇，帮助商家识别可以进入的商品机会。</span></figcaption>
+      </figure>
+      <figure class="xiu-figure reveal s3">
+        <div class="xiu-figure-media is-contain">
+          <img src="assets/嗅嗅豹二期-社媒趋势分析报告.JPG" alt="嗅嗅豹二期社媒趋势分析报告">
+        </div>
+        <figcaption class="xiu-figure-caption"><strong>社媒趋势分析</strong><span>从帖子热度、穿搭元素和风格标签中识别可转化的趋势信号。</span></figcaption>
+      </figure>
+      <figure class="xiu-figure reveal s4">
+        <div class="xiu-figure-media is-contain">
+          <img src="assets/嗅嗅豹二期-品牌趋势分析报告.JPG" alt="嗅嗅豹二期品牌趋势分析报告">
+        </div>
+        <figcaption class="xiu-figure-caption"><strong>品牌趋势分析</strong><span>跟踪品牌、KOL 和风格变化，把外部信号转成商家的选品参考。</span></figcaption>
+      </figure>
+    </div>
+  </div>
+
+  <div class="metrics-block">
+    <div class="block-label reveal">现状</div>
+    <div class="metrics-grid reveal s1">
+      <div class="metric-cell"><div class="metric-n xiu" data-target="1184">0</div><div class="metric-l">意向内测商家</div></div>
+      <div class="metric-cell"><div class="metric-n xiu" data-target="127">0</div><div class="metric-l">核心意向用户</div></div>
+      <div class="metric-cell"><div class="metric-n xiu" data-target="85" data-suffix="%">0</div><div class="metric-l">类目准确率</div></div>
+      <div class="metric-cell"><div class="metric-n xiu" data-target="84" data-suffix="%">0</div><div class="metric-l">相关性准确率</div></div>
+    </div>
+  </div>
+
+  <!-- 内测反思 -->
+  <div class="case-block">
+    <div class="block-label reveal">内测反思</div>
+    <div>
+      <h3 class="block-content reveal">内测之后，我们重新判断下一步机会在哪里</h3>
+      <div class="reflection-grid">
+        <div class="reflection-card reveal s1">
+          <div class="reflection-n">01</div>
+          <div class="reflection-title">为什么做商品视频生成</div>
+          <p>选品分析相对低频，商家更高频的需求是找到同款爆款视频，并复刻成自己的商品营销内容。</p>
+        </div>
+        <div class="reflection-card reveal s2">
+          <div class="reflection-n">02</div>
+          <div class="reflection-title">虾小宝的能力溢出</div>
+          <p>商品视频生成被封装成 Skill 后，说明能力可以从单点工具沉淀为可复用的 Agent 能力单元。</p>
+        </div>
+        <div class="reflection-card reveal s3">
+          <div class="reflection-n">03</div>
+          <div class="reflection-title">中文 Skill 社区</div>
+          <p>市面上缺少成熟的中文 Skill 社区，因此我们开始思考如何做能力分发、验证和协作。</p>
+        </div>
+        <div class="reflection-card reveal s4">
+          <div class="reflection-n">04</div>
+          <div class="reflection-title">身份配置继续补齐</div>
+          <p>Agent 不只需要 Skill，还需要身份资产、账号和外部系统配置，才能在真实世界完整执行任务。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<!-- 商品视频生成 -->
+<section id="product-video" class="case-section">
+  <div class="case-block">
+    <div class="block-label reveal">商品视频生成</div>
+    <div>
+      <h3 class="block-content reveal">从低频选品分析，延展到更高频的商品营销内容生成</h3>
+      <p class="block-content reveal s1">在嗅嗅豹内测过程中，我们发现选品分析虽然能帮助商家判断机会，但它在日常经营里相对低频。更高频的需求是：商家已经有一个正在售卖的商品，希望快速找到社媒里的同款爆款视频，理解它为什么能爆，并复刻成自己的商品营销视频。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<div id="about" style="border-top:1px solid var(--border)">
+  <div class="about-wrap">
+    <div class="about-section-label reveal">关于我</div>
+    <div class="about-grid">
+      <div>
+        <p class="about-bio reveal">
+          <strong>EPFL</strong>（QS: 16）计算机科学硕士，在 <strong>Logitech 瑞士总部</strong>做过算法工程师，在<strong>腾讯</strong>做过产品经理，在<strong>阿里巴巴</strong>独立主导两款 AI 产品从 0 到 1。<br><br>
+          有技术背景，有用户研究方法论，热衷于在模糊中定义值得解决的问题，然后用最小的复杂度把它解决掉。
+        </p>
+      </div>
+      <div>
+        <div class="about-detail-row reveal s1">
+          <div class="about-detail-key">教育</div>
+          <div class="about-detail-val">
+            <strong>EPFL</strong> CS 硕士 · GPA 5.36/6 · 前 10%<br>
+            <strong>UESTC</strong> 软件工程 · GPA 3.97/4.0 · 专业第 2
+          </div>
+        </div>
+        <div class="about-detail-row reveal s2">
+          <div class="about-detail-key">论文</div>
+          <div class="about-detail-val">ACL 2026（在投）<br>CSCW 2022（已发表）</div>
+        </div>
+        <div class="about-detail-row reveal s3">
+          <div class="about-detail-key">经历</div>
+          <div class="about-detail-val">
+            阿里巴巴 ATH · AI 产品经理<br>
+            腾讯 · 产品经理<br>
+            Logitech 瑞士 · 算法工程师
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-copy">刘子迷 · Build Something Helpful</div>
+    <div class="footer-links">
+      <a href="mailto:zimi.liu@outlook.com">Email</a>
+      <a href="https://linkedin.com/in/zimiliu" target="_blank">LinkedIn</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* NAV */
+const nb = document.getElementById('navbar');
+window.addEventListener('scroll', () => nb.classList.toggle('is-scrolled', scrollY > 10), { passive: true });
+
+/* TIMELINE PANEL */
+const tlBtn      = document.getElementById('tlBtn');
+const tlPanel    = document.getElementById('tlPanel');
+const tlBackdrop = document.getElementById('tlBackdrop');
+let tlOpen = false;
+
+function openTl() {
+  tlOpen = true;
+  tlPanel.classList.add('is-open');
+  tlBackdrop.classList.add('is-open');
+  tlPanel.setAttribute('aria-hidden', 'false');
+  tlBtn.classList.add('is-open');
+  tlBtn.textContent = 'Close';
+  document.body.style.overflow = 'hidden';
+  nb.classList.add('is-scrolled');
+}
+function closeTl() {
+  tlOpen = false;
+  tlPanel.classList.remove('is-open');
+  tlBackdrop.classList.remove('is-open');
+  tlPanel.setAttribute('aria-hidden', 'true');
+  tlBtn.classList.remove('is-open');
+  tlBtn.textContent = 'Menu';
+  document.body.style.overflow = '';
+  if (scrollY <= 10) nb.classList.remove('is-scrolled');
+}
+
+tlBtn.addEventListener('click', () => tlOpen ? closeTl() : openTl());
+tlBackdrop.addEventListener('click', closeTl);
+
+document.querySelectorAll('[data-close-tl]').forEach(el => {
+  el.addEventListener('click', () => setTimeout(closeTl, 80));
+});
+
+document.addEventListener('keydown', e => { if (e.key === 'Escape' && tlOpen) closeTl(); });
+
+/* HERO PHOTO SWITCHER */
+const photoCaptions = {
+  uestc: 'UESTC · 2021',
+  epfl: 'EPFL · 2024'
+};
+const photoCaption = document.getElementById('heroPhotoCaption');
+document.querySelectorAll('[data-photo-target]').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const target = btn.dataset.photoTarget;
+    document.querySelectorAll('[data-photo]').forEach(photo => {
+      photo.classList.toggle('is-active', photo.dataset.photo === target);
+    });
+    document.querySelectorAll('[data-photo-target]').forEach(tab => {
+      const active = tab.dataset.photoTarget === target;
+      tab.classList.toggle('is-active', active);
+      tab.setAttribute('aria-pressed', active ? 'true' : 'false');
+    });
+    const tabs = btn.closest('.hero-photo-tabs');
+    tabs.classList.toggle('is-epfl', target === 'epfl');
+    tabs.classList.toggle('is-uestc', target === 'uestc');
+    photoCaption.textContent = photoCaptions[target];
+  });
+});
+
+/* HERO ENTRANCE */
+document.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('.h-enter').forEach((el, i) => {
+    setTimeout(() => el.classList.add('in'), 80 + i * 130);
+  });
+});
+
+/* SCROLL REVEAL */
+const ro = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); ro.unobserve(e.target); } });
+}, { threshold: 0.08, rootMargin: '0px 0px -48px 0px' });
+document.querySelectorAll('.reveal, .lmask, .failure-chain').forEach(el => ro.observe(el));
+
+/* COUNTERS */
+function count(el) {
+  const target = +el.dataset.target, suf = el.dataset.suffix || '';
+  const dur = 1500, t0 = performance.now();
+  (function f(now) {
+    const p = Math.min((now - t0) / dur, 1), e = 1 - Math.pow(1 - p, 3);
+    el.textContent = Math.floor(e * target).toLocaleString() + suf;
+    if (p < 1) requestAnimationFrame(f);
+  })(performance.now());
+}
+const co = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { count(e.target); co.unobserve(e.target); } });
+}, { threshold: 0.6 });
+document.querySelectorAll('[data-target]').forEach(el => co.observe(el));
+</script>
+</body>
+</html>
