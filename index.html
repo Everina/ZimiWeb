@@ -1304,8 +1304,8 @@
     }
     .brainstorm-board {
       position: relative;
-      min-height: 760px;
-      margin: 28px 0 42px;
+      min-height: 820px;
+      margin: 20px 0 42px;
       overflow: hidden;
       background:
         radial-gradient(circle at 50% 48%, rgba(217,50,71,0.12) 0, rgba(217,50,71,0.04) 24%, transparent 48%),
@@ -1384,8 +1384,8 @@
     }
     .thought-card {
       position: absolute;
-      width: min(27vw, 310px);
-      padding: 20px 22px;
+      width: min(28vw, 345px);
+      padding: 18px 20px;
       border: 1px solid rgba(17,17,17,0.16);
       background: rgba(255,255,255,0.70);
       backdrop-filter: blur(16px);
@@ -1436,7 +1436,7 @@
     .thought-card.next .thought-type::before { background: var(--xiu); }
     .thought-card strong {
       display: block;
-      font-size: clamp(20px, 2vw, 27px);
+      font-size: clamp(20px, 1.9vw, 25px);
       line-height: 1.08;
       letter-spacing: -0.8px;
       margin-bottom: 12px;
@@ -1444,12 +1444,12 @@
     }
     .thought-card p {
       font-size: 14px;
-      line-height: 1.85;
+      line-height: 1.78;
       color: var(--text-2);
     }
     .thought-1 {
-      left: 4%;
-      top: 12%;
+      left: 3%;
+      top: 7%;
       --tilt: -2.4deg;
       transform: rotate(var(--tilt));
       --line-w: 220px;
@@ -1458,8 +1458,8 @@
       --line-r: 27deg;
     }
     .thought-2 {
-      right: 8%;
-      top: 9%;
+      right: 3%;
+      top: 7%;
       --tilt: 2.8deg;
       transform: rotate(var(--tilt));
       --line-w: 210px;
@@ -1468,8 +1468,8 @@
       --line-r: -25deg;
     }
     .thought-3 {
-      left: 9%;
-      top: 43%;
+      left: 7%;
+      top: 35%;
       --tilt: 1.8deg;
       transform: rotate(var(--tilt));
       --line-w: 170px;
@@ -1478,8 +1478,8 @@
       --line-r: 3deg;
     }
     .thought-4 {
-      right: 4%;
-      top: 42%;
+      right: 3%;
+      top: 36%;
       --tilt: -2deg;
       transform: rotate(var(--tilt));
       --line-w: 185px;
@@ -1489,7 +1489,8 @@
     }
     .thought-5 {
       left: 17%;
-      bottom: 9%;
+      top: 64%;
+      bottom: auto;
       --tilt: -1.2deg;
       transform: rotate(var(--tilt));
       --line-w: 210px;
@@ -1499,7 +1500,8 @@
     }
     .thought-6 {
       right: 15%;
-      bottom: 8%;
+      top: 64%;
+      bottom: auto;
       --tilt: 1.6deg;
       transform: rotate(var(--tilt));
       --line-w: 220px;
@@ -2956,7 +2958,7 @@
     <div class="about-section-label reveal">PROMOTION CASE</div>
     <h2 class="about-title reveal s1">自我评价与未来规划</h2>
     <p class="about-lead reveal s2">
-      我喜欢当产品经理，首先是因为满足真实用户需求会带来很强的成就感；更深一层，是因为产品让我有机会把自己的价值观表达出来：好的产品不只是堆功能，而是在<span class="marker-highlight">用户、技术和商业之间做判断</span>，把零散需求转化成可被系统承接、可被团队共创、可被结果验证的机制。下一阶段，我希望从 Junior PM 继续成长为更成熟的 Senior PM：不只把需求交付好，而是<span class="marker-highlight">更早定义问题、判断优先级、推动结果闭环</span>，并长期陪伴一个产品持续演进。
+      过去一段时间，我最大的成长，是从“需求执行”转向“问题定义”。在嗅嗅豹、虾小宝这些创新型项目里，我越来越意识到，AI 产品不是越开放越好，而是要先判断哪些地方需要<span class="marker-highlight">确定性</span>，哪些地方才需要<span class="marker-highlight">智能弹性</span>。下一阶段，我希望从 Junior PM 继续成长为更成熟的 Senior PM：不只是把需求交付好，而是更早定义问题、判断优先级、推动结果闭环，并长期陪伴一个产品持续演进。
     </p>
 
     <div class="brainstorm-board">
@@ -2968,34 +2970,34 @@
       </div>
 
       <div class="thought-card self thought-1 reveal s1">
-        <div class="thought-type">Self evaluation</div>
+        <div class="thought-type">Growth 01</div>
         <strong><span class="marker-highlight">从需求执行到问题定义</span></strong>
-        <p>把真实用户需求作为起点，更早判断问题是否真实、重要、值得投入。</p>
+        <p>AI 产品不是越开放越好。更重要的是判断哪些环节需要确定性，哪些地方才需要智能弹性，再把能力组织成用户可信的决策路径。</p>
       </div>
       <div class="thought-card self thought-2 reveal s2">
-        <div class="thought-type">Result mindset</div>
+        <div class="thought-type">Growth 02</div>
         <strong><span class="marker-highlight">从上线交付到结果闭环</span></strong>
-        <p>把上线看作验证的开始，通过数据、反馈和复盘推动下一轮迭代。</p>
+        <p>上线不是结束，而是验证的开始。真正重要的不是功能有没有发布，而是数据、反馈和商业信号是否证明需求值得继续投入。</p>
       </div>
       <div class="thought-card self thought-3 reveal s3">
-        <div class="thought-type">Scope</div>
-        <strong><span class="marker-highlight">从单点体验到系统思考</span></strong>
-        <p>从具体功能、平台探索到能力网络建设，承担更大范围的产品结果。</p>
+        <div class="thought-type">Growth 03</div>
+        <strong><span class="marker-highlight">从单点负责到系统 Owner</span></strong>
+        <p>创新项目里很多边界并不清晰，所以产品不能只停在需求定义，而要理解原型、链路、效果、用户和增长如何共同影响结果。</p>
       </div>
       <div class="thought-card self thought-4 reveal s4">
-        <div class="thought-type">Complexity</div>
-        <strong><span class="marker-highlight">在不确定性里拆问题</span></strong>
-        <p>同时处理用户、数据、算法、评测和商业假设，把复杂问题拆成可推进模块。</p>
+        <div class="thought-type">Growth 04</div>
+        <strong><span class="marker-highlight">把不确定问题变成可验证路径</span></strong>
+        <p>AI 产品早期常常需求不清、技术边界不稳、评测缺失。关键是先定义判断标准，再把模糊问题拆成能实验、能复盘的步骤。</p>
       </div>
       <div class="thought-card next thought-5 reveal s5">
-        <div class="thought-type">Product direction</div>
-        <strong><span class="marker-highlight">做长期迭代的产品</span></strong>
-        <p>相比一次性交付，更希望参与能持续验证、持续沉淀价值的 AI 产品。</p>
+        <div class="thought-type">Next focus</div>
+        <strong><span class="marker-highlight">继续提升产品聚焦和商业判断</span></strong>
+        <p>一个方向是否值得做，不只看技术能不能实现，还要更早判断用户频次、付费能力、数据回流，以及能否形成持续飞轮。</p>
       </div>
       <div class="thought-card next thought-6 reveal s5">
-        <div class="thought-type">AI adoption</div>
-        <strong><span class="marker-highlight">让 AI 进入真实工作流</span></strong>
-        <p>平衡用户教育与创作者供给，让优秀工作流被更多普通用户低门槛复用。</p>
+        <div class="thought-type">Senior PM</div>
+        <strong><span class="marker-highlight">更早定义问题，推动长期结果</span></strong>
+        <p>我希望自己不只是把功能交付出来，而是能定义真实问题、判断优先级、推动结果闭环，并陪伴产品长期演进。</p>
       </div>
     </div>
 
@@ -3006,27 +3008,27 @@
       </div>
       <div class="about-belief-copy">
         <p>
-          我对 AI 产品的长期兴趣，不只是做一个通用对话入口，而是帮助 AI 能力真正进入用户的<span class="marker-highlight">日常工作流</span>。很多用户还没有意识到 AI 能帮自己完成什么任务，认知仍停留在问答、搜索和简单内容生成上；但 AI 更大的价值，可能在于<span class="marker-highlight">任务拆解、流程自动化、决策辅助和跨工具协作</span>。
+          未来我最想做的，是能够长期迭代的 AI 产品。我不希望 AI 产品只停留在通用对话入口，而是希望帮助 AI 能力真正进入用户的<span class="marker-highlight">日常工作流</span>。很多用户还没有意识到 AI 能帮自己完成什么任务，所以产品需要把 AI 能力翻译成用户任务。
         </p>
         <p>
-          同时我也认识到，能够主动创作 AI 工作流的用户比例相对较少。因此产品需要找到一个平衡点：一方面通过<span class="marker-highlight">场景化用户教育</span>激发主动探索，另一方面把少数创作者沉淀出的高质量工作流，通过模板、推荐、案例和低门槛配置释放给更多用户。<strong>我希望做的产品，不只是提供模型能力，而是让能力<span class="marker-highlight">被理解、被复用、被持续迭代</span>。</strong>
+          我希望普通用户先通过模板和案例得到结果，再通过推荐、评价、复用和反馈机制，让好的工作流被更多人持续使用。<strong>如果用一句话总结我对自己的期待：我希望自己不只是做一个能交付功能的产品经理，而是成为一个能<span class="marker-highlight">定义真实问题、主动补位、推动长期结果</span>的 AI 产品 Owner。</strong>
         </p>
       </div>
       <div class="belief-grid">
         <div class="belief-card">
           <div class="belief-card-label">01 Product expression</div>
           <strong><span class="marker-highlight">把 AI 能力翻译成用户任务</span></strong>
-          <p>产品不直接展示模型能力，而是用场景、任务和案例告诉用户：这件事可以交给 AI 做。</p>
+          <p>产品不只是展示模型能力，而是用明确入口、模板和案例告诉用户：这件事可以交给 AI 做。</p>
         </div>
         <div class="belief-card">
-          <div class="belief-card-label">02 User perspective</div>
-          <strong><span class="marker-highlight">让普通用户先得到结果</span></strong>
-          <p>用户不需要一开始就理解工作流怎么搭建，而是能从可用模板开始，先完成一次真实任务。</p>
+          <div class="belief-card-label">02 Product mechanism</div>
+          <strong><span class="marker-highlight">确定性工作流 + 弹性 Agent</span></strong>
+          <p>把确定性强的高频任务工作流化，把长尾和异常问题交给 Agent 兜底，让产品既稳定又有弹性。</p>
         </div>
         <div class="belief-card">
-          <div class="belief-card-label">03 Product mechanism</div>
-          <strong><span class="marker-highlight">让好工作流自然被复用</span></strong>
-          <p>通过推荐、评价、复用和反馈机制，把创作者能力转化为更多用户可发现、可理解、可持续使用的产品资产。</p>
+          <div class="belief-card-label">03 Team practice</div>
+          <strong><span class="marker-highlight">把个人判断沉淀成机制</span></strong>
+          <p>继续把需求澄清、原型评审和用户反馈沉淀为稳定机制，让跨团队协作更可复用。</p>
         </div>
       </div>
     </div>
