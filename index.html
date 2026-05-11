@@ -355,6 +355,14 @@
 
     /* ===== CASE SECTION ===== */
     .case-section { border-bottom: 0; }
+    #xiu,
+    #xiu-phase-1,
+    #xiu-phase-2,
+    #product-video,
+    #xia,
+    #about {
+      scroll-margin-top: calc(var(--nav-h) + 24px);
+    }
 
     .case-header {
       max-width: 1280px; margin: 0 auto;
@@ -439,19 +447,22 @@
       position: relative;
       display: inline;
       z-index: 0;
-      white-space: nowrap;
+      white-space: normal;
+      padding: 0;
+      border-radius: 0;
+      background: transparent;
+      -webkit-box-decoration-break: clone;
+      box-decoration-break: clone;
     }
     .marker-highlight::before {
-      content: "";
-      position: absolute;
-      left: -0.08em;
-      right: -0.08em;
-      bottom: 0.04em;
-      height: 0.44em;
-      z-index: -1;
-      background: linear-gradient(90deg, rgba(248, 192, 73, 0.16), rgba(248, 192, 73, 0.48) 12%, rgba(248, 192, 73, 0.34) 88%, rgba(248, 192, 73, 0.12));
-      border-radius: 2px 8px 3px 7px;
-      transform: rotate(-0.8deg);
+      content: none;
+    }
+    .product-cover-copy .marker-highlight {
+      padding: 0 0.04em;
+      border-radius: 2px;
+      background: linear-gradient(to top, rgba(248, 192, 73, 0.3) 0 42%, transparent 42% 100%);
+      -webkit-box-decoration-break: clone;
+      box-decoration-break: clone;
     }
     .xiu-stage {
       max-width: 1280px;
@@ -861,7 +872,10 @@
     }
     .xiu-arch-grid {
       grid-template-columns: 1fr 1fr;
-      margin-top: 22px;
+      margin: 18px 0 24px;
+    }
+    .xiu-arch-grid .xiu-figure {
+      margin-top: 0;
     }
     .xiu-arch-summary {
       grid-template-columns: 1fr 1fr;
@@ -869,7 +883,7 @@
     }
     .xiu-decision-grid {
       display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
+      grid-template-columns: repeat(4, minmax(0, 1fr));
       gap: 12px;
       margin-top: 22px;
     }
@@ -910,20 +924,25 @@
     .xiu-strategy-grid {
       display: grid;
       grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 10px;
-      margin-top: 12px;
+      gap: 0;
+      margin-top: 18px;
+      padding: 16px 0;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
     }
     .xiu-strategy-card {
-      background: rgba(255,255,255,0.72);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 16px;
+      padding: 0 18px;
+      border-left: 1px solid var(--border);
     }
+    .xiu-strategy-card:first-child { border-left: 0; padding-left: 0; }
+    .xiu-strategy-card:last-child { padding-right: 0; }
     .xiu-strategy-card strong {
-      display: block;
-      font-size: 13px;
+      display: inline-block;
+      font-size: 12px;
       line-height: 1.35;
-      margin-bottom: 7px;
+      margin-bottom: 8px;
+      color: var(--xiu);
+      font-weight: 850;
     }
     .xiu-strategy-card p {
       font-size: 12px;
@@ -2081,6 +2100,18 @@
         grid-template-columns: 1fr;
         gap: 14px;
       }
+      .xiu-strategy-card {
+        padding: 14px 0;
+        border-left: 0;
+        border-top: 1px solid var(--border);
+      }
+      .xiu-strategy-card:first-child {
+        border-top: 0;
+        padding-top: 0;
+      }
+      .xiu-strategy-card:last-child {
+        padding-bottom: 0;
+      }
       .xiu-result-stat { padding-left: 0; }
       .product-cover-visual { max-width: 680px; }
       .insight-bullets li { white-space: normal; }
@@ -2314,7 +2345,7 @@
       <div class="tl-section-label">Narrative</div>
       <ul class="tl-section-links">
         <li>
-          <a href="#xiu-phase-1" class="tl-link xiu-link" data-close-tl>嗅嗅豹一期</a>
+          <a href="#xiu" class="tl-link xiu-link" data-close-tl>嗅嗅豹一期</a>
           <span class="tl-link-sub">探索多智能体在商机选品与商机发现场景下的能力边界，验证它能否完成真实分析链路。</span>
         </li>
         <li>
@@ -2455,7 +2486,7 @@
         <div class="lmask reveal s1"><span class="lmask-inner">嗅嗅豹</span></div>
       </h2>
       <p class="product-cover-copy reveal s2">
-        面向跨境时尚非标品选品场景的 AI 分析平台。两期都围绕同一类选品问题展开：一期服务内部 Lazada 和 1688 行业运营，验证多 Agent 能否完成商机分析；二期面向外部跨境商家，把高频分析需求沉淀为稳定工作流。
+        面向跨境时尚非标品选品场景的 AI 分析平台。两期都围绕同一类选品问题展开：<span class="marker-highlight">一期服务内部 Lazada 和 1688 行业运营</span>，验证多 Agent 能否完成商机分析；<span class="marker-highlight">二期面向外部跨境商家</span>，进一步发现离线处理与搜索策略强耦合，高频需求应沉淀为稳定工作流，Agent 更适合承接长尾需求。
       </p>
     </div>
     <div class="product-cover-visual single reveal s3">
@@ -2466,20 +2497,19 @@
   </div>
 
   <!-- 核心洞察 -->
-  <div id="xiu-phase-1" class="xiu-stage xiu-positioning">
+  <div class="xiu-stage xiu-positioning">
     <div class="xiu-stage-head">
       <div class="block-label reveal">核心洞察</div>
       <ul class="insight-bullets reveal s1">
-        <li><strong><span class="marker-highlight">商机定义取决于商家类型</span></strong>，产品要先判断谁在选品，再定义什么算机会。</li>
-        <li><strong><span class="marker-highlight">数据处理链路和搜索策略强耦合</span></strong>，类目映射、CPV 标准化和实体清洗会直接影响召回与排序质量。</li>
-        <li><strong><span class="marker-highlight">高频需求应该工作流化，Agent 处理长尾</span></strong>，真实业务更需要稳定、可评测、低成本的分析路径。</li>
-        <li><strong><span class="marker-highlight">Agent 产品需要数据飞轮</span></strong>，把用户反馈和经营结果回收为需求理解、召回、排序和分析能力的优化信号。</li>
+        <li><strong><span class="marker-highlight">选品不是找商品，而是形成可执行的经营判断</span></strong>，商家真正需要的是从多源信号到采购、上新、跟卖决策的稳定路径。</li>
+        <li><strong><span class="marker-highlight">Agent 不该自由规划一切</span></strong>，高频判断要工作流化，长尾、异常和信息补全才交给 Agent 兜底。</li>
+        <li><strong><span class="marker-highlight">AI 选品的壁垒不是报告生成，而是可信链路</span></strong>，类目映射、同款识别、CPV 标准化、搜索召回和评测体系共同决定用户是否敢用。</li>
       </ul>
     </div>
   </div>
 
   <!-- 一期抽象 -->
-  <div class="xiu-stage">
+  <div id="xiu-phase-1" class="xiu-stage">
     <div class="xiu-stage-head is-wide">
       <div class="block-label reveal">一期抽象</div>
       <h3 class="xiu-stage-title reveal s1">内部真实选品需求，本质是<span class="marker-highlight">多平台数据对齐</span>和<span class="marker-highlight">商品特征工程</span>。</h3>
@@ -2529,66 +2559,48 @@
   <div id="xiu-phase-2" class="xiu-stage">
     <div class="xiu-stage-head">
       <div class="block-label reveal">一期 Insight / 架构转向</div>
-      <h3 class="xiu-stage-title reveal s1">一期跑通了商机分析链路，但也证明开放式 Agent 未必最适合跨境商家</h3>
-      <p class="xiu-stage-copy reveal s2">对跨境商家来说，他们需要的往往不是一个自由规划的 AI 助手，而是一条能快速进入、稳定复用、过程可信的选品决策路径。跨境商家本身有很强的工具使用思维，更习惯点击入口后直接看到可判断结果的产品逻辑。因此我们先把他们常见的选品动作抽象为四种方式。</p>
+      <h3 class="xiu-stage-title reveal s1">从内部运营走向<span class="marker-highlight">外部商家</span>后，我们<span class="marker-highlight">重新定义了跨境选品的真实场景</span></h3>
+      <p class="xiu-stage-copy reveal s2">外部跨境商家的商机分析比一期内部运营场景<span class="marker-highlight">更复杂</span>：他们不只看平台商品数据，还会同时参考<span class="marker-highlight">社媒内容、品牌动向、广告投放和搜索热度</span>。但这类用户也有很强的<span class="marker-highlight">工具使用思维</span>，更习惯从明确入口进入任务，并快速看到可判断、可复用的结果。因此二期我们先重新拆解商家的<span class="marker-highlight">选品场景</span>，再定义不同场景下对应的<span class="marker-highlight">分析需求</span>。</p>
     </div>
     <div class="xiu-strategy-grid reveal s3">
       <div class="xiu-strategy-card">
-        <strong>爆品跟卖</strong>
+        <strong><span class="marker-highlight">爆品跟卖</span></strong>
         <p>用历史交易和销量数据识别已验证需求，在供应链优势前提下判断跟卖成功概率。</p>
       </div>
       <div class="xiu-strategy-card">
-        <strong>新品捕捉</strong>
+        <strong><span class="marker-highlight">新品捕捉</span></strong>
         <p>用销量增长率和上新动态捕捉市场热度，优先发现快速增长的潜力商品。</p>
       </div>
       <div class="xiu-strategy-card">
-        <strong>社媒流量</strong>
+        <strong><span class="marker-highlight">社媒流量</span></strong>
         <p>把互动量、内容热度和 KOL 信号转化为市场关注度，识别真实消费兴趣。</p>
       </div>
       <div class="xiu-strategy-card">
-        <strong>品牌追随</strong>
+        <strong><span class="marker-highlight">品牌追随</span></strong>
         <p>分析大牌发布、代言人和市场跟随的时间差，用品牌信号预判未来趋势。</p>
       </div>
     </div>
     <div class="xiu-decision-grid">
       <div class="xiu-decision-card reveal s2">
-        <div class="xiu-decision-label">Need 01</div>
-        <strong>用户需要低成本、短链路地完成高频选品</strong>
-        <p><b>当前 gap：</b>在线获取当天商品数据平均耗时 42 分钟，多 Agent 动态规划和临时数据拉取让等待成本过高。</p>
-        <p><b>二期取舍：</b>把确定性强的分析路径前置固化，优先优化离线数据处理、搜索召回和稳定工作流。</p>
+        <div class="xiu-decision-label">Gap 01</div>
+        <strong><span class="marker-highlight">时间成本要更低，分析效果要更稳定</span></strong>
+        <p><b>当前 gap：</b>在线获取当天商品数据平均耗时 <span class="marker-highlight">42 分钟</span>，多 Agent 动态规划和临时数据拉取让用户等待过久，且任一环节波动都会影响最终结果。</p>
       </div>
       <div class="xiu-decision-card reveal s3">
-        <div class="xiu-decision-label">Need 02</div>
-        <strong>用户需要把模糊问题快速转成可分析维度</strong>
-        <p><b>当前 gap：</b>自由文本输入看似灵活，但商家每次都要重新描述品类、地区、趋势方向和筛选条件。</p>
-        <p><b>二期取舍：</b>先把爆品跟卖、新品捕捉、社媒流量和品牌追随抽象为选品方式，再收敛为电商、社媒、品牌三类场景和约 12 类固定工作流。</p>
+        <div class="xiu-decision-label">Gap 02</div>
+        <strong><span class="marker-highlight">自由输入要转成标准化表单</span></strong>
+        <p><b>当前 gap：</b>自由文本输入看似灵活，但商家每次都要重新描述品类、地区、趋势方向和筛选条件，系统也难以稳定理解和复用。</p>
       </div>
       <div class="xiu-decision-card reveal s4">
-        <div class="xiu-decision-label">Need 03</div>
-        <strong>用户需要知道为什么值得分析、为什么值得做</strong>
-        <p><b>当前 gap：</b>报告如果只给结论，不展示数据来源、特征依据和排序逻辑，商家很难用于采购和上架决策。</p>
-        <p><b>二期取舍：</b>将理解、召回、类目映射、排序、报告拆成可追踪节点，让分析过程承担“解释机会”的角色。</p>
+        <div class="xiu-decision-label">Gap 03</div>
+        <strong><span class="marker-highlight">用户需要明确“为什么做”</span></strong>
+        <p><b>当前 gap：</b>报告如果只给结论，不展示数据准确性、特征依据和排序逻辑，商家很难判断这个机会是否值得采购和上架。</p>
       </div>
-    </div>
-    <div class="xiu-arch-grid">
-      <figure class="xiu-figure reveal s2">
-        <div class="xiu-figure-media is-contain">
-          <img src="assets/一期架构.jpg" alt="嗅嗅豹一期技术架构图">
-        </div>
-        <figcaption class="xiu-figure-caption">
-          <strong>一期：通用多 Agent</strong>
-          <span>验证动态规划和多 Agent 分工，但链路长、成本高、稳定性不足。</span>
-        </figcaption>
-      </figure>
-      <figure class="xiu-figure reveal s3">
-        <div class="xiu-figure-media is-contain">
-          <img src="assets/二期架构.jpg" alt="嗅嗅豹二期技术架构图">
-        </div>
-        <figcaption class="xiu-figure-caption">
-          <strong>二期：Workflow + Agent 兜底</strong>
-          <span>把确定性强的高频任务沉淀为工作流，把异常路径和长尾问题交给 Agent。</span>
-        </figcaption>
-      </figure>
+      <div class="xiu-decision-card reveal s5">
+        <div class="xiu-decision-label">Gap 04</div>
+        <strong><span class="marker-highlight">商家需要更多数据源，也需要可对齐、可比较</span></strong>
+        <p><b>当前 gap：</b>真实选品判断不只看电商平台，还会参考<span class="marker-highlight">社媒内容、品牌信息、广告投放和搜索热度</span>；这些数据源各自有不同类目、实体和趋势信号，如果不能识别差异，报告结论就会变成不可比较的拼接。</p>
+      </div>
     </div>
   </div>
 
@@ -2596,29 +2608,47 @@
   <div class="case-block">
     <div class="block-label reveal">二期落地</div>
     <div>
-      <h3 class="block-content reveal">明确三类趋势分析，把主要时间投入多源异构数据处理和搜索优化</h3>
-      <p class="block-content reveal s1">二期不再强调“Agent 自由规划”，而是把商家高频选品需求明确为电商、社媒、品牌三类趋势分析。用户看到的是更清晰的报告入口；我们真正花时间攻克的，是背后的多源异构数据处理链路：从数据接入、清洗、类目映射和 CPV 标准化，到一键生成分析报告，并持续反哺搜索召回、排序和评测优化。</p>
+      <h3 class="block-content reveal">抽象 <span class="marker-highlight">4 种商机发现思路</span>、<span class="marker-highlight">3 类数据源</span>和 <span class="marker-highlight">12 条高频工作流</span></h3>
+      <p class="block-content reveal s2">架构上，我们从一期的<span class="marker-highlight">通用多 Agent 动态规划</span>，改成 <span class="marker-highlight">Workflow 承接确定性高频任务</span>、Agent 兜底异常路径和长尾问题。调整后，报告生成时间从一期约 <span class="marker-highlight">42 分钟</span>缩短到约 <span class="marker-highlight">2 分钟</span>，链路成功率也从 <span class="marker-highlight">72%</span> 提升到 <span class="marker-highlight">97% 以上</span>。</p>
+
+      <div class="xiu-arch-grid">
+        <figure class="xiu-figure reveal s2">
+          <div class="xiu-figure-media is-contain">
+            <img src="assets/一期架构.jpg" alt="嗅嗅豹一期技术架构图">
+          </div>
+          <figcaption class="xiu-figure-caption">
+            <strong>一期：通用多 Agent</strong>
+            <span>验证动态规划和多 Agent 分工，但链路长、成本高、稳定性不足。</span>
+          </figcaption>
+        </figure>
+        <figure class="xiu-figure reveal s3">
+          <div class="xiu-figure-media is-contain">
+            <img src="assets/二期架构.jpg" alt="嗅嗅豹二期技术架构图">
+          </div>
+          <figcaption class="xiu-figure-caption">
+            <strong>二期：Workflow + Agent 兜底</strong>
+            <span>把确定性强的高频任务沉淀为工作流，把异常路径和长尾问题交给 Agent。</span>
+          </figcaption>
+        </figure>
+      </div>
+      <p class="block-content reveal s1">二期不再强调“Agent 自由规划”，而是先把商机发现收敛为爆品跟卖、新品捕捉、社媒流量和品牌追随 <span class="marker-highlight">4 种思路</span>，再映射到电商、社媒、品牌 <span class="marker-highlight">3 类数据源</span>，并沉淀出 <span class="marker-highlight">12 条高频分析工作流</span>。用户看到的是更清晰、更快进入的报告入口；我们真正花时间攻克的，是背后的<span class="marker-highlight">多源异构数据处理链路</span>：从数据接入、清洗、类目映射和 CPV 标准化，到一键生成分析报告，并持续反哺搜索召回、排序和评测优化。</p>
 
       <table class="dtable reveal s2">
         <tr>
           <td>数据接入</td>
-          <td><strong>多源数据接入与清洗</strong><p>接入平台榜单、社媒趋势、达人内容、品牌数据和搜索热度，先做字段清洗、去重和实体标准化。</p></td>
-        </tr>
-        <tr>
-          <td>数据权重</td>
-          <td><strong>从单一平台商品数据，转向社媒 + 品牌 + 电商交叉验证</strong><p>平台数据用于确认需求和价格竞争，社媒数据用于捕捉用户兴趣和内容热度，品牌数据用于判断风格方向、目标人群和趋势扩散。</p></td>
+          <td><strong><span class="marker-highlight">多源数据接入、清洗与交叉验证</span></strong><p>接入平台榜单、社媒趋势、达人内容、品牌数据和搜索热度，先做字段清洗、去重和实体标准化；再根据数据源差异分配判断角色：平台数据确认需求和价格竞争，社媒数据捕捉用户兴趣和内容热度，品牌数据判断风格方向、目标人群和趋势扩散。</p></td>
         </tr>
         <tr>
           <td>类目映射</td>
-          <td><strong>多级类目映射表 + LLM 生成评估闭环</strong><p>不同平台类目体系差异很大，类目映射决定了数据能否比较。我设计多级类目映射表，并用 LLM 生成候选映射，再通过评估闭环校验。</p></td>
+          <td><strong><span class="marker-highlight">多级类目映射表 + LLM 生成评估闭环</span></strong><p>不同平台类目体系差异很大，类目映射决定了数据能否比较。我设计多级类目映射表，并用 LLM 生成候选映射，再通过评估闭环校验。</p></td>
         </tr>
         <tr>
           <td>CPV 标准化</td>
-          <td><strong>多元异构数据沉淀为统一 CPV 特征层</strong><p>将商品、帖子、达人和品牌数据里的颜色、材质、风格、场景等特征统一沉淀，降低后续召回和排序的语义噪声。</p></td>
+          <td><strong><span class="marker-highlight">多元异构数据沉淀为统一 CPV 特征层</span></strong><p>将商品、帖子、达人和品牌数据里的颜色、材质、风格、场景等特征统一沉淀，降低后续召回和排序的语义噪声。</p></td>
         </tr>
         <tr>
           <td>搜索优化</td>
-          <td><strong>搜索召回、排序优化与质量评测耦合</strong><p>数据质量和搜索策略相互影响，因此我们设置了三种难度的搜索评测集，分别评估类目准确率、相关性准确率和召回质量，并按不同难度做多轮迭代。</p></td>
+          <td><strong><span class="marker-highlight">搜索召回、排序优化与质量评测耦合</span></strong><p>数据质量和搜索策略相互影响，因此我们设置了三种难度的搜索评测集，分别评估类目准确率、相关性准确率和召回质量，并按不同难度做多轮迭代。</p></td>
         </tr>
       </table>
       <div class="xiu-figure-grid reveal s3">
@@ -2664,8 +2694,8 @@
   <div class="case-block is-ops">
     <div class="block-label reveal">内测运营</div>
     <div>
-      <h3 class="block-content reveal">通过 1688 和 AliExpress 建立商家联系，冷启动商家 BD 与内测运营</h3>
-      <p class="block-content reveal s1">二期不只是产品和数据链路重构，我也通过 1688、AliExpress 侧资源建立外部商家联系，负责商家触达、沟通、试用引导和反馈回收。我们累计接触 127 位时尚非标品跨境商家，其中在内测阶段自愿使用，且使用天数和使用次数都明显更高的商家共有 12 家。这意味着从真实 BD 商家到高活内测公司的转化接近 9%，是一个比较强的有效需求信号。</p>
+      <h3 class="block-content reveal">通过 <span class="marker-highlight">1688 和 AliExpress</span> 建立商家联系，冷启动商家 BD 与内测运营</h3>
+      <p class="block-content reveal s1">二期不只是产品和数据链路重构，我也通过 1688、AliExpress 侧资源建立外部商家联系，负责商家触达、沟通、试用引导和反馈回收。我们累计接触 <span class="marker-highlight">127 位时尚非标品跨境商家</span>，其中在内测阶段自愿使用，且使用天数和使用次数都明显更高的商家共有 <span class="marker-highlight">12 家</span>。这意味着从真实 BD 商家到高活内测公司的转化接近 <span class="marker-highlight">9%</span>，是一个比较强的有效需求信号。</p>
       <div class="xiu-result-stats is-five reveal s2">
         <div class="xiu-result-stat"><div class="metric-n xiu" data-target="127">0</div><div class="metric-l">BD 接触商家</div></div>
         <div class="xiu-result-stat"><div class="metric-n xiu" data-target="12">0</div><div class="metric-l">双高活跃公司</div></div>
@@ -2677,22 +2707,22 @@
         <div class="xiu-result-row">
           <div class="xiu-result-k">核心用户</div>
           <div class="xiu-result-v">
-            <strong>核心用户分为小 B 商家老板和大中型公司的成熟运营团队</strong>
+            <strong><span class="marker-highlight">核心用户分为小 B 商家老板和大中型公司的成熟运营团队</span></strong>
             <p>年轻、熟用 AI 的小 B 商家老板更愿意“先试再说”，对新鲜点子、高潜产品方向和弱数据支撑的早期信号都高度敏感，但需求较发散，较难抽象出稳定范式，优先级靠后。大中型公司的成熟运营团队工具心智更强，更强调稳定性、可验证性与流程化，所有判断都需要数据链条、指标逻辑与可重复方法。</p>
           </div>
         </div>
         <div class="xiu-result-row">
           <div class="xiu-result-k">付费意愿</div>
           <div class="xiu-result-v">
-            <strong>大体量独立站商家明确提出私有社媒数据库需求，并表达付费意愿</strong>
+            <strong><span class="marker-highlight">大体量独立站商家明确提出私有社媒数据库需求</span>，并表达付费意愿</strong>
             <p>兰亭集势、唯今国际两家大体量独立站商家都明确提出，希望我们帮助他们建立私有社媒数据库，用于持续追踪内容趋势、达人素材和商品机会，辅助社媒选品决策。这个反馈说明成熟商家不只需要一次性报告，更愿意为可沉淀、可复用的数据资产付费。</p>
           </div>
         </div>
         <div class="xiu-result-row">
           <div class="xiu-result-k">阶段成果</div>
           <div class="xiu-result-v">
-            <strong>形成 12 家双高活跃内测公司，搜索质量也达到可对外验证水平</strong>
-            <p>12 家公司不是被动注册用户，而是在真实内测中自愿使用、天数和次数双高的商家；同时二期评测集中，类目准确率达到 85%，相关性准确率达到 84%，为后续商业化验证提供了可量化基础。</p>
+            <strong>形成 <span class="marker-highlight">12 家双高活跃内测公司</span>，效率、稳定性和搜索质量达到可对外验证水平</strong>
+            <p>12 家公司不是被动注册用户，而是在真实内测中自愿使用、天数和次数双高的商家；技术方案调整后，报告生成时间从一期约 <span class="marker-highlight">42 分钟</span>缩短至约 <span class="marker-highlight">2 分钟</span>，成功率基本稳定在 <span class="marker-highlight">97% 以上</span>。同时二期评测集中，类目准确率达到 <span class="marker-highlight">85%</span>，相关性准确率达到 <span class="marker-highlight">84%</span>，为后续商业化验证提供了可量化基础。</p>
           </div>
         </div>
       </div>
@@ -2703,33 +2733,33 @@
   <div class="case-block">
     <div class="block-label reveal">内测反思</div>
     <div>
-      <h3 class="block-content reveal">内测之后，我们重新判断选品产品的商业化边界</h3>
+      <h3 class="block-content reveal">内测之后，我们重新判断选品产品的<span class="marker-highlight">商业化边界</span></h3>
       <div class="reflection-grid">
         <div class="reflection-card reveal s1">
           <div class="reflection-n">01</div>
-          <div class="reflection-title">产品心智不够聚焦</div>
+          <div class="reflection-title"><span class="marker-highlight">产品心智不够聚焦</span></div>
           <p>电商平台、社媒、品牌三种选品入口并行，削弱了核心价值表达，用户难以快速理解产品究竟解决哪个关键问题。</p>
         </div>
         <div class="reflection-card reveal s2">
           <div class="reflection-n">02</div>
-          <div class="reflection-title">社媒选品链路仍需补齐认知</div>
+          <div class="reflection-title"><span class="marker-highlight">社媒选品链路仍需补齐认知</span></div>
           <p>多数商家“想做”社媒趋势选品，但还没有跑通清晰、可复制的方法，产品不仅要给工具，也要解释从趋势识别到选品决策的完整逻辑。</p>
         </div>
         <div class="reflection-card reveal s3">
           <div class="reflection-n">03</div>
-          <div class="reflection-title">目标用户与付费能力错配</div>
+          <div class="reflection-title"><span class="marker-highlight">目标用户与付费能力错配</span></div>
           <p>中腰部以上平台商家已有稳定链路，外部工具依赖低；大体量独立站数量有限，小 B 商家付费能力和意愿不足，商业化基础受限。</p>
         </div>
         <div class="reflection-card reveal s4">
           <div class="reflection-n">04</div>
-          <div class="reflection-title">能力不够锋利，缺少数据飞轮</div>
+          <div class="reflection-title"><span class="marker-highlight">能力不够锋利，缺少数据飞轮</span></div>
           <p>商家基于“商机”上架后的销量和运营数据无法回流，既难验证选品效果，也难持续优化模型，产品没有形成正向数据飞轮。</p>
         </div>
       </div>
       <div class="pivot-card reveal s5">
         <div class="pivot-eyebrow">NEXT OPPORTUNITY</div>
-        <div class="pivot-title">更高频、更接近付费的需求，是商家的私有视频库和商品营销视频生成</div>
-        <p>内测同时让我们看到，商家对私有视频数据库有很强需求：他们希望在自己经营类目下快速找到同款爆款视频，拆解可复用的内容结构，并生成适配自己商品的营销视频。相比选品分析，这个需求发生频次更高，离投放和成交更近，商业价值也更明确。</p>
+        <div class="pivot-title">更高频、更接近付费的需求，是商家的<span class="marker-highlight">私有视频库</span>和<span class="marker-highlight">商品营销视频生成</span></div>
+        <p>内测同时让我们看到，商家对私有视频数据库有很强需求：他们希望在自己经营类目下快速找到<span class="marker-highlight">同款爆款视频</span>，拆解可复用的内容结构，并生成适配自己商品的营销视频。相比选品分析，这个需求<span class="marker-highlight">发生频次更高</span>，离投放和成交更近，商业价值也更明确。</p>
       </div>
     </div>
   </div>
@@ -2742,21 +2772,21 @@
   <div class="case-block">
     <div class="block-label reveal">商品视频生成</div>
     <div>
-      <h3 class="block-content reveal">从低频选品分析，延展到更高频的商品营销内容生成</h3>
-      <p class="block-content reveal s1">在嗅嗅豹内测过程中，我们发现选品分析虽然能帮助商家判断机会，但它在日常经营里相对低频。更高频的需求是：商家已经有一个正在售卖的商品，希望在私有视频库里快速找到经营类目下的同款爆款视频，理解它为什么能爆，并复刻成自己的商品营销视频。</p>
-      <p class="block-content reveal s2">这个方向更接近商业化闭环：内容生成不是终点，视频发布后的曝光、点击、互动、转化和投放成本都可以回流，反过来优化爆款视频召回、脚本拆解、素材选择和生成策略，形成“内容生产 → 投放验证 → 数据回流 → 模型与策略迭代”的数据飞轮。</p>
+      <h3 class="block-content reveal">从低频选品分析，延展到<span class="marker-highlight">更高频的商品营销内容生成</span></h3>
+      <p class="block-content reveal s1">在嗅嗅豹内测过程中，我们发现选品分析虽然能帮助商家判断机会，但它在日常经营里相对低频。更高频的需求是：商家已经有一个正在售卖的商品，希望在私有视频库里快速找到经营类目下的<span class="marker-highlight">同款爆款视频</span>，理解它为什么能爆，并复刻成自己的商品营销视频。</p>
+      <p class="block-content reveal s2">这个方向更接近<span class="marker-highlight">商业化闭环</span>：内容生成不是终点，视频发布后的曝光、点击、互动、转化和投放成本都可以回流，反过来优化爆款视频召回、脚本拆解、素材选择和生成策略，形成“<span class="marker-highlight">内容生产 → 投放验证 → 数据回流 → 模型与策略迭代</span>”的数据飞轮。</p>
       <div class="video-flywheel-grid">
         <div class="video-flywheel-points reveal s3">
           <div class="video-flywheel-point">
-            <strong>从内容复刻到投放验证</strong>
+            <strong><span class="marker-highlight">从内容复刻到投放验证</span></strong>
             <p>先在私有视频库中召回同款爆款视频，拆解开头钩子、卖点表达、镜头结构和 CTA，再生成适配商家商品的营销视频，用真实投放表现验证内容质量。</p>
           </div>
           <div class="video-flywheel-point">
-            <strong>从效果数据回流到策略迭代</strong>
+            <strong><span class="marker-highlight">从效果数据回流到策略迭代</span></strong>
             <p>把曝光、点击、互动、转化、完播率和成本等指标回收为评测信号，持续优化视频召回排序、脚本模板、素材选择和生成参数。</p>
           </div>
           <div class="video-flywheel-point">
-            <strong>从单点生成到可复用 Skill</strong>
+            <strong><span class="marker-highlight">从单点生成到可复用 Skill</span></strong>
             <p>当链路具备明确输入、可验证输出和持续优化信号后，商品营销视频生成就能被封装成 Agent 可调用、可组合、可分发的业务 Skill。</p>
           </div>
         </div>
@@ -2787,7 +2817,7 @@
         <div class="lmask reveal s1"><span class="lmask-inner">虾小宝</span></div>
       </h2>
       <p class="product-cover-copy reveal s2">
-        2 月随着 OpenClaw 热度，我们快速切入 Agent SkillHub。虾小宝的目标不是让更多人知道一个新产品，而是帮助普通用户意识到日常任务可以交给 Agent，并为 Agent 配齐完成任务所需的能力、身份、协作和交易装备。
+        虾小宝的产品使命，是帮助 Agent 从“会对话”走向<span class="marker-highlight">“能执行真实任务”</span>：让 Agent 找到合适能力、拥有可用身份、接入真实工具，并在能力不足时完成协作。它源于一次<span class="marker-highlight">能力链路的抽象与外溢</span>：我们先将商品营销视频生成封装为可复用 Skill，又发现中文开发者生态缺少 Skill 的标准化分发、协作与交易网络。因此虾小宝从 SkillHub 出发，进一步为 Agent 补齐<span class="marker-highlight">能力配置、身份绑定、协作和交易装备</span>。
       </p>
     </div>
     <div class="product-cover-visual single reveal s4">
@@ -2802,10 +2832,9 @@
     <div class="xia-stage-head">
       <div class="block-label reveal">核心洞察</div>
       <ul class="insight-bullets xia-product-insights reveal s1">
-        <li><strong><span class="marker-highlight">增长难点不是曝光，而是用户习惯</span></strong>，普通用户很难主动意识到生活和工作里的任务可以交给 Agent 自动执行。</li>
-        <li><strong><span class="marker-highlight">Agent 要替人完成任务，必须先被装备起来</span></strong>，能力、身份、运行环境和协作网络缺一不可。</li>
-        <li><strong><span class="marker-highlight">SkillHub 解决“会不会做”，身份资产解决“能不能做”</span></strong>，前者匹配能力，后者打通真实系统。</li>
-        <li><strong><span class="marker-highlight">社区和商城解决“能不能持续变好”</span></strong>，通过 Agent 评论、声誉和开发者供给形成 Marketplace 的信任基础。</li>
+        <li><strong><span class="marker-highlight">Agent 要完成真实任务，必须先被装备起来</span></strong>，能力、身份、权限、额度、运行环境和协作网络缺一不可。</li>
+        <li><strong><span class="marker-highlight">SkillHub 不是工具目录，而是 Agent 的能力调用层</span></strong>，重点不是展示 Skill，而是让 Skill 可发现、可验证、可组合、可交易。</li>
+        <li><strong><span class="marker-highlight">增长不是曝光问题，而是任务委托习惯问题</span></strong>，产品要帮助用户意识到：很多工作不是问 AI，而是交给 Agent 执行。</li>
       </ul>
     </div>
   </div>
@@ -2814,27 +2843,27 @@
   <div class="xia-stage">
     <div class="block-label reveal">产品设计链路</div>
     <div>
-      <h3 class="xia-stage-title reveal">从“Agent 替人完成任务”反推四类装备</h3>
-      <p class="xia-stage-copy reveal s1">如果目标是让 Agent 真正替人类用户完成任务，产品就不能只提供 Skill 列表，而要沿着任务执行链路补齐能力发现、真实身份、可信协作和持续供给。</p>
+      <h3 class="xia-stage-title reveal">从“<span class="marker-highlight">Agent 替人完成任务</span>”反推四类装备</h3>
+      <p class="xia-stage-copy reveal s1">如果目标是让 Agent 真正替人类用户完成任务，产品就不能只提供 Skill 列表，而要沿着任务执行链路补齐<span class="marker-highlight">能力发现、真实身份、可信协作和持续供给</span>。</p>
       <div class="xia-solution-grid">
         <div class="xia-solution-card reveal s2">
           <div class="xia-solution-label">能力装备</div>
-          <strong>SkillHub</strong>
+          <strong><span class="marker-highlight">SkillHub</span></strong>
           <p>人类任务复杂多样，Agent 首先要知道该调用什么能力。SkillHub 从 intent → skill 推荐、结构化展示、准入评测和沙盒试跑，升级为可推荐、可验证、可运行的能力矩阵。</p>
         </div>
         <div class="xia-solution-card reveal s3">
           <div class="xia-solution-label">执行装备</div>
-          <strong>身份资产</strong>
+          <strong><span class="marker-highlight">身份资产</span></strong>
           <p>找到 Skill 不代表任务能完成，Agent 还会卡在注册、验证、登录、API 调用和额度支付上。因此我们设计独立 Agent 身份，支持邮箱 / 手机号验证、常见 AK 预配置、API Key 托管和 API 钱包。</p>
         </div>
         <div class="xia-solution-card reveal s4">
           <div class="xia-solution-label">协作装备</div>
-          <strong>Agent 社区</strong>
+          <strong><span class="marker-highlight">Agent 社区</span></strong>
           <p>单个 Agent 的能力有上限，复杂任务需要找到可信 Agent 帮忙。自治社区让优质 Agent 持续使用、评论、推荐能力并参与协作。</p>
         </div>
         <div class="xia-solution-card reveal s5">
           <div class="xia-solution-label">供给装备</div>
-          <strong>商城与声誉</strong>
+          <strong><span class="marker-highlight">商城与声誉</span></strong>
           <p>平台要持续有好 Skill，就要让开发者能托管和商业化能力，也让 Agent 的真实评论、成功率和稳定性成为推荐排序和交易信任基础。</p>
         </div>
       </div>
@@ -2874,8 +2903,8 @@
       结果与行动<br>
       <span style="font-weight:400;font-size:10px;color:var(--text-3);letter-spacing:0;text-transform:none;">增长工程</span>
     </div>
-    <h3 class="block-content reveal">从热点增长转向用户教育，沉淀可持续的 Agent 使用习惯</h3>
-    <p class="block-content reveal s1" style="margin-bottom:24px;">MVP 上线两周内，平台快速上线约 4,300 个 Agent；累计至今，Agent 总量达到 5,800+。随着小龙虾热点回落，活跃数据也从短期流量峰值回到更真实的使用状态，因此我们把增长重点从热点传播转向用户教育和高频场景沉淀。</p>
+    <h3 class="block-content reveal">从热点增长转向<span class="marker-highlight">用户教育</span>，沉淀可持续的 Agent 使用习惯</h3>
+    <p class="block-content reveal s1" style="margin-bottom:24px;">MVP 上线两周内，平台快速上线约 <span class="marker-highlight">4,300 个 Agent</span>；累计至今，Agent 总量达到 <span class="marker-highlight">5,800+</span>。随着小龙虾热点回落，活跃数据也从短期流量峰值回到更真实的使用状态，因此我们把增长重点从热点传播转向<span class="marker-highlight">用户教育和高频场景沉淀</span>。</p>
     <div class="metrics-grid is-two reveal s2">
       <div class="metric-cell">
         <div class="metric-n xia" data-target="4300" data-suffix="+">0</div>
@@ -2903,17 +2932,17 @@
     <div class="xia-solution-grid reveal s4" style="margin-top:28px;">
       <div class="xia-solution-card">
         <div class="xia-solution-label">Action 01</div>
-        <strong>场景化用户教育</strong>
+        <strong><span class="marker-highlight">场景化用户教育</span></strong>
         <p>针对不同用户群体的生活和工作痛点，拆出“哪些任务可以交给 Agent”的具体教程，而不是只介绍产品功能。</p>
       </div>
       <div class="xia-solution-card">
         <div class="xia-solution-label">Action 02</div>
-        <strong>从教程到使用习惯</strong>
+        <strong><span class="marker-highlight">从教程到使用习惯</span></strong>
         <p>用小龙虾和其他 Agent 产品做可复用案例，让普通用户从一次尝试，逐步形成遇到任务先想到 Agent 的习惯。</p>
       </div>
       <div class="xia-solution-card">
         <div class="xia-solution-label">Action 03</div>
-        <strong>沉淀可复制增长资产</strong>
+        <strong><span class="marker-highlight">沉淀可复制增长资产</span></strong>
         <p>把高频教程、失败问题和用户反馈反向沉淀为 Skill 推荐、身份配置和 Agent 协作的优化输入。</p>
       </div>
     </div>
@@ -2927,7 +2956,7 @@
     <div class="about-section-label reveal">PROMOTION CASE</div>
     <h2 class="about-title reveal s1">自我评价与未来规划</h2>
     <p class="about-lead reveal s2">
-      我喜欢当产品经理，首先是因为满足真实用户需求会带来很强的成就感；更深一层，是因为产品让我有机会把自己的价值观表达出来：好的产品不只是堆功能，而是在用户、技术和商业之间做判断，把零散需求转化成可被系统承接、可被团队共创、可被结果验证的机制。下一阶段，我希望从 Junior PM 继续成长为更成熟的 Senior PM：不只把需求交付好，而是更早定义问题、判断优先级、推动结果闭环，并长期陪伴一个产品持续演进。
+      我喜欢当产品经理，首先是因为满足真实用户需求会带来很强的成就感；更深一层，是因为产品让我有机会把自己的价值观表达出来：好的产品不只是堆功能，而是在<span class="marker-highlight">用户、技术和商业之间做判断</span>，把零散需求转化成可被系统承接、可被团队共创、可被结果验证的机制。下一阶段，我希望从 Junior PM 继续成长为更成熟的 Senior PM：不只把需求交付好，而是<span class="marker-highlight">更早定义问题、判断优先级、推动结果闭环</span>，并长期陪伴一个产品持续演进。
     </p>
 
     <div class="brainstorm-board">
@@ -2940,32 +2969,32 @@
 
       <div class="thought-card self thought-1 reveal s1">
         <div class="thought-type">Self evaluation</div>
-        <strong>从需求执行到问题定义</strong>
+        <strong><span class="marker-highlight">从需求执行到问题定义</span></strong>
         <p>把真实用户需求作为起点，更早判断问题是否真实、重要、值得投入。</p>
       </div>
       <div class="thought-card self thought-2 reveal s2">
         <div class="thought-type">Result mindset</div>
-        <strong>从上线交付到结果闭环</strong>
+        <strong><span class="marker-highlight">从上线交付到结果闭环</span></strong>
         <p>把上线看作验证的开始，通过数据、反馈和复盘推动下一轮迭代。</p>
       </div>
       <div class="thought-card self thought-3 reveal s3">
         <div class="thought-type">Scope</div>
-        <strong>从单点体验到系统思考</strong>
+        <strong><span class="marker-highlight">从单点体验到系统思考</span></strong>
         <p>从具体功能、平台探索到能力网络建设，承担更大范围的产品结果。</p>
       </div>
       <div class="thought-card self thought-4 reveal s4">
         <div class="thought-type">Complexity</div>
-        <strong>在不确定性里拆问题</strong>
+        <strong><span class="marker-highlight">在不确定性里拆问题</span></strong>
         <p>同时处理用户、数据、算法、评测和商业假设，把复杂问题拆成可推进模块。</p>
       </div>
       <div class="thought-card next thought-5 reveal s5">
         <div class="thought-type">Product direction</div>
-        <strong>做长期迭代的产品</strong>
+        <strong><span class="marker-highlight">做长期迭代的产品</span></strong>
         <p>相比一次性交付，更希望参与能持续验证、持续沉淀价值的 AI 产品。</p>
       </div>
       <div class="thought-card next thought-6 reveal s5">
         <div class="thought-type">AI adoption</div>
-        <strong>让 AI 进入真实工作流</strong>
+        <strong><span class="marker-highlight">让 AI 进入真实工作流</span></strong>
         <p>平衡用户教育与创作者供给，让优秀工作流被更多普通用户低门槛复用。</p>
       </div>
     </div>
@@ -2973,30 +3002,30 @@
     <div class="about-belief reveal s2">
       <div>
         <div class="about-belief-kicker">Product direction</div>
-        <h3 class="about-belief-title">我希望做能够长期演进的 AI 产品</h3>
+        <h3 class="about-belief-title">我希望做能够<span class="marker-highlight">长期演进</span>的 AI 产品</h3>
       </div>
       <div class="about-belief-copy">
         <p>
-          我对 AI 产品的长期兴趣，不只是做一个通用对话入口，而是帮助 AI 能力真正进入用户的日常工作流。很多用户还没有意识到 AI 能帮自己完成什么任务，认知仍停留在问答、搜索和简单内容生成上；但 AI 更大的价值，可能在于任务拆解、流程自动化、决策辅助和跨工具协作。
+          我对 AI 产品的长期兴趣，不只是做一个通用对话入口，而是帮助 AI 能力真正进入用户的<span class="marker-highlight">日常工作流</span>。很多用户还没有意识到 AI 能帮自己完成什么任务，认知仍停留在问答、搜索和简单内容生成上；但 AI 更大的价值，可能在于<span class="marker-highlight">任务拆解、流程自动化、决策辅助和跨工具协作</span>。
         </p>
         <p>
-          同时我也认识到，能够主动创作 AI 工作流的用户比例相对较少。因此产品需要找到一个平衡点：一方面通过场景化用户教育激发主动探索，另一方面把少数创作者沉淀出的高质量工作流，通过模板、推荐、案例和低门槛配置释放给更多用户。<strong>我希望做的产品，不只是提供模型能力，而是让能力被理解、被复用、被持续迭代。</strong>
+          同时我也认识到，能够主动创作 AI 工作流的用户比例相对较少。因此产品需要找到一个平衡点：一方面通过<span class="marker-highlight">场景化用户教育</span>激发主动探索，另一方面把少数创作者沉淀出的高质量工作流，通过模板、推荐、案例和低门槛配置释放给更多用户。<strong>我希望做的产品，不只是提供模型能力，而是让能力<span class="marker-highlight">被理解、被复用、被持续迭代</span>。</strong>
         </p>
       </div>
       <div class="belief-grid">
         <div class="belief-card">
           <div class="belief-card-label">01 Product expression</div>
-          <strong>把 AI 能力翻译成用户任务</strong>
+          <strong><span class="marker-highlight">把 AI 能力翻译成用户任务</span></strong>
           <p>产品不直接展示模型能力，而是用场景、任务和案例告诉用户：这件事可以交给 AI 做。</p>
         </div>
         <div class="belief-card">
           <div class="belief-card-label">02 User perspective</div>
-          <strong>让普通用户先得到结果</strong>
+          <strong><span class="marker-highlight">让普通用户先得到结果</span></strong>
           <p>用户不需要一开始就理解工作流怎么搭建，而是能从可用模板开始，先完成一次真实任务。</p>
         </div>
         <div class="belief-card">
           <div class="belief-card-label">03 Product mechanism</div>
-          <strong>让好工作流自然被复用</strong>
+          <strong><span class="marker-highlight">让好工作流自然被复用</span></strong>
           <p>通过推荐、评价、复用和反馈机制，把创作者能力转化为更多用户可发现、可理解、可持续使用的产品资产。</p>
         </div>
       </div>
