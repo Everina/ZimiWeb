@@ -2330,7 +2330,7 @@
 <!-- TIMELINE BACKDROP -->
 <div class="tl-backdrop" id="tlBackdrop">
   <div class="tl-preview" aria-label="产品预览">
-    <a href="#xia" class="tl-preview-card xia" data-close-tl>
+    <a href="#xiu" class="tl-preview-card xia" data-close-tl>
       <div class="tl-preview-media">
         <img src="assets/mascots.png" alt="虾小宝和嗅嗅豹合照">
       </div>
@@ -2488,7 +2488,7 @@
         <div class="lmask reveal s1"><span class="lmask-inner">嗅嗅豹</span></div>
       </h2>
       <p class="product-cover-copy reveal s2">
-        面向跨境时尚非标品选品场景的 AI 分析平台。两期都围绕同一类选品问题展开：<span class="marker-highlight">一期服务内部 Lazada 和 1688 行业运营</span>，验证多 Agent 能否完成商机分析；<span class="marker-highlight">二期面向外部跨境商家</span>，进一步发现离线处理与搜索策略强耦合，高频需求应沉淀为稳定工作流，Agent 更适合承接长尾需求。
+        面向跨境时尚非标品选品场景的 AI 分析平台。两期都围绕同一类选品问题展开：<span class="marker-highlight">一期服务内部 Lazada 和 1688 行业运营</span>，验证多 Agent 能否完成商机分析；<span class="marker-highlight">二期面向外部跨境商家</span>，则回到真实选品工作流程，满足商家对效率、稳定性和可信过程的需求，并将高频任务沉淀为工作流，由 Agent 承接长尾和异常问题。
       </p>
     </div>
     <div class="product-cover-visual single reveal s3">
@@ -2611,7 +2611,7 @@
     <div class="block-label reveal">二期落地</div>
     <div>
       <h3 class="block-content reveal">抽象 <span class="marker-highlight">4 种商机发现思路</span>、<span class="marker-highlight">3 类数据源</span>和 <span class="marker-highlight">12 条高频工作流</span></h3>
-      <p class="block-content reveal s2">架构上，我们从一期的<span class="marker-highlight">通用多 Agent 动态规划</span>，改成 <span class="marker-highlight">Workflow 承接确定性高频任务</span>、Agent 兜底异常路径和长尾问题。调整后，报告生成时间从一期约 <span class="marker-highlight">42 分钟</span>缩短到约 <span class="marker-highlight">2 分钟</span>，链路成功率也从 <span class="marker-highlight">72%</span> 提升到 <span class="marker-highlight">97% 以上</span>。</p>
+      <p class="block-content reveal s2">二期整体约 <span class="marker-highlight">4.2 个人力</span>，重点投入在场景抽象、报告入口产品化、多源数据处理、搜索评测和商家内测反馈闭环。架构上，我们从一期的<span class="marker-highlight">通用多 Agent 动态规划</span>，改成 <span class="marker-highlight">Workflow 承接确定性高频任务</span>、Agent 兜底异常路径和长尾问题。调整后，报告生成时间从一期约 <span class="marker-highlight">42 分钟</span>缩短到约 <span class="marker-highlight">2 分钟</span>，链路成功率也从 <span class="marker-highlight">72%</span> 提升到 <span class="marker-highlight">97% 以上</span>。</p>
 
       <div class="xiu-arch-grid">
         <figure class="xiu-figure reveal s2">
@@ -2633,7 +2633,7 @@
           </figcaption>
         </figure>
       </div>
-      <p class="block-content reveal s1">二期不再强调“Agent 自由规划”，而是先把商机发现收敛为爆品跟卖、新品捕捉、社媒流量和品牌追随 <span class="marker-highlight">4 种思路</span>，再映射到电商、社媒、品牌 <span class="marker-highlight">3 类数据源</span>，并沉淀出 <span class="marker-highlight">12 条高频分析工作流</span>。用户看到的是更清晰、更快进入的报告入口；我们真正花时间攻克的，是背后的<span class="marker-highlight">多源异构数据处理链路</span>：从数据接入、清洗、类目映射和 CPV 标准化，到一键生成分析报告，并持续反哺搜索召回、排序和评测优化。</p>
+      <p class="block-content reveal s1">二期的落地重点，是把真实选品动作产品化：用户看到的是更清晰、更快进入的报告入口；我们真正花时间攻克的，是背后的<span class="marker-highlight">多源异构数据处理链路</span>，让不同来源的数据能够被对齐、比较、生成报告，并持续反哺搜索召回、排序和评测优化。</p>
 
       <table class="dtable reveal s2">
         <tr>
@@ -2650,7 +2650,7 @@
         </tr>
         <tr>
           <td>搜索优化</td>
-          <td><strong><span class="marker-highlight">搜索召回、排序优化与质量评测耦合</span></strong><p>数据质量和搜索策略相互影响，因此我们设置了三种难度的搜索评测集，分别评估类目准确率、相关性准确率和召回质量，并按不同难度做多轮迭代。</p></td>
+          <td><strong><span class="marker-highlight">多阶段召回、Re-ranker 与质量评测闭环</span></strong><p>内测阶段我们并行上线三类搜索链路：query 扩展后的联网搜索、基于视觉相似度的图搜，以及候选集召回后的 re-ranker 重排；同时评测标题、OCR、视觉标签、商品属性和脚本结构等信息如何做 embedding，用于视频理解、同款召回和相关性排序。搜索评测集按难度拆分，持续评估类目准确率、相关性准确率和召回质量。</p></td>
         </tr>
       </table>
       <div class="xiu-figure-grid reveal s3">
@@ -2669,7 +2669,7 @@
           </div>
           <figcaption class="xiu-figure-caption">
             <strong>搜索优化链路</strong>
-            <span>将 query 理解、类目映射、候选召回、排序分析和分难度评测拆成可持续迭代的链路。</span>
+            <span>将 query 理解、多模态召回、embedding 表征、re-ranker 重排和分难度评测拆成可持续迭代的链路。</span>
           </figcaption>
         </figure>
       </div>
@@ -2697,7 +2697,7 @@
     <div class="block-label reveal">内测运营</div>
     <div>
       <h3 class="block-content reveal">通过 <span class="marker-highlight">1688 和 AliExpress</span> 建立商家联系，冷启动商家 BD 与内测运营</h3>
-      <p class="block-content reveal s1">二期不只是产品和数据链路重构，我也通过 1688、AliExpress 侧资源建立外部商家联系，负责商家触达、沟通、试用引导和反馈回收。我们累计接触 <span class="marker-highlight">127 位时尚非标品跨境商家</span>，其中在内测阶段自愿使用，且使用天数和使用次数都明显更高的商家共有 <span class="marker-highlight">12 家</span>。这意味着从真实 BD 商家到高活内测公司的转化接近 <span class="marker-highlight">9%</span>，是一个比较强的有效需求信号。</p>
+      <p class="block-content reveal s1">二期不只是产品和数据链路重构，我也通过 1688、AliExpress 侧资源建立外部商家联系，负责公司触达、沟通、试用引导和反馈回收。我们累计接触 <span class="marker-highlight">127 家时尚非标品跨境商家公司</span>，其中在内测阶段自愿使用，且使用天数和使用次数都明显更高的内测公司共有 <span class="marker-highlight">12 家</span>。这意味着从真实 BD 公司到高活内测公司的转化接近 <span class="marker-highlight">9%</span>，是一个比较强的有效需求信号。</p>
       <div class="xiu-result-stats is-five reveal s2">
         <div class="xiu-result-stat"><div class="metric-n xiu" data-target="127">0</div><div class="metric-l">BD 公司</div></div>
         <div class="xiu-result-stat"><div class="metric-n xiu" data-target="12">0</div><div class="metric-l">双高活跃公司</div></div>
@@ -2724,7 +2724,7 @@
           <div class="xiu-result-k">阶段成果</div>
           <div class="xiu-result-v">
             <strong>形成 <span class="marker-highlight">12 家双高活跃内测公司</span>，效率、稳定性和搜索质量达到可对外验证水平</strong>
-            <p>12 家公司不是被动注册用户，而是在真实内测中自愿使用、天数和次数双高的商家；技术方案调整后，报告生成时间从一期约 <span class="marker-highlight">42 分钟</span>缩短至约 <span class="marker-highlight">2 分钟</span>，成功率基本稳定在 <span class="marker-highlight">97% 以上</span>。同时二期评测集中，类目准确率达到 <span class="marker-highlight">85%</span>，相关性准确率达到 <span class="marker-highlight">84%</span>，为后续商业化验证提供了可量化基础。</p>
+            <p>12 家内测公司不是被动注册用户，而是在真实内测中自愿使用、天数和次数双高的商家团队；技术方案调整后，报告生成时间从一期约 <span class="marker-highlight">42 分钟</span>缩短至约 <span class="marker-highlight">2 分钟</span>，成功率基本稳定在 <span class="marker-highlight">97% 以上</span>。同时二期评测集中，类目准确率达到 <span class="marker-highlight">85%</span>，相关性准确率达到 <span class="marker-highlight">84%</span>；从早期用户反馈“搜索完全不准”，到后期问卷中不再收到明确的搜索问题反馈，也说明搜索满意度和整体可用性有明显提升。</p>
           </div>
         </div>
       </div>
